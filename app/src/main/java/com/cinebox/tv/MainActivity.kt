@@ -28,11 +28,6 @@ import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
-import org.json.JSONObject
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLEncoder
-import kotlin.concurrent.thread
 
 private val bg = Color(0xFF090D18)
 private val panel = Color(0xFF192034)
@@ -51,33 +46,16 @@ data class Movie(
     val genreIds: List<Int>
 )
 
-private fun parseMovies(json: JSONObject): List<Movie> {
-    val results = json.optJSONArray("results") ?: return emptyList()
-    return (0 until results.length()).mapNotNull { i ->
-        val o = results.optJSONObject(i) ?: return@mapNotNull null
-        val title = o.optString("title", o.optString("name"))
-        if (title.isBlank()) return@mapNotNull null
-        val poster = o.optString("poster_path").takeIf { it.startsWith("/") }?.let { "https://image.tmdb.org/t/p/w500$it" } ?: ""
-        val backdrop = o.optString("backdrop_path").takeIf { it.startsWith("/") }?.let { "https://image.tmdb.org/t/p/w1280$it" } ?: ""
-        val genres = o.optJSONArray("genre_ids")
-        Movie(o.optInt("id"), title, o.optString("overview"), poster, backdrop,
-            o.optString("release_date").take(4), o.optDouble("vote_average"),
-            if (genres == null) emptyList() else (0 until genres.length()).map { genres.optInt(it) })
-    }
-}
-
-private fun tmdb(path: String): List<Movie> {
-    if (BuildConfig.TMDB_BEARER_TOKEN.isBlank()) return emptyList()
-    val connection = (URL("https://api.themoviedb.org/3/$path").openConnection() as HttpURLConnection)
-    connection.setRequestProperty("Authorization", "Bearer ${BuildConfig.TMDB_BEARER_TOKEN}")
-    connection.setRequestProperty("Accept", "application/json")
-    connection.connectTimeout = 10000
-    connection.readTimeout = 10000
-    try {
-        if (connection.responseCode !in 200..299) return emptyList()
-        return parseMovies(JSONObject(connection.inputStream.bufferedReader().use { it.readText() }))
-    } finally { connection.disconnect() }
-}
+// Yerel deneme kataloğu: TMDB bağlantısı veya API anahtarı gerekmez.
+// Bu örnekler telifli film oynatma bağlantıları değildir.
+private val demoMovies = listOf(
+    Movie(1, "Büyük Tavşan", "Açık lisanslı animasyon videosuyla oynatıcı testi.", "", "", "2008", 8.0, listOf(16)),
+    Movie(2, "Sintel", "Fantastik animasyon örneği. Oynatma bağlantısı örnek medya içindir.", "", "", "2010", 8.2, listOf(16, 14)),
+    Movie(3, "Tears of Steel", "Bilim kurgu kısa filmi için örnek katalog kartı.", "", "", "2012", 7.8, listOf(878)),
+    Movie(4, "Elephants Dream", "Animasyon kategorisinde örnek film kaydı.", "", "", "2006", 7.6, listOf(16)),
+    Movie(5, "Cosmos Laundromat", "Animasyon türünde katalog gösterim kaydı.", "", "", "2015", 7.7, listOf(16)),
+    Movie(6, "Caminandes", "Kısa animasyon kategorisinde örnek kayıt.", "", "", "2013", 7.4, listOf(16))
+)
 
 class MainActivity : ComponentActivity() {
     private val prefs by lazy { getSharedPreferences("cinebox", Context.MODE_PRIVATE) }
@@ -100,26 +78,18 @@ class MainActivity : ComponentActivity() {
         val ratings = remember { mutableStateMapOf<Int, Int>().apply {
             prefs.all.forEach { (key, value) -> if (key.startsWith("rating_") && value is Int) key.removePrefix("rating_").toIntOrNull()?.let { put(it, value) } }
         } }
-        val savedMovies = remember { mutableStateMapOf<Int, Movie>() }
+        val savedMovies = remember { mutableStateMapOf<Int, Movie>().apply { demoMovies.forEach { put(it.id, it) } } }
 
-        fun load(path: String, recommendation: Boolean = false) {
-            busy = true
-            message = ""
-            thread {
-                try {
-                    val found = tmdb(path)
-                    runOnUiThread {
-                        if (recommendation) recommended = found else { movies = found; found.forEach { savedMovies[it.id] = it } }
-                        busy = false
-                        if (found.isEmpty()) message = if (BuildConfig.TMDB_BEARER_TOKEN.isBlank()) "Gerçek film kataloğu için TMDB anahtarını gradle.properties dosyasına girin." else "İçerik bulunamadı veya TMDB bağlantısı kurulamadı."
-                    }
-                } catch (e: Exception) { runOnUiThread { busy = false; message = "Bağlantı hatası: ${e.localizedMessage}" } }
-            }
+        fun showMovies(list: List<Movie>) {
+            movies = list
+            list.forEach { savedMovies[it.id] = it }
+            busy = false
+            message = if (list.isEmpty()) "Film bulunamadı." else ""
         }
-        LaunchedEffect(Unit) { load("trending/movie/week?language=tr-TR") }
+        LaunchedEffect(Unit) { showMovies(demoMovies) }
         LaunchedEffect(selected?.id) {
             val genre = selected?.genreIds?.firstOrNull()
-            if (genre != null) load("discover/movie?language=tr-TR&sort_by=popularity.desc&with_genres=$genre", true)
+            recommended = demoMovies.filter { it.id != selected?.id && (genre == null || genre in it.genreIds) }
         }
         BackHandler(enabled = playing != null || selected != null) {
             if (playing != null) playing = null else selected = null
@@ -166,10 +136,10 @@ class MainActivity : ComponentActivity() {
                             Button(onClick = {
                                 tab = label
                                 when (label) {
-                                    "Ana Sayfa" -> load("trending/movie/week?language=tr-TR")
+                                    "Ana Sayfa" -> showMovies(demoMovies)
                                     "Öneriler" -> {
-                                        val genre = savedMovies.values.filter { ratings.getOrDefault(it.id, 0) >= 7 }.flatMap { it.genreIds }.groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
-                                        load(if (genre == null) "movie/top_rated?language=tr-TR" else "discover/movie?language=tr-TR&with_genres=$genre&sort_by=vote_average.desc&vote_count.gte=300")
+                                        val preferred = savedMovies.values.filter { (ratings[it.id] ?: 0) >= 7 }.flatMap { it.genreIds }.toSet()
+                                        showMovies(demoMovies.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
                                     }
                                 }
                             }, colors = ButtonDefaults.buttonColors(containerColor = if (tab == label) accent else panel)) { Text(label) }
@@ -179,19 +149,19 @@ class MainActivity : ComponentActivity() {
                     if (tab == "Ara") {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             TextField(value = query, onValueChange = { query = it }, label = { Text("Film adı") }, singleLine = true, modifier = Modifier.width(450.dp))
-                            Button(onClick = { if (query.isNotBlank()) load("search/movie?language=tr-TR&query=${URLEncoder.encode(query, "UTF-8")}") }) { Text("🔍 Ara") }
+                            Button(onClick = { if (query.isNotBlank()) showMovies(demoMovies.filter { it.title.contains(query.trim(), ignoreCase = true) }) }) { Text("🔍 Ara") }
                         }
                         Spacer(Modifier.height(20.dp))
                     }
-                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Bu haftanın popüler filmleri" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Örnek film kataloğu (TMDB kullanılmıyor)" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
-                    val shown = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
+                    val shown = if (tab == "Favoriler") demoMovies.filter { favorites.contains(it.id) } else movies
                     MovieRow(shown) { selected = it }
-                    if (tab == "Favoriler" && shown.isEmpty()) Text("Favorileriniz bu oturumda henüz yüklenmedi. Ana sayfadan film açarak favorilerinizi görüntüleyebilirsiniz.", color = Color.LightGray)
+                    if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
                     Spacer(Modifier.height(20.dp))
-                    Text("Bu ürün TMDB API kullanır, ancak TMDB tarafından onaylanmış veya sertifikalandırılmış değildir. TMDB © themoviedb.org", color = Color.Gray, fontSize = 11.sp)
+                    Text("Deneme kataloğu: Gerçek film ve yayın kaynakları henüz bağlı değildir.", color = Color.Gray, fontSize = 11.sp)
                 }
             }
         }

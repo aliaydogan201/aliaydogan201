@@ -4,7 +4,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-val tmdbToken = providers.gradleProperty("TMDB_BEARER_TOKEN").orElse("").get()
 android {
     namespace = "com.cinebox.tv"
     compileSdk = 35
@@ -12,9 +11,8 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
-        buildConfigField("String", "TMDB_BEARER_TOKEN", "\"${tmdbToken.replace("\\", "\\\\").replace("\"", "\\\"")}\"")
+        versionCode = 2
+        versionName = "0.2.0"
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
