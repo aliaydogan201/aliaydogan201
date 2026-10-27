@@ -1,17 +1,6 @@
-# CineBox TV v0.14 — Sertifika uyumluluğu
+# CineBox TV v0.16 — FilmMakinesi kataloğu
+Tek kaynak https://filmmakinesi.to/ . Filmler ve Diziler klasörleri korunur. Cihazdan canlı liste yüklenir; isim seçimi ilgili sayfayı harici tarayıcıda açar. Sayfalama ve açık sayfada isim filtresi vardır.
 
-“Trust anchor / CertPathValidatorException” için katalog alan adına özel halka açık kök sertifikalar eklendi (Android 7+). Sertifika ve alan adı doğrulaması devam eder. Film/Dizi klasörleri korunur. SSL hatası artık TV Android sürümüyle birlikte anlaşılır açıklama gösterir.
+Kullanıcının gönderdiği HTML’den çıkarılan temiz başlık/bağlantı listesi başlangıç verisidir. Canlı erişim başarısızsa bu sınırlı liste görünür; tüm arşiv değildir. HTML betikleri, reklamlar ve çerezler pakete dahil edilmez. Film ve dizi liste yolları HTML menüsünden doğrulandı. Diziler sayfasının tam HTML yapısı ve sayfalaması henüz cihazda doğrulanmadı.
 
-TV tarih/saatini otomatik ayarlayın. ZIP içeriğini .github dahil GitHub proje köküne aktarın; Actions ile APK oluşturun. Sürüm kodu 14.
-
-Bu paket eksik kök sertifika ihtimalini giderir; cihazda kesin çözüm henüz doğrulanmadı. Android 6 sınırlaması ve sertifika bilgileri CERTIFICATES.md içinde. APK derlenmedi ve TV testi yapılmadı.
-
-# CineBox TV v0.13 — Ortak Film ve Dizi klasörleri
-
-Ana sayfa içerikleri klasörlerle sunar: Filmler, Diziler, Belgesel, Maç Özeti ve Müzik. Site adına göre menü/klasör yoktur. Türk dizileri Diziler altında yer alır. Filmler/Diziler klasöründeki “Tüm filmlere/dizilere göz at” düğmesi ilgili çevrimiçi kataloğu açar. Kaynak şu anda HDFilmizle; gelecekte başka kaynaklar da aynı tür klasörlerine bağlanabilir. Henüz başka kaynak bağlanmadı.
-
-Çevrimiçi listede film ve dizi kayıtları ayrılır; diziler kaynağın /dizi/ URL yoluyla tanınır. Sayfa numaraları kaynak sitenin karma sayfalarıdır; bazı sayfalarda seçili türe ait kayıt olmayabilir. Boş sayfa açıklaması ve sonraki sayfa seçeneği vardır. Arama açık sayfada çalışır. İçerik seçimi tarayıcıya yönlendirir. Mevcut yerel içerik oynatıcıları korunur.
-
-ZIP içeriğini (.github dahil) GitHub proje köküne aktarın; Actions üzerinden APK oluşturun. Sürüm kodu 13.
-
-Java ayrıştırıcı, tür ayrımı ve reklam alan adı testleri geçti. Gerçek HTML örneğinde 20 kayıt doğrulandı. Android SDK bulunmadığından APK derlenmedi ve TV üzerinde test edilmedi.
+GitHub projesindeki app klasörünü bununla değiştirin; .github dahil kök dosyaları aktarın; Actions ile APK oluşturun. Sürüm kodu 16. Sertifika kontrolü korunur. Bu ortamda siteye canlı erişim 451 verdi; APK derleme ve cihaz testi yapılmadı.

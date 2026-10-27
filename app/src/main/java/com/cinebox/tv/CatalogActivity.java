@@ -42,7 +42,7 @@ public final class CatalogActivity extends Activity {
         LinearLayout top=new LinearLayout(this);
         button(top,"Geri",v->back());
         title=new TextView(this);title.setText("Film ve dizi kataloğu");title.setTextColor(Color.WHITE);title.setTextSize(22);top.addView(title,new LinearLayout.LayoutParams(0,-2,1));
-        button(top,"Tarayıcıda aç",v->open(CatalogParser.pageUrl(page)));root.addView(top);
+        button(top,"Tarayıcıda aç",v->open(CatalogParser.pageUrl(page, folder.equals("Diziler"))));root.addView(top);
         nav=new LinearLayout(this);
         prev=button(nav,"Önceki",v->load(page-1));next=button(nav,"Sonraki",v->load(page+1));
         pageInput=new EditText(this);pageInput.setTextColor(Color.WHITE);pageInput.setInputType(2);pageInput.setSingleLine(true);pageInput.setHint("Sayfa");pageInput.setHintTextColor(Color.LTGRAY);nav.addView(pageInput,new LinearLayout.LayoutParams(dp(95),-2));
@@ -63,6 +63,11 @@ public final class CatalogActivity extends Activity {
         setContentView(root);
         filter.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int a,int c,int f){} public void onTextChanged(CharSequence s,int a,int b,int c){applyFilter();}public void afterTextChanged(Editable e){}});
         showFolder();
+        try(InputStream in=getAssets().open("catalog_snapshot.html");ByteArrayOutputStream out=new ByteArrayOutputStream()) {
+            byte[] bytes=new byte[4096];int n;while((n=in.read(bytes))!=-1)out.write(bytes,0,n);
+            CatalogParser.Page snapshot=CatalogParser.parse(out.toString("UTF-8"),CatalogParser.pageUrl(1,folder.equals("Diziler")),1);
+            entries=snapshot.entries;lastPage=snapshot.lastPage;applyFilter();
+        }catch(Exception ignored){}
         if(!folder.isEmpty()) load(page);
     }
     private void choose(String value) { folder=value;filter.setText("");showFolder();if(entries.isEmpty()&&!busy)load(page);else applyFilter(); }
@@ -86,11 +91,11 @@ public final class CatalogActivity extends Activity {
         busy=true;controls();status.setText("Sayfa "+requested+" yükleniyor…");
         worker.execute(()->{
             try {
-                String url=CatalogParser.pageUrl(requested);
+                String url=CatalogParser.pageUrl(requested, folder.equals("Diziler"));
                 HttpURLConnection c=(HttpURLConnection)new URL(url).openConnection();activeConnection=c;
                 String html;
                 try {
-                    c.setConnectTimeout(15000);c.setReadTimeout(20000);c.setInstanceFollowRedirects(false);c.setRequestProperty("User-Agent","CineBoxTV/0.14 (catalog reader)");
+                    c.setConnectTimeout(15000);c.setReadTimeout(20000);c.setInstanceFollowRedirects(false);c.setRequestProperty("User-Agent","CineBoxTV/0.16 (catalog reader)");
                     int code=c.getResponseCode();if(code!=200) throw new IOException("HTTP "+code);
                     try(InputStream in=c.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream()) {
                         byte[] b=new byte[8192];int n,total=0;
@@ -101,7 +106,7 @@ public final class CatalogActivity extends Activity {
                 CatalogParser.Page result=CatalogParser.parse(html,url,requested);
                 if(result.entries.isEmpty()) throw new IOException("Katalog okunamadı; site yapısı değişmiş veya erişim engellenmiş olabilir");
                 runOnUiThread(()->{if(isDestroyed())return;page=requested;lastPage=result.lastPage;entries=result.entries;pageInput.setText(String.valueOf(page));filter.setText("");applyFilter();busy=false;controls();applyFilter();});
-            } catch(Exception e) { runOnUiThread(()->{if(isDestroyed())return;busy=false;controls();status.setText("Yüklenemedi: "+errorMessage(e));}); }
+            } catch(Exception e) { runOnUiThread(()->{if(isDestroyed())return;busy=false;controls();status.setText("Canlı liste yüklenemedi: "+errorMessage(e)+(entries.isEmpty()?"":" Gönderdiğiniz HTML’den alınan kayıtlar gösteriliyor; bu liste tam arşiv değildir."));}); }
         });
     }
     private String errorMessage(Throwable error) {

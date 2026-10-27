@@ -9,7 +9,7 @@ import java.util.regex.*;
 
 /** Reads public catalogue metadata only; never executes page scripts. */
 public final class CatalogParser {
-    public static final String HOME = "https://www.hdfilmizle.to/";
+    public static final String HOME = "https://filmmakinesi.to/";
     public static final class Entry {
         public final String title, url, year;
         public final boolean series;
@@ -24,28 +24,33 @@ public final class CatalogParser {
     public static boolean allowed(String url) {
         try {
             URI u=URI.create(url);
-            return "https".equalsIgnoreCase(u.getScheme()) && "www.hdfilmizle.to".equalsIgnoreCase(u.getHost()) && u.getUserInfo()==null && (u.getPort()==-1 || u.getPort()==443);
+            return "https".equalsIgnoreCase(u.getScheme()) && "filmmakinesi.to".equalsIgnoreCase(u.getHost()) && u.getUserInfo()==null && (u.getPort()==-1 || u.getPort()==443);
         } catch (Exception e) { return false; }
     }
-    public static String pageUrl(int page) {
+    public static String pageUrl(int page, boolean series) {
         if(page<1) throw new IllegalArgumentException("Geçersiz sayfa");
-        return page==1 ? HOME : HOME+"page/"+page+"/";
+        String base=HOME+(series?"yabanci-dizi-izle-2/":"filmler-1/");
+        return page==1 ? base : base+"sayfa/"+page+"/";
     }
     public static Page parse(String html, String baseUrl, int currentPage) {
         Document doc=Jsoup.parse(html,baseUrl);
         LinkedHashMap<String,Entry> entries=new LinkedHashMap<>();
-        for(Element a:doc.select("#moviesListResult a.poster")) {
-            Element heading=a.selectFirst("h2.title");
-            if(heading==null) continue;
-            String title=heading.text().trim(), url=a.absUrl("href");
-            Element year=a.selectFirst(".poster-year");
+        for(Element a:doc.select("a.item[href]")) {
+            String url=a.absUrl("href");
+            if(!allowed(url) || !URI.create(url).getPath().matches("/(film|dizi)/[^/]+/")) continue;
+            Element heading=a.selectFirst(".title, .item-title");
+            String title=a.attr("data-title").trim();
+            if(title.isEmpty() && heading!=null) title=heading.text().trim();
+            Element year=a.selectFirst(".item-footer .info span");
             if(!title.isEmpty() && allowed(url)) entries.putIfAbsent(url,new Entry(title,url,year==null?"":year.text()));
         }
         int last=currentPage;
-        Pattern pages=Pattern.compile("/page/(\\d+)/?");
+        Pattern pages=Pattern.compile("/(?:filmler-1|yabanci-dizi-izle-2)/sayfa/(\\d+)/?");
         for(Element a:doc.select("a.page-link[href]")) {
             String url=a.absUrl("href");
             if(!allowed(url)) continue;
+            if(baseUrl.contains("yabanci-dizi-izle-2") && !url.contains("/yabanci-dizi-izle-2/"))continue;
+            if(baseUrl.contains("filmler-1") && !url.contains("/filmler-1/"))continue;
             Matcher m=pages.matcher(URI.create(url).getPath());
             if(m.matches()) try { last=Math.max(last,Integer.parseInt(m.group(1))); } catch(NumberFormatException ignored) {}
         }
