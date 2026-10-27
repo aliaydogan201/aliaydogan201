@@ -1,20 +1,9 @@
-# CineBox TV v0.11 — Eski diziler ve reklam filtresi
+# CineBox TV v0.13 — Ortak Film ve Dizi klasörleri
 
-## Ayrılsak da Beraberiz
-Türk Dizileri → Ayrılsak da Beraberiz (1999).
-Janset ve Hakan Yılmaz’lı eski serinin üçüncü taraf arşiv sayfası eklendi. Sayfa 40 bölüm listeler; tüm seri veya bu bölümlerin hepsinin 1999 yılında yayınlandığı iddia edilmez. Ayrıca Dizi Arşivi kanalındaki 1. bölüm için YouTube kısayolu vardır. 2015 yeniden çevrimi eklenmedi. Bölümler tek tek oynatılarak test edilmedi.
+Ana sayfa içerikleri klasörlerle sunar: Filmler, Diziler, Belgesel, Maç Özeti ve Müzik. Site adına göre menü/klasör yoktur. Türk dizileri Diziler altında yer alır. Filmler/Diziler klasöründeki “Tüm filmlere/dizilere göz at” düğmesi ilgili çevrimiçi kataloğu açar. Kaynak şu anda HDFilmizle; gelecekte başka kaynaklar da aynı tür klasörlerine bağlanabilir. Henüz başka kaynak bağlanmadı.
 
-## Reklam filtresi
-Uygulama içindeki web oynatıcıda varsayılan olarak açık:
-- 11 bilinen reklam alan adına ve alt alanlarına yapılan kaynak isteklerini boş yanıtla engeller.
-- Aynı alan adlarına yapılan sayfa yönlendirmelerini engeller.
-- Yeni/açılır pencereleri reddeder.
-- Üst araç çubuğunda Reklam filtresi: Açık/Kapalı düğmesi vardır. Tercih saklanır ve değişince sayfa yenilenir. Video açılmazsa filtreyi kapatıp deneyin. Açılır pencereler önceki sürümlerde olduğu gibi kapalı kalır.
+Çevrimiçi listede film ve dizi kayıtları ayrılır; diziler kaynağın /dizi/ URL yoluyla tanınır. Sayfa numaraları kaynak sitenin karma sayfalarıdır; bazı sayfalarda seçili türe ait kayıt olmayabilir. Boş sayfa açıklaması ve sonraki sayfa seçeneği vardır. Arama açık sayfada çalışır. İçerik seçimi tarayıcıya yönlendirir. Mevcut yerel içerik oynatıcıları korunur.
 
-Sınırlar: Bu küçük bir yerel alan adı filtresidir, kapsamlı veya otomatik güncellenen bir reklam listesi değildir. Tüm reklamları engellemez. Video akışına gömülen, yayıncıyla aynı kaynaktan gelen veya YouTube’un kendi reklamlarını kaldırdığı iddia edilmez. HTTPS/DRM/erişim engelleri aşılmaz. Tarayıcıda veya YouTube’da aç ile uygulamadan çıkıldığında filtre etkili değildir. Mevcut MP4 oynatıcıya ayrıca reklam eklenmez.
+ZIP içeriğini (.github dahil) GitHub proje köküne aktarın; Actions üzerinden APK oluşturun. Sürüm kodu 13.
 
-## Doğrulama
-Reklam alan adı eşleştirme kodu Java derleyicisiyle derlendi; 13 test geçti (tam alan, alt alan, büyük/küçük harf, sondaki nokta, benzer ama farklı alan, video CDN’lerinin korunması, boş/null). Android entegrasyonu, manifest, katalog ve ZIP statik kontrol edildi. Android SDK/Gradle bulunmadığı için APK derlenmedi; TV’de reklam engelleme ve video testi yapılmadı.
-
-## APK
-ZIP içeriğini mevcut GitHub proje köküne kopyalayın (.github dahil). Commit → Push. Actions → CineBox TV Android APK → Artifacts → CineBoxTV-debug-APK içindeki APK’yı alın. Sürüm kodu 11. Önceki içerikler ve Yaprak Dökümü sezon bağlantıları korunur.
+Java ayrıştırıcı, tür ayrımı ve reklam alan adı testleri geçti. Gerçek HTML örneğinde 20 kayıt doğrulandı. Android SDK bulunmadığından APK derlenmedi ve TV üzerinde test edilmedi.

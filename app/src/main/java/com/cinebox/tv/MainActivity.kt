@@ -302,13 +302,26 @@ class MainActivity : ComponentActivity() {
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Film", "Türk Dizileri", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
-                            OutlinedButton(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
+                        listOf("Tümü", "Filmler", "Diziler", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
+                            OutlinedButton(onClick = { category = label }) { Text(if (label == "Tümü") "Klasörler" else "📁 $label") }
                         }
                     }
                     Spacer(Modifier.height(12.dp))
                     val baseMovies = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
-                    val shown = baseMovies.filter { category == "Tümü" || it.category == category }
+                    val shown = baseMovies.filter {
+                        when (category) {
+                            "Filmler" -> it.category == "Film"
+                            "Diziler" -> it.category == "Türk Dizileri" || it.category == "Dizi"
+                            "Tümü" -> tab != "Ana Sayfa"
+                            else -> it.category == category
+                        }
+                    }
+                    if (category == "Filmler" || category == "Diziler") {
+                        Text("📁 $category", color = Color.White, fontSize = 24.sp)
+                        Button(onClick = {
+                            startActivity(android.content.Intent(this@MainActivity, CatalogActivity::class.java).putExtra("folder", category))
+                        }) { Text("Tüm " + (if (category == "Filmler") "filmlere" else "dizilere") + " göz at") }
+                    }
                     MovieRow(shown) { selected = it }
                     if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
                     Spacer(Modifier.height(20.dp))

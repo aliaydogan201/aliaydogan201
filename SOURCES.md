@@ -71,3 +71,7 @@ Eski seri arşivi (40 kayıt): https://www.diziizle.you/ayrilsak-da-beraberiz-es
 1999 ilk bölüm, Dizi Arşivi yüklemesi: https://www.youtube.com/watch?v=GgAkIcXFinA
 
 Başlık ve liste kontrol edildi; tüm bölümlerin oynatılması doğrulanmadı.
+
+
+## v12 HDFilmizle
+https://www.hdfilmizle.to/ ve /page/2/: kamuya açık isim ve sayfa bağlantıları; oynatılabilir medya çıkarılmaz. Kontrol: 2026-10-27.
