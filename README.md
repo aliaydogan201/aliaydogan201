@@ -1,14 +1,17 @@
-# CineBox TV 0.2 — TMDB olmadan
+# CineBox TV v0.4 — İnternette otomatik kaynak arama
 
-TMDB API bağlantısı, TMDB anahtarı ve zorunlu katalog istemi kaldırıldı.
-Uygulama, arama/favori/puanlama/öneri ekranlarını denemek için **6 örnek katalog kartıyla** açılır. Bunlar gerçek bir film veritabanı veya lisanslı yayın kaynağı değildir.
+## Neler yeni?
+- **Ara** bölümünden anahtar kelime ile Wikimedia Commons API üzerinde açık lisanslı video arar.
+- Sonuçlardan doğrudan **MP4 / WebM** yayın URL'lerini elde eder, CineBox Player ile oynatır.
+- Kaynak ve lisans bilgisi film detaylarında gösterilir.
+- TMDB veya API anahtarı gerekmez.
+- Önceki oynatıcı, favoriler, puanlama, altyazı ve devam etme özellikleri korunur.
+- Ana sayfadaki örnek katalog ve manuel izinli URL ekleme sürer.
 
-**Oynatıcı testi** butonu açık bir örnek MP4 video akışı açar; seçilen film dosyasını açmaz.
+## Sınırlamalar
+Bu bir açık lisanslı video arama prototipidir, Netflix tarzı güncel ticari film kataloğu değildir. Wikimedia Commons üzerinde bütün filmler yoktur. Arama API'si, Commons ağ politikası veya kaynak formatı yüzünden sonuç vermeyebilir. Wikimedia Commons içeriği farklı lisanslarla sunulur; yeniden kullanımda her dosyanın lisans ve atıf koşullarına uyun. Film sitelerinden izinsiz video çıkarma ya da DRM aşma yapılmaz.
 
-## GitHub'a yükleme
-
-ZIP'i açın. İçerideki `app`, `.github`, `gradle.properties`, `settings.gradle.kts`, `build.gradle.kts` ve `README.md` dosyalarını depo köküne koyun (fazladan `CineBoxTV-no-TMDB/` klasörü içine değil). GitHub Desktop ile Commit → Push origin yapın. Actions → CineBox TV Android APK iş akışından derlemeyi çalıştırın.
-
-## Sonraki aşama
-
-Kaynak sistemi için izinli MP4/HLS akışları ve katalog verisi bağlanmalıdır. DRM veya erişim kontrolü aşılmamalıdır.
+## APK
+GitHub deposunun köküne ZIP içeriğini kopyalayın. GitHub Desktop → Commit → Push.
+Actions → CineBox TV Android APK → Run workflow → Artifacts bölümündeki APK ZIP'ini indirin.
+Bu ortamda Android SDK ile derleme testi yapılmamıştır.

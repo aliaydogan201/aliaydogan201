@@ -1,6 +1,17 @@
 package com.cinebox.tv
 
 import android.os.Bundle
+import android.net.Uri
+import androidx.media3.common.MimeTypes
+import androidx.media3.common.Player
+import androidx.media3.common.C
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
+import org.json.JSONObject
 import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,6 +44,21 @@ private val bg = Color(0xFF090D18)
 private val panel = Color(0xFF192034)
 private val accent = Color(0xFF8B68FF)
 private const val DEMO_URL = "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+private const val ELEPHANTS_URL = "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+
+data class VideoSource(val label: String, val url: String)
+private fun sourcesFor(movie: Movie): List<VideoSource> = when (movie.id) {
+    1 -> listOf(VideoSource("Big Buck Bunny · örnek video", DEMO_URL))
+    4 -> listOf(VideoSource("Elephants Dream · örnek video", ELEPHANTS_URL))
+    else -> emptyList()
+}
+private data class PlayRequest(val movieId: Int, val title: String, val url: String, val subtitleUrl: String = "")
+private fun validStreamUrl(url: String): Boolean = try {
+    val uri = Uri.parse(url.trim())
+    uri.scheme == "https" && !uri.host.isNullOrBlank() &&
+        (uri.path.orEmpty().lowercase().endsWith(".mp4") || uri.path.orEmpty().lowercase().endsWith(".m3u8") || uri.path.orEmpty().lowercase().endsWith(".mpd") || uri.path.orEmpty().lowercase().endsWith(".webm"))
+} catch (_: Exception) { false }
+
 
 // Playback links are explicitly provided by the publisher or content owner, never scraped.
 data class Movie(
@@ -43,7 +69,10 @@ data class Movie(
     val backdrop: String,
     val year: String,
     val score: Double,
-    val genreIds: List<Int>
+    val genreIds: List<Int>,
+    val playableUrl: String = "",
+    val license: String = "",
+    val provider: String = ""
 )
 
 // Yerel deneme kataloğu: TMDB bağlantısı veya API anahtarı gerekmez.
@@ -56,6 +85,48 @@ private val demoMovies = listOf(
     Movie(5, "Cosmos Laundromat", "Animasyon türünde katalog gösterim kaydı.", "", "", "2015", 7.7, listOf(16)),
     Movie(6, "Caminandes", "Kısa animasyon kategorisinde örnek kayıt.", "", "", "2013", 7.4, listOf(16))
 )
+
+
+// Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
+// This code does not extract third-party player URLs or circumvent access controls.
+private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispatchers.IO) {
+    if (term.isBlank()) return@withContext emptyList()
+    val encoded = URLEncoder.encode("filetype:video " + term.trim(), "UTF-8")
+    val endpoint = "https://commons.wikimedia.org/w/api.php?action=query&generator=search" +
+        "&gsrsearch=$encoded&gsrnamespace=6&gsrlimit=30&prop=imageinfo" +
+        "&iiprop=url%7Cmime%7Cextmetadata&iiurlwidth=320&format=json&formatversion=2"
+    val connection = URL(endpoint).openConnection() as HttpURLConnection
+    try {
+        connection.connectTimeout = 12000
+        connection.readTimeout = 16000
+        connection.setRequestProperty("User-Agent", "CineBoxTV/0.4 (Android TV open-license video discovery)")
+        if (connection.responseCode !in 200..299) throw IllegalStateException("HTTP ${connection.responseCode}")
+        val raw = connection.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+        val pages = JSONObject(raw).optJSONObject("query")?.optJSONArray("pages")
+            ?: return@withContext emptyList()
+        val result = mutableListOf<Movie>()
+        for (i in 0 until pages.length()) {
+            val page = pages.optJSONObject(i) ?: continue
+            val info = page.optJSONArray("imageinfo")?.optJSONObject(0) ?: continue
+            val mime = info.optString("mime")
+            if (mime != "video/mp4" && mime != "video/webm") continue
+            val url = info.optString("url")
+            if (!validStreamUrl(url) || Uri.parse(url).host?.endsWith("wikimedia.org") != true) continue
+            val meta = info.optJSONObject("extmetadata")
+            val license = meta?.optJSONObject("LicenseShortName")?.optString("value").orEmpty()
+            if (license.isBlank() || license.equals("unknown", true)) continue
+            val title = page.optString("title").removePrefix("File:")
+                .replace(Regex("\\.(webm|mp4)$", RegexOption.IGNORE_CASE), "")
+                .replace('_', ' ')
+            val id = (page.optInt("pageid") + 1000000)
+            result.add(Movie(id, title, "Wikimedia Commons üzerinden bulunan açık lisanslı video. Lisans: $license. Kaynak: Wikimedia Commons.",
+                "", "", "", 0.0, emptyList(), url, license, "Wikimedia Commons"))
+        }
+        result
+    } finally {
+        connection.disconnect()
+    }
+}
 
 class MainActivity : ComponentActivity() {
     private val prefs by lazy { getSharedPreferences("cinebox", Context.MODE_PRIVATE) }
@@ -71,9 +142,13 @@ class MainActivity : ComponentActivity() {
         var movies by remember { mutableStateOf<List<Movie>>(emptyList()) }
         var recommended by remember { mutableStateOf<List<Movie>>(emptyList()) }
         var selected by remember { mutableStateOf<Movie?>(null) }
-        var playing by remember { mutableStateOf<String?>(null) }
+        var playing by remember { mutableStateOf<PlayRequest?>(null) }
+        var customUrl by remember { mutableStateOf("") }
+        var subtitleUrl by remember { mutableStateOf("") }
+        var sourceError by remember { mutableStateOf("") }
         var busy by remember { mutableStateOf(false) }
         var message by remember { mutableStateOf("") }
+        var searchNonce by remember { mutableIntStateOf(0) }
         val favorites = remember { mutableStateListOf<Int>().apply { addAll(prefs.getString("favorites", "")!!.split(",").mapNotNull { it.toIntOrNull() }) } }
         val ratings = remember { mutableStateMapOf<Int, Int>().apply {
             prefs.all.forEach { (key, value) -> if (key.startsWith("rating_") && value is Int) key.removePrefix("rating_").toIntOrNull()?.let { put(it, value) } }
@@ -87,18 +162,37 @@ class MainActivity : ComponentActivity() {
             message = if (list.isEmpty()) "Film bulunamadı." else ""
         }
         LaunchedEffect(Unit) { showMovies(demoMovies) }
+        LaunchedEffect(searchNonce) {
+            if (searchNonce == 0) return@LaunchedEffect
+            busy = true
+            message = "Açık lisanslı videolar aranıyor…"
+            try {
+                val result = searchCommons(query)
+                showMovies(result)
+                message = if (result.isEmpty()) "Açık lisanslı video bulunamadı. Başka bir isim deneyin." else "${result.size} açık lisanslı video bulundu."
+            } catch (e: Exception) {
+                busy = false
+                movies = emptyList()
+                message = "Arama başarısız: ${e.localizedMessage ?: "Bağlantıyı kontrol edin."}"
+            }
+        }
         LaunchedEffect(selected?.id) {
             val genre = selected?.genreIds?.firstOrNull()
-            recommended = demoMovies.filter { it.id != selected?.id && (genre == null || genre in it.genreIds) }
+            recommended = demoMovies.filter { it.id != selected?.id && genre != null && genre in it.genreIds }
         }
         BackHandler(enabled = playing != null || selected != null) {
             if (playing != null) playing = null else selected = null
         }
         MaterialTheme(colorScheme = darkColorScheme(background = bg, surface = panel, primary = accent)) {
             when {
-                playing != null -> PlayerScreen(playing!!) { playing = null }
+                playing != null -> PlayerScreen(playing!!, prefs) { playing = null }
                 selected != null -> {
                     val m = selected!!
+                    LaunchedEffect(m.id) {
+                        customUrl = prefs.getString("source_${m.id}", "").orEmpty()
+                        subtitleUrl = prefs.getString("subtitle_${m.id}", "").orEmpty()
+                        sourceError = ""
+                    }
                     Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(30.dp)) {
                         TextButton(onClick = { selected = null }) { Text("← Geri") }
                         Row(horizontalArrangement = Arrangement.spacedBy(25.dp)) {
@@ -107,20 +201,43 @@ class MainActivity : ComponentActivity() {
                                 Text(m.title, color = Color.White, fontSize = 31.sp, fontWeight = FontWeight.Bold)
                                 Text("${m.year}   ★ ${"%.1f".format(m.score)}", color = accent)
                                 Text(m.overview.ifBlank { "Türkçe açıklama bulunamadı." }, color = Color.LightGray, maxLines = 6)
+                                if (m.provider.isNotBlank()) Text("Kaynak: ${m.provider} · Lisans: ${m.license}", color = Color.LightGray, fontSize = 13.sp)
+                                if (m.playableUrl.isNotBlank()) Button(onClick = { playing = PlayRequest(m.id, m.title, m.playableUrl) }) { Text("▶ Bulunan videoyu CineBox Player ile oynat") }
                                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                     Button(onClick = {
                                         if (favorites.contains(m.id)) favorites.remove(m.id) else favorites.add(m.id)
                                         prefs.edit().putString("favorites", favorites.joinToString(",")).apply()
                                     }) { Text(if (favorites.contains(m.id)) "♥ Favorilerden çıkar" else "♡ Favorilere ekle") }
-                                    Button(onClick = { playing = DEMO_URL }) { Text("▶ Oynatıcıyı test et") }
+                                    Button(onClick = { playing = PlayRequest(m.id, m.title, DEMO_URL) }) { Text("▶ Oynatıcıyı test et") }
                                 }
+                                Spacer(Modifier.height(8.dp))
+                                Text("CineBox Player · Yayın kaynakları", color = Color.White, fontWeight = FontWeight.Bold)
+                                sourcesFor(m).forEach { src ->
+                                    Button(onClick = { playing = PlayRequest(m.id, m.title, src.url) }) {
+                                        Text("▶ ${src.label}")
+                                    }
+                                }
+                                Text("Kullanma hakkınız olan HTTPS MP4 / WebM / M3U8 / MPD adresini ekleyin.", color = Color.LightGray, fontSize = 12.sp)
+                                TextField(value = customUrl, onValueChange = { customUrl = it }, label = { Text("Video bağlantısı (https://...)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                                TextField(value = subtitleUrl, onValueChange = { subtitleUrl = it }, label = { Text("Altyazı bağlantısı (isteğe bağlı, HTTPS .vtt)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                                Button(onClick = {
+                                    val sub = subtitleUrl.trim()
+                                    if (!validStreamUrl(customUrl)) sourceError = "HTTPS ile başlayan MP4, WebM, M3U8 veya MPD adresi girin."
+                                    else if (sub.isNotEmpty() && !(sub.startsWith("https://") && Uri.parse(sub).path.orEmpty().lowercase().endsWith(".vtt"))) sourceError = "Altyazı HTTPS .vtt formatında olmalı."
+                                    else {
+                                        sourceError = ""
+                                        prefs.edit().putString("source_${m.id}", customUrl.trim()).putString("subtitle_${m.id}", sub).apply()
+                                        playing = PlayRequest(m.id, m.title, customUrl.trim(), sub)
+                                    }
+                                }) { Text("▶ Bağlantıyı kaydet ve oynat") }
+                                if (sourceError.isNotBlank()) Text(sourceError, color = Color(0xFFFF9292))
                                 Text("Kişisel puanım: ${ratings[m.id] ?: "Henüz yok"}", color = Color.White)
                                 Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                                     (1..10).forEach { n ->
                                         OutlinedButton(onClick = { ratings[m.id] = n; prefs.edit().putInt("rating_${m.id}", n).apply() }, contentPadding = PaddingValues(6.dp), modifier = Modifier.width(44.dp)) { Text("$n") }
                                     }
                                 }
-                                Text("Not: Oynatıcı testi gerçek filmin kendisini açmaz. Film bazlı yayın bağlantıları yalnızca lisanslı kaynaklar eklendiğinde aktif olacaktır.", color = Color.Gray, fontSize = 12.sp)
+                                Text("Örnek videolar test amaçlıdır. Üçüncü taraf sitelerden video çıkarma veya DRM aşma yapılmaz.", color = Color.Gray, fontSize = 12.sp)
                             }
                         }
                         Spacer(Modifier.height(25.dp))
@@ -149,19 +266,19 @@ class MainActivity : ComponentActivity() {
                     if (tab == "Ara") {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             TextField(value = query, onValueChange = { query = it }, label = { Text("Film adı") }, singleLine = true, modifier = Modifier.width(450.dp))
-                            Button(onClick = { if (query.isNotBlank()) showMovies(demoMovies.filter { it.title.contains(query.trim(), ignoreCase = true) }) }) { Text("🔍 Ara") }
+                            Button(onClick = { if (query.isNotBlank()) searchNonce++ }) { Text("🔍 İnternette ara") }
                         }
                         Spacer(Modifier.height(20.dp))
                     }
-                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Örnek film kataloğu (TMDB kullanılmıyor)" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Açık lisanslı videolar · CineBox TV" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
-                    val shown = if (tab == "Favoriler") demoMovies.filter { favorites.contains(it.id) } else movies
+                    val shown = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
                     MovieRow(shown) { selected = it }
                     if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
                     Spacer(Modifier.height(20.dp))
-                    Text("Deneme kataloğu: Gerçek film ve yayın kaynakları henüz bağlı değildir.", color = Color.Gray, fontSize = 11.sp)
+                    Text("Arama: Wikimedia Commons açık lisanslı videolar · TMDB kullanılmıyor · Ticari film kataloğu değildir.", color = Color.Gray, fontSize = 11.sp)
                 }
             }
         }
@@ -178,7 +295,7 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
                         if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(205.dp))
                         else Box(Modifier.fillMaxWidth().height(205.dp), contentAlignment = Alignment.Center) { Text("Afiş yok", color = Color.LightGray) }
                         Text(movie.title, color = Color.White, fontSize = 14.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
-                        Text("${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
+                        Text(if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
                     }
                 }
             }
@@ -187,12 +304,68 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
 }
 
 @Composable
-private fun PlayerScreen(url: String, onBack: () -> Unit) {
+private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPreferences, onBack: () -> Unit) {
     val context = LocalContext.current
-    val player = remember(url) { ExoPlayer.Builder(context).build().apply { setMediaItem(MediaItem.fromUri(url)); prepare(); playWhenReady = true } }
-    DisposableEffect(player) { onDispose { player.release() } }
+    var status by remember(request.url) { mutableStateOf("") }
+    val player = remember(request.url, request.subtitleUrl) {
+        ExoPlayer.Builder(context).build().apply {
+            val item = MediaItem.Builder().setUri(request.url)
+            if (request.subtitleUrl.isNotBlank()) {
+                item.setSubtitleConfigurations(listOf(
+                    MediaItem.SubtitleConfiguration.Builder(Uri.parse(request.subtitleUrl))
+                        .setMimeType(MimeTypes.TEXT_VTT)
+                        .setLanguage("tr")
+                        .setSelectionFlags(C.SELECTION_FLAG_DEFAULT)
+                        .build()
+                ))
+            }
+            setMediaItem(item.build())
+            addListener(object : Player.Listener {
+                override fun onPlayerError(error: androidx.media3.common.PlaybackException) {
+                    status = "Video açılamadı. Bağlantı, yayın izni veya ağ erişimini kontrol edin: ${error.errorCodeName}"
+                }
+            })
+            prepare()
+            val savedPosition = prefs.getLong("progress_${request.movieId}", 0L)
+            if (savedPosition > 0) seekTo(savedPosition)
+            playWhenReady = true
+        }
+    }
+    LaunchedEffect(player) {
+        while (true) {
+            delay(2500)
+            if (player.duration > 0 && player.currentPosition >= 0) {
+                if (player.playbackState == Player.STATE_ENDED) {
+                    prefs.edit().remove("progress_${request.movieId}").apply()
+                } else {
+                    prefs.edit().putLong("progress_${request.movieId}", player.currentPosition).apply()
+                }
+            }
+        }
+    }
+    DisposableEffect(player) {
+        onDispose {
+            if (player.playbackState == Player.STATE_ENDED) prefs.edit().remove("progress_${request.movieId}").apply()
+            else if (player.currentPosition > 0) prefs.edit().putLong("progress_${request.movieId}", player.currentPosition).apply()
+            player.release()
+        }
+    }
     Box(Modifier.fillMaxSize().background(Color.Black)) {
-        AndroidView(factory = { ctx -> PlayerView(ctx).apply { this.player = player; useController = true } }, modifier = Modifier.fillMaxSize())
-        Button(onClick = onBack, modifier = Modifier.align(Alignment.TopStart).padding(15.dp)) { Text("← Filmlere dön") }
+        AndroidView(
+            factory = { ctx -> PlayerView(ctx).apply {
+                this.player = player
+                useController = true
+                controllerShowTimeoutMs = 6000
+                controllerAutoShow = true
+                keepScreenOn = true
+            } },
+            update = { it.player = player },
+            modifier = Modifier.fillMaxSize()
+        )
+        Column(Modifier.align(Alignment.TopStart).padding(12.dp)) {
+            Button(onClick = onBack) { Text("← Film detayına dön") }
+            if (status.isNotEmpty()) Text(status, color = Color(0xFFFFAAAA), modifier = Modifier.background(Color.Black).padding(8.dp))
+        }
+        Text(request.title, color = Color.White, fontSize = 14.sp, modifier = Modifier.align(Alignment.TopEnd).padding(20.dp))
     }
 }
