@@ -1,3 +1,11 @@
+# CineBox TV v0.21 — Ultra Film kayıtları
+
+Tüm kart listeleri Türkçe alfabetik sırada gösterilir (favoriler ve öneriler dahil).
+
+Kullanıcının gönderdiği 29–33. sayfalardan 100 film eklendi. Yalnızca ana liste (#listehizala) okundu, üstteki öneri şeridi alınmadı. URL tekrarları ayıklandı; aynı adlı farklı kaynaklar ayrı kayıt kalır. Önceki içerikler, maçlar, başlık düzeltmesi ve reklam filtreli web oynatıcı korundu. Filmler aynı kart ve detay ekranıyla uygulama içinde açılır. Afişler HTML’deki HTTPS adreslerinden yüklenir; canlı afiş/video erişimi denenmedi.
+
+.github dahil paketi GitHub proje köküne aktarın; Actions ile APK oluşturun. APK derlemesi burada yapılmadı.
+
 # CineBox TV v0.20
 Kart başlıkları afiş üstünde 2–4 satır; ana liste dikey kaydırılabilir. Uzun başlıklar detay ekranında tam görünür. Eski içerikler korunur.
 
