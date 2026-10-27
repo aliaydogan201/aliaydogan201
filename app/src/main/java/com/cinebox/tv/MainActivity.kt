@@ -24,6 +24,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,9 +47,9 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
 
-private val bg = Color(0xFF090D18)
-private val panel = Color(0xFF192034)
-private val accent = Color(0xFF8B68FF)
+private val bg = Color(0xFFAD4300)
+private val panel = Color(0xFF512700)
+private val accent = Color(0xFFFFE082)
 private data class PlayRequest(val movieId: Int, val title: String, val url: String, val subtitleUrl: String = "")
 private fun validStreamUrl(url: String): Boolean = try {
     val uri = Uri.parse(url.trim())
@@ -85,7 +88,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -99,7 +102,7 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
     try {
         connection.connectTimeout = 12000
         connection.readTimeout = 16000
-        connection.setRequestProperty("User-Agent", "CineBoxTV/0.11 (Android TV open-license video discovery)")
+        connection.setRequestProperty("User-Agent", "ALICOTV/0.23 (Android TV open-license video discovery)")
         if (connection.responseCode !in 200..299) throw IllegalStateException("HTTP ${connection.responseCode}")
         val raw = connection.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
         val pages = JSONObject(raw).optJSONObject("query")?.optJSONArray("pages")
@@ -193,11 +196,13 @@ class MainActivity : ComponentActivity() {
                 playing != null -> PlayerScreen(playing!!, prefs) { playing = null }
                 selected != null -> {
                     val m = selected!!
+                    val playFocus = remember(m.id) { FocusRequester() }
+                    LaunchedEffect(m.id) { if (m.webUrl.isNotBlank() || m.playableUrl.isNotBlank()) playFocus.requestFocus() }
                     var customUrl by remember(m.id) { mutableStateOf(prefs.getString("source_${m.id}", "").orEmpty()) }
                     var subtitleUrl by remember(m.id) { mutableStateOf(prefs.getString("subtitle_${m.id}", "").orEmpty()) }
                     var sourceError by remember(m.id) { mutableStateOf("") }
                     Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(30.dp)) {
-                        TextButton(onClick = { selected = null }) { Text("← Geri") }
+                        TvAction(onClick = { selected = null }) { Text("← Geri") }
                         Row(horizontalArrangement = Arrangement.spacedBy(25.dp)) {
                             AsyncImage(model = m.poster, contentDescription = m.title, modifier = Modifier.width(190.dp).height(270.dp), contentScale = ContentScale.Crop)
                             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -205,15 +210,15 @@ class MainActivity : ComponentActivity() {
                                 Text(if (m.score > 0) "${m.year}   ★ ${"%.1f".format(m.score)}" else m.year, color = accent)
                                 Text(m.overview.ifBlank { "Türkçe açıklama bulunamadı." }, color = Color.LightGray, maxLines = 6)
                                 if (m.provider.isNotBlank()) Text("Kaynak: ${m.provider}" + if (m.license.isNotBlank()) " · ${m.license}" else "", color = Color.LightGray, fontSize = 13.sp)
-                                if (m.webUrl.isNotBlank()) Button(onClick = {
+                                if (m.webUrl.isNotBlank()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else "▶ Web oynatıcıda aç") }
-                                if (m.webUrl.isNotBlank()) OutlinedButton(onClick = {
+                                if (m.webUrl.isNotBlank()) TvAction(onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
                                 if (m.id == 7502) {
-                                    OutlinedButton(onClick = { openPublisherPage("https://www.youtube.com/watch?v=GgAkIcXFinA") }) {
+                                    TvAction(onClick = { openPublisherPage("https://www.youtube.com/watch?v=GgAkIcXFinA") }) {
                                         Text("1999 · 1. bölüm — YouTube’da aç")
                                     }
                                     Text("Arşiv yüklemesi: Dizi Arşivi. Bölümler tek tek oynatılarak doğrulanmadı.", color = Color.LightGray, fontSize = 12.sp)
@@ -223,30 +228,30 @@ class MainActivity : ComponentActivity() {
                                     (1..5).forEach { season ->
                                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                             val seasonUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler?activeSeasonNumber=$season&seasonCount=5"
-                                            Button(onClick = { openPublisherPage(seasonUrl) }) { Text("$season. Sezon · Tarayıcıda aç") }
-                                            OutlinedButton(onClick = {
+                                            TvAction(onClick = { openPublisherPage(seasonUrl) }) { Text("$season. Sezon · Tarayıcıda aç") }
+                                            TvAction(onClick = {
                                                 startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                                     .putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
                                             }) { Text("Uygulamada aç") }
                                         }
                                     }
                                 }
-                                if (m.playableUrl.isNotBlank()) Button(onClick = { playing = PlayRequest(m.id, m.title, m.playableUrl) }) { Text("▶ Filmi oynat") }
+                                if (m.playableUrl.isNotBlank()) TvAction(modifier = if (m.webUrl.isBlank()) Modifier.focusRequester(playFocus) else Modifier, onClick = { playing = PlayRequest(m.id, m.title, m.playableUrl) }) { Text("▶ Filmi oynat") }
                                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    Button(onClick = {
+                                    TvAction(onClick = {
                                         if (favorites.contains(m.id)) favorites.remove(m.id) else favorites.add(m.id)
                                         prefs.edit().putString("favorites", favorites.joinToString(",")).apply()
                                     }) { Text(if (favorites.contains(m.id)) "♥ Favorilerden çıkar" else "♡ Favorilere ekle") }
                                 }
                                 Spacer(Modifier.height(8.dp))
-                                Text("CineBox Player · Yayın kaynakları", color = Color.White, fontWeight = FontWeight.Bold)
+                                Text("ALICOTV Player · Yayın kaynakları", color = Color.White, fontWeight = FontWeight.Bold)
                                 if (m.playableUrl.isBlank() && m.webUrl.isBlank() && customUrl.isBlank()) {
                                     Text("Bu film için oynatma bağlantısı henüz eklenmedi. Bu kart yalnızca katalog kaydıdır.", color = Color(0xFFFFD180))
                                 }
                                 Text("Kullanma hakkınız olan HTTPS MP4 / WebM / M3U8 / MPD adresini ekleyin.", color = Color.LightGray, fontSize = 12.sp)
                                 TextField(value = customUrl, onValueChange = { customUrl = it }, label = { Text("Video bağlantısı (https://...)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
                                 TextField(value = subtitleUrl, onValueChange = { subtitleUrl = it }, label = { Text("Altyazı bağlantısı (isteğe bağlı, HTTPS .vtt)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                                Button(onClick = {
+                                TvAction(onClick = {
                                     val sub = subtitleUrl.trim()
                                     if (!validStreamUrl(customUrl)) sourceError = "HTTPS ile başlayan MP4, WebM, M3U8 veya MPD adresi girin."
                                     else if (sub.isNotEmpty() && !(sub.startsWith("https://") && Uri.parse(sub).path.orEmpty().lowercase().endsWith(".vtt"))) sourceError = "Altyazı HTTPS .vtt formatında olmalı."
@@ -258,12 +263,12 @@ class MainActivity : ComponentActivity() {
                                 }) { Text("▶ Bağlantıyı kaydet ve oynat") }
                                 if (sourceError.isNotBlank()) Text(sourceError, color = Color(0xFFFF9292))
                                 Text("Kişisel puanım: ${ratings[m.id] ?: "Henüz yok"}", color = Color.White)
-                                Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                                     (1..10).forEach { n ->
-                                        OutlinedButton(onClick = { ratings[m.id] = n; prefs.edit().putInt("rating_${m.id}", n).apply() }, contentPadding = PaddingValues(6.dp), modifier = Modifier.width(44.dp)) { Text("$n") }
+                                        TvAction(onClick = { ratings[m.id] = n; prefs.edit().putInt("rating_${m.id}", n).apply() }, contentPadding = PaddingValues(6.dp), modifier = Modifier.width(44.dp)) { Text("$n") }
                                     }
                                 }
-                                Text("Her film kendi kaynak bağlantısıyla oynatılır. Türkçe altyazı isterseniz VTT bağlantısı ekleyebilirsiniz.", color = Color.Gray, fontSize = 12.sp)
+                                Text("Her film kendi kaynak bağlantısıyla oynatılır. Türkçe altyazı isterseniz VTT bağlantısı ekleyebilirsiniz.", color = Color.LightGray, fontSize = 12.sp)
                             }
                         }
                         Spacer(Modifier.height(25.dp))
@@ -274,9 +279,9 @@ class MainActivity : ComponentActivity() {
                 }
                 else -> Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                        Text("CINEBOX", color = accent, fontWeight = FontWeight.Black, fontSize = 29.sp)
+                        Text("ALICOTV", color = accent, fontWeight = FontWeight.Black, fontSize = 29.sp)
                         listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler").forEach { label ->
-                            Button(onClick = {
+                            TvAction(onClick = {
                                 tab = label
                                 when (label) {
                                     "Ana Sayfa" -> showMovies(catalogMovies)
@@ -292,7 +297,7 @@ class MainActivity : ComponentActivity() {
                     if (tab == "Ara") {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             TextField(value = query, onValueChange = { query = it }, label = { Text("Film adı") }, singleLine = true, modifier = Modifier.width(450.dp))
-                            Button(onClick = { if (query.isNotBlank()) searchNonce++ }) { Text("🔍 İnternette ara") }
+                            TvAction(onClick = { if (query.isNotBlank()) searchNonce++ }) { Text("🔍 İnternette ara") }
                         }
                         Spacer(Modifier.height(20.dp))
                     }
@@ -302,7 +307,7 @@ class MainActivity : ComponentActivity() {
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         listOf("Tümü", "Filmler", "Diziler", "Türk Dizileri", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
-                            OutlinedButton(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
+                            TvAction(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
                     Spacer(Modifier.height(12.dp))
@@ -311,7 +316,7 @@ class MainActivity : ComponentActivity() {
                     MovieRow(shown) { selected = it }
                     if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
                     Spacer(Modifier.height(20.dp))
-                    Text("MP4 içerikler CineBox Player’da; web içerikleri yayıncının oynatıcısında açılır. İnternet araması: Wikimedia Commons.", color = Color.Gray, fontSize = 11.sp)
+                    Text("MP4 içerikler ALICOTV Player’da; web içerikleri yayıncının oynatıcısında açılır. İnternet araması: Wikimedia Commons.", color = Color.LightGray, fontSize = 11.sp)
                 }
             }
         }
@@ -323,7 +328,8 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp), contentPadding = PaddingValues(end = 22.dp)) {
         items(movies.sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title }), key = { it.id }) { movie ->
             Column(Modifier.width(180.dp)) {
-                Surface(onClick = { onClick(movie) }, shape = RoundedCornerShape(11.dp), color = panel) {
+                var cardFocused by remember { mutableStateOf(false) }
+                Surface(modifier = Modifier.onFocusChanged { cardFocused = it.isFocused }.border(if (cardFocused) 4.dp else 1.dp, if (cardFocused) Color.Yellow else Color.Transparent, RoundedCornerShape(11.dp)), onClick = { onClick(movie) }, shape = RoundedCornerShape(11.dp), color = panel) {
                     Column {
                         Text(movie.title, color = Color.White, fontSize = 15.sp, minLines = 2, maxLines = 4, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
                         if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(150.dp))
@@ -339,6 +345,15 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
 @Composable
 private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPreferences, onBack: () -> Unit) {
     val context = LocalContext.current
+    var immersive by remember { mutableStateOf(false) }
+    val playerView = remember { mutableStateOf<PlayerView?>(null) }
+    DisposableEffect(immersive) {
+        val window = (context as android.app.Activity).window
+        window.decorView.systemUiVisibility = if (immersive) 5894 else 0
+        if (immersive) { playerView.value?.hideController(); playerView.value?.requestFocus() }
+        onDispose { window.decorView.systemUiVisibility = 0 }
+    }
+    BackHandler(immersive) { immersive = false }
     var status by remember(request.url) { mutableStateOf("") }
     var retryNumber by remember(request.url) { mutableStateOf(0) }
     val activeUrl = request.url
@@ -350,7 +365,7 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
     }
     val player = remember(activeUrl, request.subtitleUrl, retryNumber) {
         val httpFactory = DefaultHttpDataSource.Factory()
-            .setUserAgent("CineBoxTV/0.11 (Android TV)")
+            .setUserAgent("ALICOTV/0.23 (Android TV)")
             .setConnectTimeoutMs(15000)
             .setReadTimeoutMs(20000)
         ExoPlayer.Builder(context)
@@ -418,6 +433,7 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
         AndroidView(
             factory = { ctx -> PlayerView(ctx).apply {
                 this.player = player
+                playerView.value = this
                 useController = true
                 controllerShowTimeoutMs = 6000
                 controllerAutoShow = true
@@ -427,14 +443,15 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
             modifier = Modifier.fillMaxSize()
         )
         Column(Modifier.align(Alignment.TopStart).padding(12.dp)) {
-            Button(onClick = onBack) { Text("← Film detayına dön") }
+            if (!immersive) TvAction(onClick = onBack) { Text("← Film detayına dön") }
+            TvAction(onClick = { immersive = !immersive }) { Text(if (immersive) "Tam ekrandan çık" else "⛶ Tam ekran") }
             if (status.isNotEmpty()) {
                 Text(status, color = Color(0xFFFFAAAA), modifier = Modifier.background(Color.Black).padding(8.dp))
-                Button(onClick = {
+                TvAction(onClick = {
                     status = "Yeniden bağlanılıyor…"
                     retryNumber += 1
                 }) { Text("Yeniden dene") }
-                Button(onClick = {
+                TvAction(onClick = {
                     prefs.edit().remove(progressKey).apply()
                     player.seekTo(0)
                     status = "Baştan deneniyor…"
@@ -442,6 +459,23 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
                 }) { Text("Baştan dene") }
             }
         }
-        Text(request.title, color = Color.White, fontSize = 14.sp, modifier = Modifier.align(Alignment.TopEnd).padding(20.dp))
+        if (!immersive) Text(request.title, color = Color.White, fontSize = 14.sp, modifier = Modifier.align(Alignment.TopEnd).padding(20.dp))
     }
+}
+
+@Composable
+private fun TvAction(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = panel, contentColor = Color.White),
+    contentPadding: PaddingValues = PaddingValues(horizontal = 18.dp, vertical = 12.dp),
+    content: @Composable RowScope.() -> Unit
+) {
+    var focused by remember { mutableStateOf(false) }
+    Button(onClick = onClick,
+        modifier = modifier.heightIn(min = 52.dp).onFocusChanged { focused = it.isFocused },
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(if (focused) 4.dp else 1.dp, if (focused) Color.White else Color(0xFFFFCC80)),
+        colors = if (focused) ButtonDefaults.buttonColors(containerColor = Color(0xFFFFEB3B), contentColor = Color.Black) else colors,
+        contentPadding = contentPadding, content = content)
 }

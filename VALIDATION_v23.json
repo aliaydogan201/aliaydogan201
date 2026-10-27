@@ -1,0 +1,11 @@
+{
+  "static_catalog_count": 359,
+  "new_films": 162,
+  "duplicate_rows_skipped": 18,
+  "previous_catalogs_unchanged": true,
+  "unique_ids": true,
+  "xml_parse": "passed",
+  "ad_filter_tests": "13 passed",
+  "android_build": "not run: Android SDK/Gradle unavailable",
+  "device_tests": "not run"
+}

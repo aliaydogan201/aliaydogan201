@@ -1,6 +1,18 @@
-# CineBox TV v0.22
-Yeni kullanıcı HTML dosyasından 16 film eklendi. Dosya adı .to olsa da gerçek bağlantılar fullfilmizle.fit; HTML’deki adresler korundu.
+ALICOTV v23
 
-1999–2000 sezonunun 306 kaydı ve Türkiye–Gürcistan özeti kaldırıldı. Maç Özeti bölümünde yalnızca 2025 takvim yılında oynanmış 8 Galatasaray maçı vardır. Bunlar yayıncının tarih/skor ve özet videosu bulunan maç sayfalarıdır; arama bağlantısı değildir. Tüm 2025 maçlarının arşivi değildir. Sayfa içinde oynat düğmesine basmak gerekebilir. Cihazda video oynatma doğrulanmadı.
+- Uygulama adı ve TV banner: ALICOTV. Paket kimliği korunur; mevcut favoriler silinmez.
+- Turuncu arka plan. Kumandayla odaklanan buton: sarı zemin, siyah yazı, beyaz çerçeve. Kartlarda sarı çerçeve.
+- Film detayında ilk odak oynat düğmesidir.
+- Web ve doğrudan video oynatıcıda Tam ekran düğmesi. Geri ile tam ekrandan çıkılır.
+- Web oynatıcıda kumandanın Menü tuşu üst çubuğa geri döndürür.
+- Web tam ekran: uygulama çubuklarını gizler. Üst sayfada video varsa sitenin tam ekran API'sini dener. Farklı alan adındaki gömülü oynatıcılarda video içindeki tam ekran düğmesi gerekebilir; sayfa büyütme her videonun kadraja sığmasını garanti etmez.
+- 10 HTML dosyasından 180 kayıt okundu, 18 yinelenen kayıt atlandı: 162 yeni film.
+- Önceki kataloglar ve Türkçe alfabetik sıralama korundu. Maç özetlerinde yalnız v22'deki 8 doğrudan 2025 GS özeti vardır.
 
-Önceki filmler/diziler, Türkçe alfabetik sıra ve reklam filtreli oynatıcı korunur. .github dahil GitHub projesine aktarın. Eski Season1999Catalog.kt dosyası da paketteki boş uyumluluk dosyasıyla değişmelidir. APK derlemesi bu ortamda yapılmadı.
+KURULUM
+ZIP içindeki projenin tamamını, .github klasörü dahil, GitHub deposuna aktarın. Actions > ALICOTV Android APK > Run workflow. Başarılı olunca ALICOTV-debug-APK paketini indirin.
+Eski CatalogParser.java ve CatalogActivity.java dosyaları build.gradle.kts ile derlemeden dışlanmaya devam eder.
+APK güncellemesi için aynı imza gerekir. Bu sürümde paket kimliği com.cinebox.tv olarak korunmuştur.
+
+DOĞRULAMA
+Katalog tekrarı/ID, eski katalogların korunması, kaynak yapılandırmaları ve Java reklam filtresi testleri kontrol edildi. Bu ortamda Android SDK/Gradle bulunmadığından APK derleme ve Android TV üzerinde odak/oynatma testi yapılamadı. Site erişimi ve video oynatma cihazda denenmelidir.
