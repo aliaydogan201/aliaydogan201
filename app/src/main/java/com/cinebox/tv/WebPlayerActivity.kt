@@ -24,8 +24,6 @@ class WebPlayerActivity : ComponentActivity() {
     private var pageUrl = ""
     private lateinit var toolbar: HorizontalScrollView
     private lateinit var fullscreenButton: Button
-    private lateinit var exitFullscreen: Button
-    private var pageFullscreen = false
 
     private fun styleButton(button: Button) {
         button.isFocusable = true
@@ -47,16 +45,6 @@ class WebPlayerActivity : ComponentActivity() {
     private fun systemFullscreen(enabled: Boolean) {
         window.decorView.systemUiVisibility = if (enabled) 5894 else 0
     }
-    private fun setPageFullscreen(enabled: Boolean) {
-        pageFullscreen = enabled
-        toolbar.visibility = if (enabled) View.GONE else View.VISIBLE
-        status.visibility = if (enabled) View.GONE else View.VISIBLE
-        exitFullscreen.visibility = if (enabled) View.VISIBLE else View.GONE
-        systemFullscreen(enabled)
-        if (enabled) web.requestFocus() else fullscreenButton.requestFocus()
-    }
-    @Volatile private var adFilterEnabled = true
-
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,28 +77,20 @@ class WebPlayerActivity : ComponentActivity() {
         fun button(label: String, action: () -> Unit) {
             tools.addView(Button(this).apply { text = label; styleButton(this); setOnClickListener { action() } })
         }
-        exitFullscreen = Button(this).apply {
-            text = "Tam ekrandan çık"
-            styleButton(this)
-            visibility = View.GONE
-            setOnClickListener { setPageFullscreen(false) }
-        }
-        root.addView(exitFullscreen, FrameLayout.LayoutParams(-2, -2, android.view.Gravity.TOP or android.view.Gravity.END))
         button("← Kapat") { finish() }
         fullscreenButton = Button(this).apply {
             text = "⛶ Tam ekran"
             styleButton(this)
             setOnClickListener {
-                setPageFullscreen(true)
-                // Use the page's supported fullscreen API, never access cross-origin frame contents.
-                web.evaluateJavascript("""
-                    (function(){
-                        var v=document.querySelector('video');
-                        if(!v) return;
-                        var f=v.requestFullscreen||v.webkitRequestFullscreen;
-                        if(f) { try { var p=f.call(v); if(p&&p.catch)p.catch(function(){}); } catch(e){} }
-                    })();
-                """.trimIndent(), null)
+                status.text = "Video tam ekranı isteniyor…"
+                web.evaluateJavascript(assets.open("video_fullscreen.js").bufferedReader().use { it.readText() }, null)
+                web.postDelayed({
+                    if (full == null && !isFinishing && !isDestroyed) {
+                        status.text = "Oynatıcı tam ekranı açmadı. Videoyu başlatıp video içindeki ⛶ düğmesine basın."
+                        web.requestFocus()
+                    }
+                }, 1800)
+
             }
         }
         tools.addView(fullscreenButton)
@@ -185,7 +165,6 @@ class WebPlayerActivity : ComponentActivity() {
                 if (full != null) { callback.onCustomViewHidden(); return }
                 fullCallback = callback
                 normal.visibility = View.GONE
-                exitFullscreen.visibility = View.GONE
                 systemFullscreen(true)
                 full = FrameLayout(this@WebPlayerActivity).apply {
                     setBackgroundColor(Color.BLACK)
@@ -202,7 +181,7 @@ class WebPlayerActivity : ComponentActivity() {
         web.setDownloadListener { _, _, _, _, _ -> status.text = "Bu ekran indirme yerine web oynatma içindir." }
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                when { full != null -> hideFull(); pageFullscreen -> setPageFullscreen(false); web.canGoBack() -> web.goBack(); else -> finish() }
+                when { full != null -> hideFull(); web.canGoBack() -> web.goBack(); else -> finish() }
             }
         })
         fullscreenButton.requestFocus()
@@ -211,7 +190,6 @@ class WebPlayerActivity : ComponentActivity() {
     override fun onKeyDown(keyCode: Int, event: android.view.KeyEvent): Boolean {
         if (keyCode == android.view.KeyEvent.KEYCODE_MENU && ::web.isInitialized) {
             if (full != null) hideFull()
-            else if (pageFullscreen) setPageFullscreen(false)
             fullscreenButton.requestFocus()
             return true
         }
@@ -224,7 +202,8 @@ class WebPlayerActivity : ComponentActivity() {
         val callback = fullCallback
         fullCallback = null
         callback?.onCustomViewHidden()
-        if (::fullscreenButton.isInitialized) setPageFullscreen(false)
+        systemFullscreen(false)
+        if (::fullscreenButton.isInitialized) fullscreenButton.requestFocus()
     }
     override fun onSaveInstanceState(outState: Bundle) {
         if (::web.isInitialized) web.saveState(outState)

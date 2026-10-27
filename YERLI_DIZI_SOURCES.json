@@ -1,0 +1,44 @@
+[
+  {
+    "id": 960001,
+    "title": "Kurtlar Vadisi",
+    "url": "https://www.youtube.com/playlist?list=PLnJQRSNjIxjvdeIJHnIuVx-6d3aRe_v0X",
+    "provider": "YouTube · Bölüm listesi",
+    "notes": "Kurtlar Vadisi bölüm listesini açar. İzlemek istediğiniz bölümü listeden seçin. Listenin tüm bölümleri içerdiği ve cihazda oynatımı doğrulanmadı."
+  },
+  {
+    "id": 960002,
+    "title": "Kurtlar Vadisi Pusu",
+    "url": "https://www.kanald.com.tr/kurtlar-vadisi-pusu/bolumler",
+    "provider": "Kanal D",
+    "notes": "Kanal D bölüm arşivi. Bu arşiv 230–300. bölümleri listeler; ilk 229 bölüm bu kaynakta yer almıyor. Bölümü açılan sayfadan seçin."
+  },
+  {
+    "id": 960003,
+    "title": "Yarım Elma",
+    "url": "https://www.showtv.com.tr/dizi/tanitim/yarim-elma/1050",
+    "provider": "Show TV",
+    "notes": "Show TV bölüm arşivi. Sayfadaki Bölümler alanından seçin. Arşivde 18. bölüme kadar kayıtlar görülüyor; dizinin tamamı olarak doğrulanmadı. Kanal D 1. bölüm bağlantısı da aşağıda yer alır."
+  },
+  {
+    "id": 960004,
+    "title": "Aşk-ı Memnu",
+    "url": "https://www.kanald.com.tr/askimemnu/bolumler",
+    "provider": "Kanal D",
+    "notes": "Kanal D bölüm arşivi. Sezon ve sayfa seçerek bölümlere ulaşabilirsiniz; arşivde 79. bölüm finali de listelenir."
+  },
+  {
+    "id": 960005,
+    "title": "Arıza",
+    "url": "https://www.showtv.com.tr/dizi/tanitim/ariza/2745",
+    "provider": "Show TV",
+    "notes": "Show TV bölüm arşivi. Bölümler alanından seçim yapın. İlk bölüm ve YouTube bölüm listesi için aşağıdaki bağlantıları da kullanabilirsiniz."
+  },
+  {
+    "id": 960006,
+    "title": "Çiçek Taksi",
+    "url": "https://www.youtube.com/playlist?list=PLvl2KbSBJH628KPFZG8bR1LJ8LgCIcXod",
+    "provider": "YouTube · TRT bölüm videoları",
+    "notes": "Çiçek Taksi bölüm listesini açar. Listeden izlemek istediğiniz bölümü seçin. Dizinin bütün yayın dönemlerini eksiksiz kapsadığı doğrulanmadı."
+  }
+]

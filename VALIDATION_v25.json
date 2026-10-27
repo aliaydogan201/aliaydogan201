@@ -1,0 +1,6 @@
+{
+  "catalogs_preserved": true,
+  "fullscreen_behavior_tests": 5,
+  "android_build": "not run",
+  "device_tests": "not run"
+}

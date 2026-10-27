@@ -77,8 +77,8 @@ data class Movie(
 
 // Full-length sources checked with ranged HTTP requests; no shared demo fallback.
 private val catalogMovies = listOf(
-    Movie(id = 7502, title = "Ayrılsak da Beraberiz (1999)", overview = "Janset ve Hakan Yılmaz’lı eski seri. Bağlı arşiv sayfasında 40 bölüm listeleniyor; tüm seri veya yalnız 1999 yılında yayımlanan bölümler olarak doğrulanmadı. 2015 uyarlaması değildir.", poster = "", backdrop = "", year = "1999", score = 0.0, genreIds = listOf(35), provider = "Diziizle — üçüncü taraf arşiv", webUrl = "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/", category = "Türk Dizileri"),
-    Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Türk Dizileri"),
+    Movie(id = 7502, title = "Ayrılsak da Beraberiz (1999)", overview = "Janset ve Hakan Yılmaz’lı eski seri. Bağlı arşiv sayfasında 40 bölüm listeleniyor; tüm seri veya yalnız 1999 yılında yayımlanan bölümler olarak doğrulanmadı. 2015 uyarlaması değildir.", poster = "", backdrop = "", year = "1999", score = 0.0, genreIds = listOf(35), provider = "Diziizle — üçüncü taraf arşiv", webUrl = "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/", category = "Yerli Diziler"),
+    Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Yerli Diziler"),
     Movie(id = 7401, title = "Guguk Kuşu", overview = "Verdiğiniz sitedeki oynatıcıyı uygulama içinde açar. Doğrudan video kaynağı doğrulanmadı; site erişimi TV üzerinde denenmelidir.", poster = "", backdrop = "", year = "1975", score = 0.0, genreIds = emptyList(), provider = "Kullanıcının seçtiği site", webUrl = "https://www.fullhdfilmizlesene.now/film/guguk-kusu/", category = "Film"),
     Movie(id = 7402, title = "Su Savaşları — Bölümler", overview = "TRT Belgesel’in suya erişim mücadelesini konu alan serisi. Açılan program sayfasından bir bölüm seçin.", poster = "", backdrop = "", year = "", score = 0.0, genreIds = emptyList(), provider = "TRT Belgesel", webUrl = "https://www.trtbelgesel.com.tr/macera/su-savaslari", category = "Belgesel"),
     Movie(id = 7404, title = "Tarkan — Şımarık", overview = "Tarkan’ın resmî sitesinin yönlendirdiği müzik klibi. YouTube oynatıcısında açılır.", poster = "", backdrop = "", year = "1997", score = 0.0, genreIds = emptyList(), provider = "Tarkan", webUrl = "https://www.youtube.com/watch?v=cpp69ghR1IM", category = "Müzik"),
@@ -88,7 +88,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -150,13 +150,13 @@ class MainActivity : ComponentActivity() {
         var category by remember { mutableStateOf("Tümü") }
         var tab by remember { mutableStateOf("Ana Sayfa") }
         var query by remember { mutableStateOf("") }
+        var page by remember { mutableIntStateOf(0) }
         var movies by remember { mutableStateOf<List<Movie>>(emptyList()) }
         var recommended by remember { mutableStateOf<List<Movie>>(emptyList()) }
         var selected by remember { mutableStateOf<Movie?>(null) }
         var playing by remember { mutableStateOf<PlayRequest?>(null) }
         var busy by remember { mutableStateOf(false) }
         var message by remember { mutableStateOf("") }
-        var searchNonce by remember { mutableIntStateOf(0) }
         val favorites = remember { mutableStateListOf<Int>().apply { addAll(prefs.getString("favorites", "")!!.split(",").mapNotNull { it.toIntOrNull() }) } }
         val ratings = remember { mutableStateMapOf<Int, Int>().apply {
             prefs.all.forEach { (key, value) -> if (key.startsWith("rating_") && value is Int) key.removePrefix("rating_").toIntOrNull()?.let { put(it, value) } }
@@ -170,20 +170,6 @@ class MainActivity : ComponentActivity() {
             message = if (list.isEmpty()) "Film bulunamadı." else ""
         }
         LaunchedEffect(Unit) { showMovies(catalogMovies) }
-        LaunchedEffect(searchNonce) {
-            if (searchNonce == 0) return@LaunchedEffect
-            busy = true
-            message = "Açık lisanslı videolar aranıyor…"
-            try {
-                val result = searchCommons(query)
-                showMovies(result)
-                message = if (result.isEmpty()) "Açık lisanslı video bulunamadı. Başka bir isim deneyin." else "${result.size} açık lisanslı video bulundu."
-            } catch (e: Exception) {
-                busy = false
-                movies = emptyList()
-                message = "Arama başarısız: ${e.localizedMessage ?: "Bağlantıyı kontrol edin."}"
-            }
-        }
         LaunchedEffect(selected?.id) {
             val genre = selected?.genreIds?.firstOrNull()
             recommended = catalogMovies.filter { it.id != selected?.id && genre != null && genre in it.genreIds }
@@ -213,10 +199,16 @@ class MainActivity : ComponentActivity() {
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("url", m.webUrl).putExtra("title", m.title))
-                                }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else "▶ Web oynatıcıda aç") }
+                                }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else "▶ Web oynatıcıda aç") }
                                 if (m.webUrl.isNotBlank()) TvAction(onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                seriesExtraLinks[m.id].orEmpty().forEach { link ->
+                                    TvAction(onClick = {
+                                        startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
+                                            .putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
+                                    }) { Text(link.label) }
+                                }
                                 if (m.id == 7502) {
                                     TvAction(onClick = { openPublisherPage("https://www.youtube.com/watch?v=GgAkIcXFinA") }) {
                                         Text("1999 · 1. bölüm — YouTube’da aç")
@@ -283,8 +275,9 @@ class MainActivity : ComponentActivity() {
                         listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler").forEach { label ->
                             TvAction(onClick = {
                                 tab = label
+                                page = 0
                                 when (label) {
-                                    "Ana Sayfa" -> showMovies(catalogMovies)
+                                    "Ana Sayfa", "Ara" -> showMovies(catalogMovies)
                                     "Öneriler" -> {
                                         val preferred = savedMovies.values.filter { (ratings[it.id] ?: 0) >= 7 }.flatMap { it.genreIds }.toSet()
                                         showMovies(catalogMovies.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
@@ -294,29 +287,44 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Spacer(Modifier.height(25.dp))
-                    if (tab == "Ara") {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                            TextField(value = query, onValueChange = { query = it }, label = { Text("Film adı") }, singleLine = true, modifier = Modifier.width(450.dp))
-                            TvAction(onClick = { if (query.isNotBlank()) searchNonce++ }) { Text("🔍 İnternette ara") }
-                        }
-                        Spacer(Modifier.height(20.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        TextField(value = query, onValueChange = { query = it; page = 0 },
+                            label = { Text("İçerik adı ara · $category") }, singleLine = true,
+                            modifier = Modifier.weight(1f))
+                        TvAction(onClick = { query = ""; page = 0 }) { Text("Temizle") }
                     }
+                    Spacer(Modifier.height(16.dp))
                     Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor ve müzik" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Filmler", "Diziler", "Türk Dizileri", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
-                            TvAction(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
+                        listOf("Tümü", "Filmler", "Diziler", "Yerli Diziler", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
+                            TvAction(onClick = { category = label; page = 0 }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
                     Spacer(Modifier.height(12.dp))
                     val baseMovies = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
-                    val shown = baseMovies.filter { category == "Tümü" || (category == "Filmler" && it.category == "Film") || (category == "Diziler" && it.category in listOf("Dizi", "Türk Dizileri")) || it.category == category }
-                    MovieRow(shown) { selected = it }
-                    if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
+                    val shown = baseMovies.filter {
+                        (category == "Tümü" || (category == "Filmler" && it.category == "Film") ||
+                         (category == "Diziler" && it.category in listOf("Dizi", "Yerli Diziler")) || it.category == category) &&
+                        it.title.lowercase(java.util.Locale("tr", "TR")).contains(query.trim().lowercase(java.util.Locale("tr", "TR")))
+                    }.sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title })
+                    val pageSize = 20
+                    val pageCount = maxOf(1, (shown.size + pageSize - 1) / pageSize)
+                    val currentPage = page.coerceIn(0, pageCount - 1)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        TvAction(enabled = currentPage > 0, onClick = { page = currentPage - 1 }) { Text("◀ Önceki") }
+                        Text("${shown.size} içerik · Sayfa ${currentPage + 1} / $pageCount", color = Color.White)
+                        TvAction(enabled = currentPage + 1 < pageCount, onClick = { page = currentPage + 1 }) { Text("Sonraki ▶") }
+                    }
+                    Spacer(Modifier.height(12.dp))
+                    key(category, query, tab, currentPage) {
+                        MovieRow(shown.drop(currentPage * pageSize).take(pageSize)) { selected = it }
+                    }
+                    if (shown.isEmpty()) Text("Bu kategoride aramanızla eşleşen içerik bulunamadı.", color = Color.White)
                     Spacer(Modifier.height(20.dp))
-                    Text("MP4 içerikler ALICOTV Player’da; web içerikleri yayıncının oynatıcısında açılır. İnternet araması: Wikimedia Commons.", color = Color.LightGray, fontSize = 11.sp)
+                    Text("MP4 içerikler ALICOTV Player’da; web içerikleri yayıncının oynatıcısında açılır. İsim araması seçili kategori içinde yapılır.", color = Color.LightGray, fontSize = 11.sp)
                 }
             }
         }
@@ -466,13 +474,14 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
 @Composable
 private fun TvAction(
     onClick: () -> Unit,
+    enabled: Boolean = true,
     modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = panel, contentColor = Color.White),
     contentPadding: PaddingValues = PaddingValues(horizontal = 18.dp, vertical = 12.dp),
     content: @Composable RowScope.() -> Unit
 ) {
     var focused by remember { mutableStateOf(false) }
-    Button(onClick = onClick,
+    Button(onClick = onClick, enabled = enabled,
         modifier = modifier.heightIn(min = 52.dp).onFocusChanged { focused = it.isFocused },
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(if (focused) 4.dp else 1.dp, if (focused) Color.White else Color(0xFFFFCC80)),
