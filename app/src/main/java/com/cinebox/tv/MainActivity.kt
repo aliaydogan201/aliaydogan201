@@ -86,7 +86,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog
+) + importedCatalog + season1999Catalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -209,7 +209,7 @@ class MainActivity : ComponentActivity() {
                                 if (m.webUrl.isNotBlank()) Button(onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("url", m.webUrl).putExtra("title", m.title))
-                                }) { Text("▶ Web oynatıcıda aç") }
+                                }) { Text(if (m.provider == "Özet ara") "🔎 Özet ara" else "▶ Web oynatıcıda aç") }
                                 if (m.webUrl.isNotBlank()) OutlinedButton(onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
@@ -273,7 +273,7 @@ class MainActivity : ComponentActivity() {
                         MovieRow(recommended.filter { it.id != m.id }) { selected = it }
                     }
                 }
-                else -> Column(Modifier.fillMaxSize().background(bg).padding(24.dp)) {
+                else -> Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         Text("CINEBOX", color = accent, fontWeight = FontWeight.Black, fontSize = 29.sp)
                         listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler").forEach { label ->
@@ -323,13 +323,13 @@ class MainActivity : ComponentActivity() {
 private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp), contentPadding = PaddingValues(end = 22.dp)) {
         items(movies, key = { it.id }) { movie ->
-            Column(Modifier.width(155.dp)) {
+            Column(Modifier.width(180.dp)) {
                 Surface(onClick = { onClick(movie) }, shape = RoundedCornerShape(11.dp), color = panel) {
                     Column {
-                        if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(205.dp))
-                        else Box(Modifier.fillMaxWidth().height(205.dp), contentAlignment = Alignment.Center) { Text(movie.title, color = Color.LightGray, modifier = Modifier.padding(12.dp)) }
-                        Text(movie.title, color = Color.White, fontSize = 14.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
-                        Text(if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
+                        Text(movie.title, color = Color.White, fontSize = 15.sp, minLines = 2, maxLines = 4, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
+                        if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(150.dp))
+                        else Box(Modifier.fillMaxWidth().height(150.dp), contentAlignment = Alignment.Center) { Text(movie.title, color = Color.LightGray, modifier = Modifier.padding(12.dp)) }
+                        Text(if (movie.provider == "Özet ara") "Maç Özeti · Video aranacak" else if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
                     }
                 }
             }

@@ -1,0 +1,2144 @@
+[
+  {
+    "week": 1,
+    "home": "Galatasaray",
+    "away": "Gaziantepspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Gençlerbirliği",
+    "away": "Beşiktaş",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Samsunspor",
+    "away": "Ankaragücü",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Bursaspor",
+    "away": "Altay",
+    "score": "1-4",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Antalyaspor",
+    "away": "İstanbulspor",
+    "score": "0-3",
+    "note": "Hükmen sonuç. Sahadaki skor: 0-1"
+  },
+  {
+    "week": 1,
+    "home": "Fenerbahçe",
+    "away": "Vanspor",
+    "score": "3-0",
+    "note": "Hükmen sonuç. Sahadaki skor: 3-2"
+  },
+  {
+    "week": 1,
+    "home": "Adanaspor",
+    "away": "Trabzonspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Erzurumspor",
+    "away": "Denizlispor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 1,
+    "home": "Göztepe",
+    "away": "Kocaelispor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Altay",
+    "away": "Göztepe",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "İstanbulspor",
+    "away": "Bursaspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Fenerbahçe",
+    "away": "Kocaelispor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Vanspor",
+    "away": "Erzurumspor",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Trabzonspor",
+    "away": "Galatasaray",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Gaziantepspor",
+    "away": "Antalyaspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Denizlispor",
+    "away": "Gençlerbirliği",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Beşiktaş",
+    "away": "Samsunspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 2,
+    "home": "Ankaragücü",
+    "away": "Adanaspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Antalyaspor",
+    "away": "Trabzonspor",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Galatasaray",
+    "away": "Ankaragücü",
+    "score": "5-0",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Göztepe",
+    "away": "İstanbulspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Gençlerbirliği",
+    "away": "Vanspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Fenerbahçe",
+    "away": "Altay",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Beşiktaş",
+    "away": "Denizlispor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Erzurumspor",
+    "away": "Kocaelispor",
+    "score": "3-3",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Bursaspor",
+    "away": "Gaziantepspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 3,
+    "home": "Samsunspor",
+    "away": "Adanaspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Adanaspor",
+    "away": "Galatasaray",
+    "score": "3-4",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Trabzonspor",
+    "away": "Bursaspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Gençlerbirliği",
+    "away": "Kocaelispor",
+    "score": "0-4",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "İstanbulspor",
+    "away": "Fenerbahçe",
+    "score": "1-4",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Vanspor",
+    "away": "Beşiktaş",
+    "score": "0-6",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Gaziantepspor",
+    "away": "Göztepe",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Altay",
+    "away": "Erzurumspor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Denizlispor",
+    "away": "Samsunspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 4,
+    "home": "Ankaragücü",
+    "away": "Antalyaspor",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Samsunspor",
+    "away": "Galatasaray",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Beşiktaş",
+    "away": "Kocaelispor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Gençlerbirliği",
+    "away": "Altay",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Erzurumspor",
+    "away": "İstanbulspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Fenerbahçe",
+    "away": "Gaziantepspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Bursaspor",
+    "away": "Ankaragücü",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Denizlispor",
+    "away": "Vanspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Göztepe",
+    "away": "Trabzonspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 5,
+    "home": "Antalyaspor",
+    "away": "Adanaspor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Galatasaray",
+    "away": "Antalyaspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Ankaragücü",
+    "away": "Göztepe",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Trabzonspor",
+    "away": "Fenerbahçe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Adanaspor",
+    "away": "Bursaspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Denizlispor",
+    "away": "Kocaelispor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Vanspor",
+    "away": "Samsunspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Gaziantepspor",
+    "away": "Erzurumspor",
+    "score": "6-0",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "Altay",
+    "away": "Beşiktaş",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 6,
+    "home": "İstanbulspor",
+    "away": "Gençlerbirliği",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Bursaspor",
+    "away": "Galatasaray",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Beşiktaş",
+    "away": "İstanbulspor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Erzurumspor",
+    "away": "Trabzonspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Gençlerbirliği",
+    "away": "Gaziantepspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Fenerbahçe",
+    "away": "Ankaragücü",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Göztepe",
+    "away": "Adanaspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Vanspor",
+    "away": "Kocaelispor",
+    "score": "5-0",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Denizlispor",
+    "away": "Altay",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 7,
+    "home": "Samsunspor",
+    "away": "Antalyaspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Galatasaray",
+    "away": "Göztepe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Ankaragücü",
+    "away": "Erzurumspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Adanaspor",
+    "away": "Fenerbahçe",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Altay",
+    "away": "Vanspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Samsunspor",
+    "away": "Kocaelispor",
+    "score": "5-1",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "İstanbulspor",
+    "away": "Denizlispor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Gaziantepspor",
+    "away": "Beşiktaş",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Antalyaspor",
+    "away": "Bursaspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 8,
+    "home": "Trabzonspor",
+    "away": "Gençlerbirliği",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Denizlispor",
+    "away": "Gaziantepspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Göztepe",
+    "away": "Antalyaspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Beşiktaş",
+    "away": "Trabzonspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Erzurumspor",
+    "away": "Adanaspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Gençlerbirliği",
+    "away": "Ankaragücü",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Altay",
+    "away": "Kocaelispor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Vanspor",
+    "away": "İstanbulspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Samsunspor",
+    "away": "Bursaspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 9,
+    "home": "Fenerbahçe",
+    "away": "Galatasaray",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Ankaragücü",
+    "away": "Beşiktaş",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Adanaspor",
+    "away": "Gençlerbirliği",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Antalyaspor",
+    "away": "Fenerbahçe",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Gaziantepspor",
+    "away": "Vanspor",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "İstanbulspor",
+    "away": "Kocaelispor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Altay",
+    "away": "Samsunspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Bursaspor",
+    "away": "Göztepe",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Trabzonspor",
+    "away": "Denizlispor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 10,
+    "home": "Galatasaray",
+    "away": "Erzurumspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Gençlerbirliği",
+    "away": "Galatasaray",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Beşiktaş",
+    "away": "Adanaspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Erzurumspor",
+    "away": "Antalyaspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Gaziantepspor",
+    "away": "Kocaelispor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Samsunspor",
+    "away": "Göztepe",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Altay",
+    "away": "İstanbulspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Vanspor",
+    "away": "Trabzonspor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Denizlispor",
+    "away": "Ankaragücü",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 11,
+    "home": "Fenerbahçe",
+    "away": "Bursaspor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Adanaspor",
+    "away": "Denizlispor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "İstanbulspor",
+    "away": "Samsunspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Göztepe",
+    "away": "Fenerbahçe",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Trabzonspor",
+    "away": "Kocaelispor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Ankaragücü",
+    "away": "Vanspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Bursaspor",
+    "away": "Erzurumspor",
+    "score": "4-2",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Antalyaspor",
+    "away": "Gençlerbirliği",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Gaziantepspor",
+    "away": "Altay",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 12,
+    "home": "Galatasaray",
+    "away": "Beşiktaş",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Samsunspor",
+    "away": "Fenerbahçe",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Ankaragücü",
+    "away": "Kocaelispor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Denizlispor",
+    "away": "Galatasaray",
+    "score": "2-4",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Vanspor",
+    "away": "Adanaspor",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Erzurumspor",
+    "away": "Göztepe",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Gençlerbirliği",
+    "away": "Bursaspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "İstanbulspor",
+    "away": "Gaziantepspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Altay",
+    "away": "Trabzonspor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 13,
+    "home": "Beşiktaş",
+    "away": "Antalyaspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Bursaspor",
+    "away": "Beşiktaş",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Adanaspor",
+    "away": "Kocaelispor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Ankaragücü",
+    "away": "Altay",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Fenerbahçe",
+    "away": "Erzurumspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Antalyaspor",
+    "away": "Denizlispor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Trabzonspor",
+    "away": "İstanbulspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Gaziantepspor",
+    "away": "Samsunspor",
+    "score": "5-2",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Göztepe",
+    "away": "Gençlerbirliği",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 14,
+    "home": "Galatasaray",
+    "away": "Vanspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Beşiktaş",
+    "away": "Göztepe",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Erzurumspor",
+    "away": "Samsunspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Denizlispor",
+    "away": "Bursaspor",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Altay",
+    "away": "Adanaspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Gençlerbirliği",
+    "away": "Fenerbahçe",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Vanspor",
+    "away": "Antalyaspor",
+    "score": "2-4",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Trabzonspor",
+    "away": "Gaziantepspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "İstanbulspor",
+    "away": "Ankaragücü",
+    "score": "2-6",
+    "note": ""
+  },
+  {
+    "week": 15,
+    "home": "Kocaelispor",
+    "away": "Galatasaray",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Samsunspor",
+    "away": "Trabzonspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Ankaragücü",
+    "away": "Gaziantepspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Bursaspor",
+    "away": "Vanspor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Antalyaspor",
+    "away": "Kocaelispor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Galatasaray",
+    "away": "Altay",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Erzurumspor",
+    "away": "Gençlerbirliği",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Adanaspor",
+    "away": "İstanbulspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Göztepe",
+    "away": "Denizlispor",
+    "score": "2-4",
+    "note": ""
+  },
+  {
+    "week": 16,
+    "home": "Fenerbahçe",
+    "away": "Beşiktaş",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Denizlispor",
+    "away": "Fenerbahçe",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Gaziantepspor",
+    "away": "Adanaspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "İstanbulspor",
+    "away": "Galatasaray",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Trabzonspor",
+    "away": "Ankaragücü",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Gençlerbirliği",
+    "away": "Samsunspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Altay",
+    "away": "Antalyaspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Beşiktaş",
+    "away": "Erzurumspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Kocaelispor",
+    "away": "Bursaspor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 17,
+    "home": "Vanspor",
+    "away": "Göztepe",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Vanspor",
+    "away": "Fenerbahçe",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Trabzonspor",
+    "away": "Adanaspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Kocaelispor",
+    "away": "Göztepe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "İstanbulspor",
+    "away": "Antalyaspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Ankaragücü",
+    "away": "Samsunspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Beşiktaş",
+    "away": "Gençlerbirliği",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Denizlispor",
+    "away": "Erzurumspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Altay",
+    "away": "Bursaspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 18,
+    "home": "Gaziantepspor",
+    "away": "Galatasaray",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Samsunspor",
+    "away": "Beşiktaş",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Bursaspor",
+    "away": "İstanbulspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Gençlerbirliği",
+    "away": "Denizlispor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Kocaelispor",
+    "away": "Fenerbahçe",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Erzurumspor",
+    "away": "Vanspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Göztepe",
+    "away": "Altay",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Antalyaspor",
+    "away": "Gaziantepspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Adanaspor",
+    "away": "Ankaragücü",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 19,
+    "home": "Galatasaray",
+    "away": "Trabzonspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Denizlispor",
+    "away": "Beşiktaş",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Vanspor",
+    "away": "Gençlerbirliği",
+    "score": "2-5",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Gaziantepspor",
+    "away": "Bursaspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Adanaspor",
+    "away": "Samsunspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Kocaelispor",
+    "away": "Erzurumspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Altay",
+    "away": "Fenerbahçe",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Trabzonspor",
+    "away": "Antalyaspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "İstanbulspor",
+    "away": "Göztepe",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 20,
+    "home": "Ankaragücü",
+    "away": "Galatasaray",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Beşiktaş",
+    "away": "Vanspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Göztepe",
+    "away": "Gaziantepspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Samsunspor",
+    "away": "Denizlispor",
+    "score": "6-2",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Kocaelispor",
+    "away": "Gençlerbirliği",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Fenerbahçe",
+    "away": "İstanbulspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Erzurumspor",
+    "away": "Altay",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Bursaspor",
+    "away": "Trabzonspor",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Antalyaspor",
+    "away": "Ankaragücü",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 21,
+    "home": "Galatasaray",
+    "away": "Adanaspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Galatasaray",
+    "away": "Samsunspor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Trabzonspor",
+    "away": "Göztepe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Adanaspor",
+    "away": "Antalyaspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Ankaragücü",
+    "away": "Bursaspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Kocaelispor",
+    "away": "Beşiktaş",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Vanspor",
+    "away": "Denizlispor",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Altay",
+    "away": "Gençlerbirliği",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "İstanbulspor",
+    "away": "Erzurumspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 22,
+    "home": "Gaziantepspor",
+    "away": "Fenerbahçe",
+    "score": "5-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Beşiktaş",
+    "away": "Altay",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Erzurumspor",
+    "away": "Gaziantepspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Gençlerbirliği",
+    "away": "İstanbulspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Kocaelispor",
+    "away": "Denizlispor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Fenerbahçe",
+    "away": "Trabzonspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Samsunspor",
+    "away": "Vanspor",
+    "score": "5-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Göztepe",
+    "away": "Ankaragücü",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Bursaspor",
+    "away": "Adanaspor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 23,
+    "home": "Antalyaspor",
+    "away": "Galatasaray",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Trabzonspor",
+    "away": "Erzurumspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Altay",
+    "away": "Denizlispor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Gaziantepspor",
+    "away": "Gençlerbirliği",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Kocaelispor",
+    "away": "Vanspor",
+    "score": "6-1",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Ankaragücü",
+    "away": "Fenerbahçe",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Adanaspor",
+    "away": "Göztepe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Antalyaspor",
+    "away": "Samsunspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "İstanbulspor",
+    "away": "Beşiktaş",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 24,
+    "home": "Galatasaray",
+    "away": "Bursaspor",
+    "score": "6-0",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Fenerbahçe",
+    "away": "Adanaspor",
+    "score": "2-4",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Erzurumspor",
+    "away": "Ankaragücü",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Bursaspor",
+    "away": "Antalyaspor",
+    "score": "4-2",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Kocaelispor",
+    "away": "Samsunspor",
+    "score": "0-4",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Beşiktaş",
+    "away": "Gaziantepspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Vanspor",
+    "away": "Altay",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Denizlispor",
+    "away": "İstanbulspor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Gençlerbirliği",
+    "away": "Trabzonspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 25,
+    "home": "Göztepe",
+    "away": "Galatasaray",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Gaziantepspor",
+    "away": "Denizlispor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "İstanbulspor",
+    "away": "Vanspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Bursaspor",
+    "away": "Samsunspor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Adanaspor",
+    "away": "Erzurumspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Trabzonspor",
+    "away": "Beşiktaş",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Ankaragücü",
+    "away": "Gençlerbirliği",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Antalyaspor",
+    "away": "Göztepe",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Kocaelispor",
+    "away": "Altay",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 26,
+    "home": "Galatasaray",
+    "away": "Fenerbahçe",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Denizlispor",
+    "away": "Trabzonspor",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Erzurumspor",
+    "away": "Galatasaray",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Göztepe",
+    "away": "Bursaspor",
+    "score": "0-1",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Fenerbahçe",
+    "away": "Antalyaspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Vanspor",
+    "away": "Gaziantepspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Gençlerbirliği",
+    "away": "Adanaspor",
+    "score": "5-2",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Beşiktaş",
+    "away": "Ankaragücü",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Kocaelispor",
+    "away": "İstanbulspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 27,
+    "home": "Samsunspor",
+    "away": "Altay",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Bursaspor",
+    "away": "Fenerbahçe",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Göztepe",
+    "away": "Samsunspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "İstanbulspor",
+    "away": "Altay",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Kocaelispor",
+    "away": "Gaziantepspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Adanaspor",
+    "away": "Beşiktaş",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Trabzonspor",
+    "away": "Vanspor",
+    "score": "4-2",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Galatasaray",
+    "away": "Gençlerbirliği",
+    "score": "6-0",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Antalyaspor",
+    "away": "Erzurumspor",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 28,
+    "home": "Ankaragücü",
+    "away": "Denizlispor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Beşiktaş",
+    "away": "Galatasaray",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Altay",
+    "away": "Gaziantepspor",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Kocaelispor",
+    "away": "Trabzonspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Gençlerbirliği",
+    "away": "Antalyaspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Denizlispor",
+    "away": "Adanaspor",
+    "score": "4-2",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Fenerbahçe",
+    "away": "Göztepe",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Samsunspor",
+    "away": "İstanbulspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Erzurumspor",
+    "away": "Bursaspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 29,
+    "home": "Vanspor",
+    "away": "Ankaragücü",
+    "score": "2-3",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Fenerbahçe",
+    "away": "Samsunspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Trabzonspor",
+    "away": "Altay",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Adanaspor",
+    "away": "Vanspor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Bursaspor",
+    "away": "Gençlerbirliği",
+    "score": "2-5",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Antalyaspor",
+    "away": "Beşiktaş",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Göztepe",
+    "away": "Erzurumspor",
+    "score": "1-4",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Gaziantepspor",
+    "away": "İstanbulspor",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Kocaelispor",
+    "away": "Ankaragücü",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 30,
+    "home": "Galatasaray",
+    "away": "Denizlispor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Beşiktaş",
+    "away": "Bursaspor",
+    "score": "5-1",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "İstanbulspor",
+    "away": "Trabzonspor",
+    "score": "5-1",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Altay",
+    "away": "Ankaragücü",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Kocaelispor",
+    "away": "Adanaspor",
+    "score": "0-0",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Denizlispor",
+    "away": "Antalyaspor",
+    "score": "4-0",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Vanspor",
+    "away": "Galatasaray",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Gençlerbirliği",
+    "away": "Göztepe",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Samsunspor",
+    "away": "Gaziantepspor",
+    "score": "0-2",
+    "note": ""
+  },
+  {
+    "week": 31,
+    "home": "Erzurumspor",
+    "away": "Fenerbahçe",
+    "score": "1-5",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Fenerbahçe",
+    "away": "Gençlerbirliği",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Bursaspor",
+    "away": "Denizlispor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Gaziantepspor",
+    "away": "Trabzonspor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Göztepe",
+    "away": "Beşiktaş",
+    "score": "2-4",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Adanaspor",
+    "away": "Altay",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Samsunspor",
+    "away": "Erzurumspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Ankaragücü",
+    "away": "İstanbulspor",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Antalyaspor",
+    "away": "Vanspor",
+    "score": "4-1",
+    "note": ""
+  },
+  {
+    "week": 32,
+    "home": "Galatasaray",
+    "away": "Kocaelispor",
+    "score": "5-0",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Altay",
+    "away": "Galatasaray",
+    "score": "1-0",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Gaziantepspor",
+    "away": "Ankaragücü",
+    "score": "2-2",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Gençlerbirliği",
+    "away": "Erzurumspor",
+    "score": "5-0",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Vanspor",
+    "away": "Bursaspor",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Kocaelispor",
+    "away": "Antalyaspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "İstanbulspor",
+    "away": "Adanaspor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Denizlispor",
+    "away": "Göztepe",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Trabzonspor",
+    "away": "Samsunspor",
+    "score": "3-2",
+    "note": ""
+  },
+  {
+    "week": 33,
+    "home": "Beşiktaş",
+    "away": "Fenerbahçe",
+    "score": "1-3",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Samsunspor",
+    "away": "Gençlerbirliği",
+    "score": "1-2",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Göztepe",
+    "away": "Vanspor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Adanaspor",
+    "away": "Gaziantepspor",
+    "score": "3-0",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Fenerbahçe",
+    "away": "Denizlispor",
+    "score": "2-1",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Bursaspor",
+    "away": "Kocaelispor",
+    "score": "2-0",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Galatasaray",
+    "away": "İstanbulspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Antalyaspor",
+    "away": "Altay",
+    "score": "3-1",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Ankaragücü",
+    "away": "Trabzonspor",
+    "score": "1-1",
+    "note": ""
+  },
+  {
+    "week": 34,
+    "home": "Erzurumspor",
+    "away": "Beşiktaş",
+    "score": "1-4",
+    "note": ""
+  }
+]
