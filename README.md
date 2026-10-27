@@ -1,3 +1,9 @@
+# CineBox TV v0.19 — Eski katalog dosyası derleme hatası
+
+Gönderilen günlükte hata: CatalogParser.java → package org.jsoup does not exist. Önceki sürümden kalan CatalogParser.java / CatalogActivity.java artık kullanılmadığından main Java source setinden çıkarıldı. GitHub üzerine dosyaları yüklemek eski dosyaları silmediği için bu kural eklendi. Jsoup bağımlılığı gerekmiyor.
+
+app/build.gradle.kts dosyasını mutlaka güncelleyin. Mevcut v11 tabanlı ana ekran, ImportedCatalog, 56 film/6 dizi ve WebPlayerActivity değişmedi. Tam APK derlemesi yerelde yapılamadı.
+
 # CineBox TV v0.18 — Derleme ayarları
 
 Gradle 8.11.1 sabit, Java 17, Ubuntu 24.04. Ayrıntılı build-log artifact eklendi. KURULUM.txt adımlarını uygulayın; .github klasörünü de güncellemek gerekir. APK burada derlenmedi.

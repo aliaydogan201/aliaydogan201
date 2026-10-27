@@ -11,9 +11,15 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 18
-        versionName = "0.18.0"
+        versionCode = 19
+        versionName = "0.19.0"
     }
+    // v12-v16 files may remain after uploading a ZIP over the repository.
+    // The v11-based UI uses ImportedCatalog and WebPlayerActivity instead.
+    sourceSets.getByName("main").java.exclude(
+        "**/CatalogParser.java",
+        "**/CatalogActivity.java"
+    )
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
     kotlinOptions { jvmTarget = "17" }
