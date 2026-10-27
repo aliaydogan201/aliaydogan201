@@ -36,6 +36,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.platform.LocalContext
 import androidx.media3.common.MediaItem
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.DefaultDataSource
+import androidx.media3.datasource.HttpDataSource
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
@@ -43,12 +47,13 @@ import coil.compose.AsyncImage
 private val bg = Color(0xFF090D18)
 private val panel = Color(0xFF192034)
 private val accent = Color(0xFF8B68FF)
-private const val DEMO_URL = "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+private const val DEMO_URL = "https://www.w3schools.com/html/mov_bbb.mp4"
+private const val DEMO_BACKUP_URL = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
 private const val ELEPHANTS_URL = "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
 
 data class VideoSource(val label: String, val url: String)
 private fun sourcesFor(movie: Movie): List<VideoSource> = when (movie.id) {
-    1 -> listOf(VideoSource("Big Buck Bunny · örnek video", DEMO_URL))
+    1 -> listOf(VideoSource("Big Buck Bunny · kısa test klibi", DEMO_URL))
     4 -> listOf(VideoSource("Elephants Dream · örnek video", ELEPHANTS_URL))
     else -> emptyList()
 }
@@ -78,7 +83,7 @@ data class Movie(
 // Yerel deneme kataloğu: TMDB bağlantısı veya API anahtarı gerekmez.
 // Bu örnekler telifli film oynatma bağlantıları değildir.
 private val demoMovies = listOf(
-    Movie(1, "Büyük Tavşan", "Açık lisanslı animasyon videosuyla oynatıcı testi.", "", "", "2008", 8.0, listOf(16)),
+    Movie(1, "Büyük Tavşan", "Büyük Tavşan kısa test klibi. Blender Foundation, CC BY 3.0. Yedek kaynak 10 saniyelik kliptir; tam film değildir.", "", "", "2008", 8.0, listOf(16)),
     Movie(2, "Sintel", "Fantastik animasyon örneği. Oynatma bağlantısı örnek medya içindir.", "", "", "2010", 8.2, listOf(16, 14)),
     Movie(3, "Tears of Steel", "Bilim kurgu kısa filmi için örnek katalog kartı.", "", "", "2012", 7.8, listOf(878)),
     Movie(4, "Elephants Dream", "Animasyon kategorisinde örnek film kaydı.", "", "", "2006", 7.6, listOf(16)),
@@ -307,9 +312,27 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
 private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPreferences, onBack: () -> Unit) {
     val context = LocalContext.current
     var status by remember(request.url) { mutableStateOf("") }
-    val player = remember(request.url, request.subtitleUrl) {
-        ExoPlayer.Builder(context).build().apply {
-            val item = MediaItem.Builder().setUri(request.url)
+    val candidates = remember(request.url) {
+        if (request.url == DEMO_URL) listOf(DEMO_URL, DEMO_BACKUP_URL) else listOf(request.url)
+    }
+    var sourceIndex by remember(request.url) { mutableStateOf(0) }
+    var retryNumber by remember(request.url) { mutableStateOf(0) }
+    val activeUrl = candidates[sourceIndex]
+    // Sources may contain different edits of a film: never reuse another URL's position.
+    val progressKey = remember(request.movieId, activeUrl) {
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+            .digest(activeUrl.toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it) }
+        "progress_v05_${request.movieId}_$digest"
+    }
+    val player = remember(activeUrl, request.subtitleUrl, retryNumber) {
+        val httpFactory = DefaultHttpDataSource.Factory()
+            .setUserAgent("CineBoxTV/0.5 (Android TV)")
+            .setConnectTimeoutMs(15000)
+            .setReadTimeoutMs(20000)
+        ExoPlayer.Builder(context)
+            .setMediaSourceFactory(DefaultMediaSourceFactory(DefaultDataSource.Factory(context, httpFactory)))
+            .build().apply {
+            val item = MediaItem.Builder().setUri(activeUrl)
             if (request.subtitleUrl.isNotBlank()) {
                 item.setSubtitleConfigurations(listOf(
                     MediaItem.SubtitleConfiguration.Builder(Uri.parse(request.subtitleUrl))
@@ -322,11 +345,33 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
             setMediaItem(item.build())
             addListener(object : Player.Listener {
                 override fun onPlayerError(error: androidx.media3.common.PlaybackException) {
-                    status = "Video açılamadı. Bağlantı, yayın izni veya ağ erişimini kontrol edin: ${error.errorCodeName}"
+                    val httpError = generateSequence<Throwable>(error) { it.cause }
+                        .filterIsInstance<HttpDataSource.InvalidResponseCodeException>().firstOrNull()
+                    val detail = if (httpError != null) {
+                        val explanation = when (httpError.responseCode) {
+                            401, 403 -> "Sunucu erişimi reddetti."
+                            404, 410 -> "Video bağlantısı bulunamadı veya kaldırıldı."
+                            416 -> "Sunucu istenen video konumunu kabul etmedi."
+                            429 -> "Sunucu çok fazla istek nedeniyle beklemenizi istiyor."
+                            in 500..599 -> "Video sunucusunda geçici hata var."
+                            else -> "Sunucu video isteğini kabul etmedi."
+                        }
+                        "HTTP ${httpError.responseCode}: $explanation"
+                    } else error.errorCodeName
+                    val host = Uri.parse(activeUrl).host.orEmpty()
+                    if (httpError != null && sourceIndex < candidates.lastIndex) {
+                        status = "$detail Yedek kısa test klibi deneniyor…"
+                        sourceIndex += 1
+                    } else {
+                        status = "Video açılamadı. $detail\nKaynak: $host\nKod: ${error.errorCodeName}"
+                    }
+                }
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    if (playbackState == Player.STATE_READY) status = ""
                 }
             })
             prepare()
-            val savedPosition = prefs.getLong("progress_${request.movieId}", 0L)
+            val savedPosition = prefs.getLong(progressKey, 0L)
             if (savedPosition > 0) seekTo(savedPosition)
             playWhenReady = true
         }
@@ -336,17 +381,17 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
             delay(2500)
             if (player.duration > 0 && player.currentPosition >= 0) {
                 if (player.playbackState == Player.STATE_ENDED) {
-                    prefs.edit().remove("progress_${request.movieId}").apply()
+                    prefs.edit().remove(progressKey).apply()
                 } else {
-                    prefs.edit().putLong("progress_${request.movieId}", player.currentPosition).apply()
+                    prefs.edit().putLong(progressKey, player.currentPosition).apply()
                 }
             }
         }
     }
     DisposableEffect(player) {
         onDispose {
-            if (player.playbackState == Player.STATE_ENDED) prefs.edit().remove("progress_${request.movieId}").apply()
-            else if (player.currentPosition > 0) prefs.edit().putLong("progress_${request.movieId}", player.currentPosition).apply()
+            if (player.playbackState == Player.STATE_ENDED) prefs.edit().remove(progressKey).apply()
+            else if (player.currentPosition > 0) prefs.edit().putLong(progressKey, player.currentPosition).apply()
             player.release()
         }
     }
@@ -364,7 +409,23 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
         )
         Column(Modifier.align(Alignment.TopStart).padding(12.dp)) {
             Button(onClick = onBack) { Text("← Film detayına dön") }
-            if (status.isNotEmpty()) Text(status, color = Color(0xFFFFAAAA), modifier = Modifier.background(Color.Black).padding(8.dp))
+            if (status.isNotEmpty()) {
+                Text(status, color = Color(0xFFFFAAAA), modifier = Modifier.background(Color.Black).padding(8.dp))
+                Button(onClick = {
+                    status = "Yeniden bağlanılıyor…"
+                    retryNumber += 1
+                }) { Text("Yeniden dene") }
+                Button(onClick = {
+                    prefs.edit().remove(progressKey).apply()
+                    player.seekTo(0)
+                    status = "Baştan deneniyor…"
+                    retryNumber += 1
+                }) { Text("Baştan dene") }
+            }
+            if (request.url == DEMO_URL) Text(
+                if (sourceIndex == 0) "Büyük Tavşan · kısa test klibi" else "Büyük Tavşan · yedek 10 saniyelik test klibi",
+                color = Color.White, modifier = Modifier.background(Color.Black).padding(8.dp)
+            )
         }
         Text(request.title, color = Color.White, fontSize = 14.sp, modifier = Modifier.align(Alignment.TopEnd).padding(20.dp))
     }

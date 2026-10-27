@@ -1,17 +1,35 @@
-# CineBox TV v0.4 — İnternette otomatik kaynak arama
+# CineBox TV v0.5 — Büyük Tavşan HTTP hatası
 
-## Neler yeni?
-- **Ara** bölümünden anahtar kelime ile Wikimedia Commons API üzerinde açık lisanslı video arar.
-- Sonuçlardan doğrudan **MP4 / WebM** yayın URL'lerini elde eder, CineBox Player ile oynatır.
-- Kaynak ve lisans bilgisi film detaylarında gösterilir.
-- TMDB veya API anahtarı gerekmez.
-- Önceki oynatıcı, favoriler, puanlama, altyazı ve devam etme özellikleri korunur.
-- Ana sayfadaki örnek katalog ve manuel izinli URL ekleme sürer.
+## Değişiklikler
+- APK içindeki eski Büyük Tavşan Google Storage bağlantısı yapılan kontrolde HTTP 403 döndürdü.
+- Büyük Tavşan artık W3Schools kısa test klibini kullanır; HTTP hatasında test-videos.co.uk üzerindeki 10 saniyelik klibe bir kez geçer. Bunlar tam film değildir.
+- İki yeni URL de 27 Ekim 2026 kontrolünde Range isteğine HTTP 206 ve MP4 başlığı döndürdü. Bu kontrol TV'de tam oynatma testi değildir.
+- Hata ekranı gerçek HTTP kodunu, açıklamayı, sunucu adını ve Media3 hata kodunu gösterir. URL sorgu parametreleri ekrana yazılmaz.
+- Yeniden dene ve Baştan dene düğmeleri eklendi.
+- HTTP bağlantı ve okuma zaman aşımı ayarları ve CineBoxTV User-Agent eklendi.
+- Oynatma konumu artık kaynak URL'sine göre ayrı tutulur. Eski sürümdeki devam etme konumları aktarılmaz; favoriler ve puanlama değişmedi.
+- Diğer katalog kaynakları ve Wikimedia arama mantığı değiştirilmedi.
 
-## Sınırlamalar
-Bu bir açık lisanslı video arama prototipidir, Netflix tarzı güncel ticari film kataloğu değildir. Wikimedia Commons üzerinde bütün filmler yoktur. Arama API'si, Commons ağ politikası veya kaynak formatı yüzünden sonuç vermeyebilir. Wikimedia Commons içeriği farklı lisanslarla sunulur; yeniden kullanımda her dosyanın lisans ve atıf koşullarına uyun. Film sitelerinden izinsiz video çıkarma ya da DRM aşma yapılmaz.
+## APK oluşturma
+Bu ZIP kaynak kodudur, kurulabilir APK değildir. Bu ortamda Android SDK ve Gradle bulunmadığından derleme ve Android TV cihaz testi yapılmadı.
+1. ZIP'i açın; içeriğini mevcut GitHub projenizin köküne kopyalayın. `.github` klasörü de dahil olmalıdır.
+2. GitHub Desktop üzerinden Commit ve Push yapın.
+3. GitHub → Actions → CineBox TV Android APK çalışmasının tamamlanmasını bekleyin.
+4. Artifacts → CineBoxTV-debug-APK paketini indirin; içindeki app-debug.apk dosyasını TV'ye yükleyin.
+5. Büyük Tavşan'ı açın. Hata sürerse yeni ekrandaki HTTP kodunun fotoğrafını paylaşın.
 
-## APK
-GitHub deposunun köküne ZIP içeriğini kopyalayın. GitHub Desktop → Commit → Push.
-Actions → CineBox TV Android APK → Run workflow → Artifacts bölümündeki APK ZIP'ini indirin.
-Bu ortamda Android SDK ile derleme testi yapılmamıştır.
+Android Studio ile de proje açılıp Gradle eşitlemesinden sonra Build menüsünden APK oluşturulabilir.
+
+## Test planı
+- Büyük Tavşan kısa klibinin görüntü/ses oynatması.
+- İlk kaynak HTTP hatası verirse yalnız bir kez yedek klibe geçmesi.
+- İki kaynak da başarısızsa hata ekranında kalması, sonsuz döngü olmaması.
+- Hatalı manuel URL'de gerçek HTTP kodunun görünmesi.
+- Yeniden deneme, baştan deneme ve oynatıcıdan geri dönüş.
+
+## Kaynak ve lisans
+Big Buck Bunny: Blender Foundation, https://www.bigbuckbunny.org/ — CC BY 3.0.
+Birincil test klibi: https://www.w3schools.com/html/mov_bbb.mp4
+Yedek 10 saniyelik test klibi: https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4
+
+TMDB/API anahtarı gerekmez. Arama Wikimedia Commons açık lisanslı videolarına yöneliktir; ticari film kataloğu değildir.
