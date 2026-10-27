@@ -74,6 +74,7 @@ data class Movie(
 
 // Full-length sources checked with ranged HTTP requests; no shared demo fallback.
 private val catalogMovies = listOf(
+    Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Türk Dizileri"),
     Movie(id = 7401, title = "Guguk Kuşu", overview = "Verdiğiniz sitedeki oynatıcıyı uygulama içinde açar. Doğrudan video kaynağı doğrulanmadı; site erişimi TV üzerinde denenmelidir.", poster = "", backdrop = "", year = "1975", score = 0.0, genreIds = emptyList(), provider = "Kullanıcının seçtiği site", webUrl = "https://www.fullhdfilmizlesene.now/film/guguk-kusu/", category = "Film"),
     Movie(id = 7402, title = "Su Savaşları — Bölümler", overview = "TRT Belgesel’in suya erişim mücadelesini konu alan serisi. Açılan program sayfasından bir bölüm seçin.", poster = "", backdrop = "", year = "", score = 0.0, genreIds = emptyList(), provider = "TRT Belgesel", webUrl = "https://www.trtbelgesel.com.tr/macera/su-savaslari", category = "Belgesel"),
     Movie(id = 7403, title = "Türkiye – Gürcistan | EURO 2024", overview = "18 Haziran 2024 karşılaşmasının TRT Spor tarafından yayımlanan özeti. Yayıncının kendi oynatıcısında açılır.", poster = "", backdrop = "", year = "2024", score = 0.0, genreIds = emptyList(), provider = "TRT Spor", webUrl = "https://www.youtube.com/watch?v=Sx_2vItxhXo", category = "Maç Özeti"),
@@ -98,7 +99,7 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
     try {
         connection.connectTimeout = 12000
         connection.readTimeout = 16000
-        connection.setRequestProperty("User-Agent", "CineBoxTV/0.9 (Android TV open-license video discovery)")
+        connection.setRequestProperty("User-Agent", "CineBoxTV/0.10 (Android TV open-license video discovery)")
         if (connection.responseCode !in 200..299) throw IllegalStateException("HTTP ${connection.responseCode}")
         val raw = connection.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
         val pages = JSONObject(raw).optJSONObject("query")?.optJSONArray("pages")
@@ -129,6 +130,13 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
 
 class MainActivity : ComponentActivity() {
     private val prefs by lazy { getSharedPreferences("cinebox", Context.MODE_PRIVATE) }
+    private fun openPublisherPage(url: String) {
+        try {
+            startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, Uri.parse(url)))
+        } catch (_: android.content.ActivityNotFoundException) {
+            android.widget.Toast.makeText(this, "Tarayıcı bulunamadı. Uygulamada aç seçeneğini kullanın.", android.widget.Toast.LENGTH_LONG).show()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent { App() }
@@ -201,6 +209,22 @@ class MainActivity : ComponentActivity() {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text("▶ Web oynatıcıda aç") }
+                                if (m.webUrl.isNotBlank()) OutlinedButton(onClick = {
+                                    openPublisherPage(m.webUrl)
+                                }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                if (m.id == 7501) {
+                                    Text("Sezon seç", color = Color.White, fontWeight = FontWeight.Bold)
+                                    (1..5).forEach { season ->
+                                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                            val seasonUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler?activeSeasonNumber=$season&seasonCount=5"
+                                            Button(onClick = { openPublisherPage(seasonUrl) }) { Text("$season. Sezon · Tarayıcıda aç") }
+                                            OutlinedButton(onClick = {
+                                                startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
+                                                    .putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
+                                            }) { Text("Uygulamada aç") }
+                                        }
+                                    }
+                                }
                                 if (m.playableUrl.isNotBlank()) Button(onClick = { playing = PlayRequest(m.id, m.title, m.playableUrl) }) { Text("▶ Filmi oynat") }
                                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                     Button(onClick = {
@@ -266,12 +290,12 @@ class MainActivity : ComponentActivity() {
                         }
                         Spacer(Modifier.height(20.dp))
                     }
-                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, belgesel, spor ve müzik" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor ve müzik" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Film", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
+                        listOf("Tümü", "Film", "Türk Dizileri", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
                             OutlinedButton(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
@@ -320,7 +344,7 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
     }
     val player = remember(activeUrl, request.subtitleUrl, retryNumber) {
         val httpFactory = DefaultHttpDataSource.Factory()
-            .setUserAgent("CineBoxTV/0.9 (Android TV)")
+            .setUserAgent("CineBoxTV/0.10 (Android TV)")
             .setConnectTimeoutMs(15000)
             .setReadTimeoutMs(20000)
         ExoPlayer.Builder(context)

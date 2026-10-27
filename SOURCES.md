@@ -55,3 +55,10 @@ Görüntü: 852 × 480. Türkçe dublaj bilgisi kaynak başlığına dayanır. S
 - Kuzu Kuzu: https://www.youtube.com/watch?v=NAHRpEqgcL4
 
 Bağlantılar 27 Ekim 2026 tarihinde yayıncı sayfaları/arama sonuçlarından doğrulandı. TV’de oynatma doğrulanmadı.
+
+
+# v0.10 Yaprak Dökümü
+
+Kaynak: https://www.kanald.com.tr/yaprakdokumu/bolumler
+
+Sezon bağlantıları sayfanın 1–5. sezon menüsünden 27 Ekim 2026 tarihinde alındı. Bölümlerin tamamı oynatılarak doğrulanmadı.

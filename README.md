@@ -1,3 +1,24 @@
+# CineBox TV v0.10 — Türk Dizileri / Yaprak Dökümü
+
+## Yeni bölüm
+Ana sayfadaki kategori şeridinde Türk Dizileri → Yaprak Dökümü seçin.
+- Tüm bölümleri tarayıcıda aç: Kanal D resmî bölüm arşivini açar.
+- 1–5. sezon düğmeleri: doğrudan ilgili sezon sayfasını açar.
+- Uygulamada aç: aynı sayfayı mevcut web oynatıcıda açar.
+- Diğer web içeriklerinin detayına da doğrudan Tarayıcıda aç düğmesi eklendi.
+
+Bu yapı bir dizi klasörü/kategori ve sezon kısayollarıdır; 174 bölüm video dosyası pakete indirilmedi. Bölüm seçimi yayıncının sayfasında yapılır. Yayıncı bazı kayıtları kısa parçalar hâlinde sunabilir. Bölüm videolarının tamamı tek tek oynatılarak test edilmedi. Ana arşiv ve beş sezon bağlantısı resmî sayfadan alındı; dördüncü sezon sayfasının araştırma aracında açılması zaman aşımına uğradı.
+
+Önceki film, belgesel, maç özeti, müzik ve web oynatıcı özellikleri korunur. Tarayıcı yoksa kullanıcıya uygulamada aç seçeneği hatırlatılır.
+
+## APK
+ZIP içeriğini GitHub proje köküne kopyalayın (.github dahil), Commit → Push yapın. Actions → CineBox TV Android APK → Artifacts bölümünden yeni APK'yı alın. Sürüm kodu 10’dur.
+
+Statik yönlendirme/manifest/ZIP kontrolleri yapıldı. Android SDK/Gradle bulunmadığından bu ortamda APK derlemesi ve TV testi yapılmadı.
+
+---
+Önceki sürümün özellikleri ve açıklamaları:
+
 # CineBox TV v0.9 — Web oynatıcı ve video kategorileri
 
 ## Yeni içerikler
