@@ -11,8 +11,8 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 13
-        versionName = "0.13.0"
+        versionCode = 14
+        versionName = "0.14.0"
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }

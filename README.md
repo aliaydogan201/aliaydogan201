@@ -1,3 +1,11 @@
+# CineBox TV v0.14 — Sertifika uyumluluğu
+
+“Trust anchor / CertPathValidatorException” için katalog alan adına özel halka açık kök sertifikalar eklendi (Android 7+). Sertifika ve alan adı doğrulaması devam eder. Film/Dizi klasörleri korunur. SSL hatası artık TV Android sürümüyle birlikte anlaşılır açıklama gösterir.
+
+TV tarih/saatini otomatik ayarlayın. ZIP içeriğini .github dahil GitHub proje köküne aktarın; Actions ile APK oluşturun. Sürüm kodu 14.
+
+Bu paket eksik kök sertifika ihtimalini giderir; cihazda kesin çözüm henüz doğrulanmadı. Android 6 sınırlaması ve sertifika bilgileri CERTIFICATES.md içinde. APK derlenmedi ve TV testi yapılmadı.
+
 # CineBox TV v0.13 — Ortak Film ve Dizi klasörleri
 
 Ana sayfa içerikleri klasörlerle sunar: Filmler, Diziler, Belgesel, Maç Özeti ve Müzik. Site adına göre menü/klasör yoktur. Türk dizileri Diziler altında yer alır. Filmler/Diziler klasöründeki “Tüm filmlere/dizilere göz at” düğmesi ilgili çevrimiçi kataloğu açar. Kaynak şu anda HDFilmizle; gelecekte başka kaynaklar da aynı tür klasörlerine bağlanabilir. Henüz başka kaynak bağlanmadı.

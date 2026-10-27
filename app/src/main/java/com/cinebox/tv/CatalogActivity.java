@@ -90,7 +90,7 @@ public final class CatalogActivity extends Activity {
                 HttpURLConnection c=(HttpURLConnection)new URL(url).openConnection();activeConnection=c;
                 String html;
                 try {
-                    c.setConnectTimeout(15000);c.setReadTimeout(20000);c.setInstanceFollowRedirects(false);c.setRequestProperty("User-Agent","CineBoxTV/0.13 (catalog reader)");
+                    c.setConnectTimeout(15000);c.setReadTimeout(20000);c.setInstanceFollowRedirects(false);c.setRequestProperty("User-Agent","CineBoxTV/0.14 (catalog reader)");
                     int code=c.getResponseCode();if(code!=200) throw new IOException("HTTP "+code);
                     try(InputStream in=c.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream()) {
                         byte[] b=new byte[8192];int n,total=0;
@@ -101,8 +101,15 @@ public final class CatalogActivity extends Activity {
                 CatalogParser.Page result=CatalogParser.parse(html,url,requested);
                 if(result.entries.isEmpty()) throw new IOException("Katalog okunamadı; site yapısı değişmiş veya erişim engellenmiş olabilir");
                 runOnUiThread(()->{if(isDestroyed())return;page=requested;lastPage=result.lastPage;entries=result.entries;pageInput.setText(String.valueOf(page));filter.setText("");applyFilter();busy=false;controls();applyFilter();});
-            } catch(Exception e) { runOnUiThread(()->{if(isDestroyed())return;busy=false;controls();status.setText("Yüklenemedi: "+e.getMessage()+". Yenileyin veya tarayıcıda açın.");}); }
+            } catch(Exception e) { runOnUiThread(()->{if(isDestroyed())return;busy=false;controls();status.setText("Yüklenemedi: "+errorMessage(e));}); }
         });
+    }
+    private String errorMessage(Throwable error) {
+        for(Throwable cause=error;cause!=null;cause=cause.getCause()) {
+            if(cause instanceof javax.net.ssl.SSLException || cause instanceof java.security.cert.CertificateException || cause instanceof java.security.cert.CertPathValidatorException)
+                return "Güvenli bağlantı doğrulanamadı. TV tarih/saatini otomatik yapın ve sistem güncellemelerini kontrol edin. Android " + android.os.Build.VERSION.RELEASE + " (API " + android.os.Build.VERSION.SDK_INT + "). Devam ederse bu bilgiyi ve hata ekranını paylaşın. Tarayıcıda aç seçeneğini deneyebilirsiniz.";
+        }
+        return error.getMessage()+". Yenileyin veya tarayıcıda açın.";
     }
     private void open(String url) { try {startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));}catch(ActivityNotFoundException e){Toast.makeText(this,"Bir web tarayıcısı yükleyin",Toast.LENGTH_LONG).show();} }
     @Override protected void onSaveInstanceState(Bundle out) {out.putInt("page",page);out.putString("folder",folder);super.onSaveInstanceState(out);}
