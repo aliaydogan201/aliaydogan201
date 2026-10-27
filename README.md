@@ -1,3 +1,7 @@
+# CineBox TV v0.18 — Derleme ayarları
+
+Gradle 8.11.1 sabit, Java 17, Ubuntu 24.04. Ayrıntılı build-log artifact eklendi. KURULUM.txt adımlarını uygulayın; .github klasörünü de güncellemek gerekir. APK burada derlenmedi.
+
 # CineBox TV v0.17 — v11 tabanlı içerik ekleme
 v11 esas alındı. Mevcut kayıtlar, favori kimlikleri, puanlama, arama, MP4 oynatıcı ve reklam filtreli WebPlayerActivity korundu.
 

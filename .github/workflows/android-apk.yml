@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
@@ -27,7 +27,18 @@ jobs:
         with:
           gradle-version: '8.11.1'
       - name: APK derle
-        run: gradle --no-daemon :app:assembleDebug
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle --version
+          gradle --no-daemon --stacktrace --console=plain :app:assembleDebug 2>&1 | tee build-log.txt
+      - name: Derleme günlüğünü yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CineBoxTV-build-log
+          path: build-log.txt
+          if-no-files-found: ignore
       - name: APK dosyasını yükle
         uses: actions/upload-artifact@v4
         with:

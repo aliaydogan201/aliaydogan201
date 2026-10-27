@@ -1,0 +1,9 @@
+1. GitHub projesindeki .github/workflows/android-apk.yml dosyasını BU PAKETTEKİ dosya ile değiştirin. Yalnızca app klasörünü yüklemek yeterli değildir.
+2. app klasörünü ve kökteki Gradle dosyalarını bu paketle güncelleyin.
+3. Aynı APK için başka workflow varsa eski workflow yerine bu dosyayı çalıştırın.
+4. Commit sonrası yeni Actions çalışmasını açın. Gradle sürümü 8.11.1 olmalı.
+5. Başarılıysa CineBoxTV-debug-APK artifact içindeki APK’yı indirin.
+6. Hata olursa CineBoxTV-build-log artifact dosyasını paylaşın.
+
+v11 tabanı, önceki içerikler ve eklenen 56 film/6 dizi korunur. Sürüm 0.18.0 (18).
+Bu ortamda tam Android derlemesi yapılamadı. Önceki ekran görüntüsü yalnızca hata özetini gösterdiğinden asıl hata nedeni kesin doğrulanmadı.
