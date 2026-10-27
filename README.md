@@ -1,16 +1,6 @@
-# CineBox TV v0.21 — Ultra Film kayıtları
+# CineBox TV v0.22
+Yeni kullanıcı HTML dosyasından 16 film eklendi. Dosya adı .to olsa da gerçek bağlantılar fullfilmizle.fit; HTML’deki adresler korundu.
 
-Tüm kart listeleri Türkçe alfabetik sırada gösterilir (favoriler ve öneriler dahil).
+1999–2000 sezonunun 306 kaydı ve Türkiye–Gürcistan özeti kaldırıldı. Maç Özeti bölümünde yalnızca 2025 takvim yılında oynanmış 8 Galatasaray maçı vardır. Bunlar yayıncının tarih/skor ve özet videosu bulunan maç sayfalarıdır; arama bağlantısı değildir. Tüm 2025 maçlarının arşivi değildir. Sayfa içinde oynat düğmesine basmak gerekebilir. Cihazda video oynatma doğrulanmadı.
 
-Kullanıcının gönderdiği 29–33. sayfalardan 100 film eklendi. Yalnızca ana liste (#listehizala) okundu, üstteki öneri şeridi alınmadı. URL tekrarları ayıklandı; aynı adlı farklı kaynaklar ayrı kayıt kalır. Önceki içerikler, maçlar, başlık düzeltmesi ve reklam filtreli web oynatıcı korundu. Filmler aynı kart ve detay ekranıyla uygulama içinde açılır. Afişler HTML’deki HTTPS adreslerinden yüklenir; canlı afiş/video erişimi denenmedi.
-
-.github dahil paketi GitHub proje köküne aktarın; Actions ile APK oluşturun. APK derlemesi burada yapılmadı.
-
-# CineBox TV v0.20
-Kart başlıkları afiş üstünde 2–4 satır; ana liste dikey kaydırılabilir. Uzun başlıklar detay ekranında tam görünür. Eski içerikler korunur.
-
-Maç Özeti kategorisine 1999–2000 Türkiye 1. Ligi sezonunun 306 maçı takım adları, hafta ve skorla eklendi. 1 maçta resmî kulüp video bağlantısı, 305 maçta açıkça etiketlenmiş YouTube özet araması vardır. 306 özet videosu bulunduğu iddia edilmez. Kaynak: https://www.rsssf.org/tablest/tur00.html . Hükmen sonuçlar not edildi. Doğrulama: 34 hafta × 9 maç, 18 takım × 34 maç.
-
-Video: https://www.youtube.com/watch?v=ssAwp18rjpc — Fenerbahçe 1–2 Galatasaray, Galatasaray resmî kanalı.
-
-v19 eski Java dosyası derleme dışı kuralı korunur. .github dahil dosyaları GitHub'a aktarın. APK burada derlenmedi; cihazda görsel ve oynatma testi yapılmadı.
+Önceki filmler/diziler, Türkçe alfabetik sıra ve reklam filtreli oynatıcı korunur. .github dahil GitHub projesine aktarın. Eski Season1999Catalog.kt dosyası da paketteki boş uyumluluk dosyasıyla değişmelidir. APK derlemesi bu ortamda yapılmadı.
