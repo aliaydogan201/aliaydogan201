@@ -1,0 +1,6 @@
+ALICOTV v25 Fix1 (0.25.1)
+
+Gönderilen derleme kaydındaki 9 adet Unresolved reference adFilterEnabled hatası düzeltildi. WebPlayerActivity içinde eksik olan @Volatile Boolean alanı geri eklendi. Ayar varsayılan olarak açık kalır ve kayıtlı tercih onCreate içinde okunur.
+Arama, sayfalama, tam ekran ve içerikler değiştirilmedi.
+ZIP içindeki proje dosyalarını mevcut GitHub deposunun köküne aktarın. Özellikle app/src/main/java/com/cinebox/tv/WebPlayerActivity.kt dosyasını değiştirin. Sonra Actions derlemesini yeniden çalıştırın. ZIP'i sadece depoya yüklemek kaynak dosyalarını güncellemez.
+Kaynak karşılaştırmasıyla değişiklik kontrol edildi. Bu ortamda Android SDK/Gradle bulunmadığından APK derlemesi yapılmadı.

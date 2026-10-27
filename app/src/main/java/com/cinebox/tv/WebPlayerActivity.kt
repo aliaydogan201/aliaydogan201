@@ -22,6 +22,7 @@ class WebPlayerActivity : ComponentActivity() {
     private var full: FrameLayout? = null
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
     private var pageUrl = ""
+    @Volatile private var adFilterEnabled: Boolean = true
     private lateinit var toolbar: HorizontalScrollView
     private lateinit var fullscreenButton: Button
 

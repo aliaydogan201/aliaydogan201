@@ -12,7 +12,7 @@ android {
         minSdk = 23
         targetSdk = 35
         versionCode = 25
-        versionName = "0.25.0"
+        versionName = "0.25.1"
     }
     // v12-v16 files may remain after uploading a ZIP over the repository.
     // The v11-based UI uses ImportedCatalog and WebPlayerActivity instead.

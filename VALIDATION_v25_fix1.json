@@ -1,0 +1,6 @@
+{
+  "reported_error": "Unresolved reference adFilterEnabled",
+  "restored_field": "@Volatile private var adFilterEnabled: Boolean = true",
+  "other_app_sources_byte_identical": true,
+  "android_build": "not run"
+}
