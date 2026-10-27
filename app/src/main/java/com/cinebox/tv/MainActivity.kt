@@ -73,7 +73,20 @@ data class Movie(
 )
 
 // Full-length sources checked with ranged HTTP requests; no shared demo fallback.
-private val catalogMovies = emptyList<Movie>()
+private val catalogMovies = listOf(
+    Movie(id = 7502, title = "Ayrılsak da Beraberiz (1999)", overview = "Janset ve Hakan Yılmaz’lı eski seri. Bağlı arşiv sayfasında 40 bölüm listeleniyor; tüm seri veya yalnız 1999 yılında yayımlanan bölümler olarak doğrulanmadı. 2015 uyarlaması değildir.", poster = "", backdrop = "", year = "1999", score = 0.0, genreIds = listOf(35), provider = "Diziizle — üçüncü taraf arşiv", webUrl = "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/", category = "Türk Dizileri"),
+    Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Türk Dizileri"),
+    Movie(id = 7401, title = "Guguk Kuşu", overview = "Verdiğiniz sitedeki oynatıcıyı uygulama içinde açar. Doğrudan video kaynağı doğrulanmadı; site erişimi TV üzerinde denenmelidir.", poster = "", backdrop = "", year = "1975", score = 0.0, genreIds = emptyList(), provider = "Kullanıcının seçtiği site", webUrl = "https://www.fullhdfilmizlesene.now/film/guguk-kusu/", category = "Film"),
+    Movie(id = 7402, title = "Su Savaşları — Bölümler", overview = "TRT Belgesel’in suya erişim mücadelesini konu alan serisi. Açılan program sayfasından bir bölüm seçin.", poster = "", backdrop = "", year = "", score = 0.0, genreIds = emptyList(), provider = "TRT Belgesel", webUrl = "https://www.trtbelgesel.com.tr/macera/su-savaslari", category = "Belgesel"),
+    Movie(id = 7403, title = "Türkiye – Gürcistan | EURO 2024", overview = "18 Haziran 2024 karşılaşmasının TRT Spor tarafından yayımlanan özeti. Yayıncının kendi oynatıcısında açılır.", poster = "", backdrop = "", year = "2024", score = 0.0, genreIds = emptyList(), provider = "TRT Spor", webUrl = "https://www.youtube.com/watch?v=Sx_2vItxhXo", category = "Maç Özeti"),
+    Movie(id = 7404, title = "Tarkan — Şımarık", overview = "Tarkan’ın resmî sitesinin yönlendirdiği müzik klibi. YouTube oynatıcısında açılır.", poster = "", backdrop = "", year = "1997", score = 0.0, genreIds = emptyList(), provider = "Tarkan", webUrl = "https://www.youtube.com/watch?v=cpp69ghR1IM", category = "Müzik"),
+    Movie(id = 7405, title = "Tarkan — Kuzu Kuzu", overview = "Tarkan’ın resmî sitesinin yönlendirdiği müzik klibi. YouTube oynatıcısında açılır.", poster = "", backdrop = "", year = "2001", score = 0.0, genreIds = emptyList(), provider = "Tarkan", webUrl = "https://www.youtube.com/watch?v=NAHRpEqgcL4", category = "Müzik"),
+    Movie(7301, "Umudunu Kaybetme", "The Pursuit of Happyness. Will Smith’in başrolünde, oğluyla birlikte zor koşullarda hayata tutunmaya çalışan bir babanın hikâyesi. Yaklaşık 117 dakika. Türkçe dublaj (kaynak etiketi). Görüntü: Çözünürlük doğrulanamadı.", "file:///android_asset/umudunu-kaybetme-the-pursuit-of-happyness-turkce-dublaj-1080p-full-hd-izle_202405.jpg", "", "2006", 0.0, listOf(18), "https://archive.org/download/umudunu-kaybetme-the-pursuit-of-happyness-turkce-dublaj-1080p-full-hd-izle_202405/Umudunu%20Kaybetme%20%28The%20Pursuit%20of%20Happyness%29%20T%C3%BCrk%C3%A7e%20dublaj%201080p%20Full%20HD%20izle.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
+    Movie(7302, "Vikingler", "The Vikings. Kirk Douglas ve Tony Curtis’in rol aldığı tarihî macera. Yaklaşık 116 dakika. Türkçe dublaj (kaynak etiketi). Görüntü: 852 × 480.", "file:///android_asset/20210524_20210524_0931.jpg", "", "1958", 0.0, listOf(12,28), "https://archive.org/download/20210524_20210524_0931/Vikingler.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
+    Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
+    Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
+    Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
+) + importedCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -263,7 +276,7 @@ class MainActivity : ComponentActivity() {
                 else -> Column(Modifier.fillMaxSize().background(bg).padding(24.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         Text("CINEBOX", color = accent, fontWeight = FontWeight.Black, fontSize = 29.sp)
-                        listOf("Ana Sayfa", "Favoriler").forEach { label ->
+                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler").forEach { label ->
                             Button(onClick = {
                                 tab = label
                                 when (label) {
@@ -284,35 +297,22 @@ class MainActivity : ComponentActivity() {
                         }
                         Spacer(Modifier.height(20.dp))
                     }
-                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Filmler ve Diziler" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor ve müzik" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Filmler", "Diziler").forEach { label ->
-                            OutlinedButton(onClick = { category = label }) { Text(if (label == "Tümü") "Klasörler" else "📁 $label") }
+                        listOf("Tümü", "Filmler", "Diziler", "Türk Dizileri", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
+                            OutlinedButton(onClick = { category = label }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
                     Spacer(Modifier.height(12.dp))
                     val baseMovies = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
-                    val shown = baseMovies.filter {
-                        when (category) {
-                            "Filmler" -> it.category == "Film"
-                            "Diziler" -> it.category == "Türk Dizileri" || it.category == "Dizi"
-                            "Tümü" -> tab != "Ana Sayfa"
-                            else -> it.category == category
-                        }
-                    }
-                    if (category == "Filmler" || category == "Diziler") {
-                        Text("📁 $category", color = Color.White, fontSize = 24.sp)
-                        Button(onClick = {
-                            startActivity(android.content.Intent(this@MainActivity, CatalogActivity::class.java).putExtra("folder", category))
-                        }) { Text("" + (if (category == "Filmler") "Film sayfasını aç" else "Dizi sayfasını aç") + "") }
-                    }
+                    val shown = baseMovies.filter { category == "Tümü" || (category == "Filmler" && it.category == "Film") || (category == "Diziler" && it.category in listOf("Dizi", "Türk Dizileri")) || it.category == category }
                     MovieRow(shown) { selected = it }
                     if (tab == "Favoriler" && shown.isEmpty()) Text("Henüz favoriniz yok. Ana sayfadan bir film seçerek favorilere ekleyebilirsiniz.", color = Color.LightGray)
                     Spacer(Modifier.height(20.dp))
-                    Text("İçerikler seçilen kaynağın sayfasında, tarayıcıda açılır.", color = Color.Gray, fontSize = 11.sp)
+                    Text("MP4 içerikler CineBox Player’da; web içerikleri yayıncının oynatıcısında açılır. İnternet araması: Wikimedia Commons.", color = Color.Gray, fontSize = 11.sp)
                 }
             }
         }

@@ -1,6 +1,10 @@
-# CineBox TV v0.16 — FilmMakinesi kataloğu
-Tek kaynak https://filmmakinesi.to/ . Filmler ve Diziler klasörleri korunur. Cihazdan canlı liste yüklenir; isim seçimi ilgili sayfayı harici tarayıcıda açar. Sayfalama ve açık sayfada isim filtresi vardır.
+# CineBox TV v0.17 — v11 tabanlı içerik ekleme
+v11 esas alındı. Mevcut kayıtlar, favori kimlikleri, puanlama, arama, MP4 oynatıcı ve reklam filtreli WebPlayerActivity korundu.
 
-Kullanıcının gönderdiği HTML’den çıkarılan temiz başlık/bağlantı listesi başlangıç verisidir. Canlı erişim başarısızsa bu sınırlı liste görünür; tüm arşiv değildir. HTML betikleri, reklamlar ve çerezler pakete dahil edilmez. Film ve dizi liste yolları HTML menüsünden doğrulandı. Diziler sayfasının tam HTML yapısı ve sayfalaması henüz cihazda doğrulanmadı.
+56 film, 6 dizi; 0 tekrar ayıklandı. v11 kayıtları ve web oynatıcı byte karşılaştırmasıyla korundu.
 
-GitHub projesindeki app klasörünü bununla değiştirin; .github dahil kök dosyaları aktarın; Actions ile APK oluşturun. Sürüm kodu 16. Sertifika kontrolü korunur. Bu ortamda siteye canlı erişim 451 verdi; APK derleme ve cihaz testi yapılmadı.
+İki kullanıcı HTML dosyasındaki kayıtlar birleştirildi. Filmler ve Diziler kategorilerinde aynı afiş kartları ve detay ekranı kullanılır. Türk Dizileri ayrıca korunur ve Diziler altında da görünür. Birincil düğme “Web oynatıcıda aç”: Guguk Kuşu ile aynı uygulama içi oynatıcıdır. Tarayıcıya çıkış ikincil seçenek olarak kalır. Doğrudan MP4 bağlantısı çıkarılmadı; sitedeki oynatma/bölüm seçimi gerekebilir. Filtre bütün reklamları engelleme garantisi vermez.
+
+HTML dosyalarında bulunan afiş srcset adresleri kullanıldı; yerel bilgisayar yolları eklenmedi. Afiş indirme/oynatma cihazda denenmedi. Yeni katalog APK içindedir; açılışta site kataloğuna ağ isteği yapılmaz. Tüm site arşivi değildir.
+
+GitHub projesindeki app klasörünü bu paketle değiştirin; .github dahil kök dosyaları aktarın. Actions ile APK oluşturun. Sürüm kodu 17; önceki sürümlerin üstüne aynı imzayla güncellenebilir. APK derlemesi ve cihaz testi burada yapılmadı.
