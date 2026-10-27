@@ -1,0 +1,146 @@
+package com.cinebox.tv
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.webkit.*
+import android.widget.*
+import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
+
+/** Uses the publisher's own page and player; does not extract media URLs. */
+class WebPlayerActivity : ComponentActivity() {
+    private lateinit var web: WebView
+    private lateinit var root: FrameLayout
+    private lateinit var normal: LinearLayout
+    private lateinit var status: TextView
+    private var full: FrameLayout? = null
+    private var fullCallback: WebChromeClient.CustomViewCallback? = null
+    private var pageUrl = ""
+
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pageUrl = intent.getStringExtra("url").orEmpty()
+        if (Uri.parse(pageUrl).scheme != "https" || Uri.parse(pageUrl).host.isNullOrBlank()) {
+            finish(); return
+        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        root = FrameLayout(this)
+        root.setBackgroundColor(Color.BLACK)
+        normal = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+        root.addView(normal, FrameLayout.LayoutParams(-1, -1))
+        setContentView(root)
+        val tools = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        val scroll = HorizontalScrollView(this).apply { addView(tools) }
+        normal.addView(scroll)
+        status = TextView(this).apply {
+            setTextColor(Color.WHITE); setPadding(12, 4, 12, 4)
+            text = "${intent.getStringExtra("title").orEmpty()} · Sayfa yükleniyor…"
+        }
+        normal.addView(status)
+        try { web = WebView(this) } catch (_: Exception) {
+            status.text = "Web oynatıcı başlatılamadı. Android System WebView bileşenini kontrol edin."
+            Button(this).apply { text = "Kapat"; setOnClickListener { finish() }; normal.addView(this) }
+            return
+        }
+        normal.addView(web, LinearLayout.LayoutParams(-1, 0, 1f))
+        fun button(label: String, action: () -> Unit) {
+            tools.addView(Button(this).apply { text = label; setOnClickListener { action() } })
+        }
+        button("← Kapat") { finish() }
+        button("Geri") { if (web.canGoBack()) web.goBack() }
+        button("Yenile") { web.reload() }
+        button("Oynatıcıya geç") { web.requestFocus() }
+        button("Tarayıcıda / YouTube'da aç") {
+            try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(pageUrl))) }
+            catch (_: Exception) { status.text = "Bu bağlantıyı açacak harici uygulama bulunamadı." }
+        }
+        web.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            mediaPlaybackRequiresUserGesture = true
+            useWideViewPort = true
+            loadWithOverviewMode = true
+            allowFileAccess = false
+            allowContentAccess = false
+            mixedContentMode = WebSettings.MIXED_CONTENT_NEVER_ALLOW
+            javaScriptCanOpenWindowsAutomatically = false
+            setSupportMultipleWindows(true)
+        }
+        CookieManager.getInstance().setAcceptThirdPartyCookies(web, true)
+        web.isFocusableInTouchMode = true
+        web.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                return request.url.scheme !in listOf("https", "http")
+            }
+            @Deprecated("Compatibility for Android 6")
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                return Uri.parse(url).scheme !in listOf("https", "http")
+            }
+            override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
+                status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
+            }
+            override fun onPageFinished(view: WebView, url: String) {
+                if (status.text.endsWith("Yükleniyor…")) status.text = "${Uri.parse(url).host.orEmpty()} · Sayfadaki oynat düğmesini seçin."
+            }
+            override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
+                if (request.isForMainFrame) status.text = "HTTP ${errorResponse.statusCode} · Site erişim vermedi. Harici uygulamada deneyebilirsiniz."
+            }
+            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
+                if (request.isForMainFrame) status.text = "Sayfa açılamadı: ${error.description}"
+            }
+        }
+        web.webChromeClient = object : WebChromeClient() {
+            override fun onPermissionRequest(request: PermissionRequest) { request.deny() }
+            override fun onShowCustomView(view: View, callback: WebChromeClient.CustomViewCallback) {
+                if (full != null) { callback.onCustomViewHidden(); return }
+                fullCallback = callback
+                normal.visibility = View.GONE
+                full = FrameLayout(this@WebPlayerActivity).apply {
+                    setBackgroundColor(Color.BLACK)
+                    addView(view, FrameLayout.LayoutParams(-1, -1))
+                    addView(Button(this@WebPlayerActivity).apply {
+                        text = "Tam ekrandan çık"; setOnClickListener { hideFull() }
+                    }, FrameLayout.LayoutParams(-2, -2, android.view.Gravity.TOP or android.view.Gravity.END))
+                }
+                root.addView(full, FrameLayout.LayoutParams(-1, -1))
+                view.requestFocus()
+            }
+            override fun onHideCustomView() { hideFull() }
+        }
+        web.setDownloadListener { _, _, _, _, _ -> status.text = "Bu ekran indirme yerine web oynatma içindir." }
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                when { full != null -> hideFull(); web.canGoBack() -> web.goBack(); else -> finish() }
+            }
+        })
+        if (savedInstanceState == null || web.restoreState(savedInstanceState) == null) web.loadUrl(pageUrl)
+    }
+    private fun hideFull() {
+        full?.let { it.removeAllViews(); root.removeView(it) }
+        full = null
+        normal.visibility = View.VISIBLE
+        val callback = fullCallback
+        fullCallback = null
+        callback?.onCustomViewHidden()
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        if (::web.isInitialized) web.saveState(outState)
+        super.onSaveInstanceState(outState)
+    }
+    override fun onPause() { if (::web.isInitialized) web.onPause(); super.onPause() }
+    override fun onResume() { super.onResume(); if (::web.isInitialized) web.onResume() }
+    override fun onDestroy() {
+        if (::web.isInitialized) {
+            hideFull(); web.stopLoading(); (web.parent as? ViewGroup)?.removeView(web)
+            web.removeAllViews(); web.destroy()
+        }
+        super.onDestroy()
+    }
+}
