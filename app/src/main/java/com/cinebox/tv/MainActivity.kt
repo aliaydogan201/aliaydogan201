@@ -74,6 +74,7 @@ data class Movie(
 
 // Full-length sources checked with ranged HTTP requests; no shared demo fallback.
 private val catalogMovies = listOf(
+    Movie(id = 7502, title = "Ayrılsak da Beraberiz (1999)", overview = "Janset ve Hakan Yılmaz’lı eski seri. Bağlı arşiv sayfasında 40 bölüm listeleniyor; tüm seri veya yalnız 1999 yılında yayımlanan bölümler olarak doğrulanmadı. 2015 uyarlaması değildir.", poster = "", backdrop = "", year = "1999", score = 0.0, genreIds = listOf(35), provider = "Diziizle — üçüncü taraf arşiv", webUrl = "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/", category = "Türk Dizileri"),
     Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Türk Dizileri"),
     Movie(id = 7401, title = "Guguk Kuşu", overview = "Verdiğiniz sitedeki oynatıcıyı uygulama içinde açar. Doğrudan video kaynağı doğrulanmadı; site erişimi TV üzerinde denenmelidir.", poster = "", backdrop = "", year = "1975", score = 0.0, genreIds = emptyList(), provider = "Kullanıcının seçtiği site", webUrl = "https://www.fullhdfilmizlesene.now/film/guguk-kusu/", category = "Film"),
     Movie(id = 7402, title = "Su Savaşları — Bölümler", overview = "TRT Belgesel’in suya erişim mücadelesini konu alan serisi. Açılan program sayfasından bir bölüm seçin.", poster = "", backdrop = "", year = "", score = 0.0, genreIds = emptyList(), provider = "TRT Belgesel", webUrl = "https://www.trtbelgesel.com.tr/macera/su-savaslari", category = "Belgesel"),
@@ -99,7 +100,7 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
     try {
         connection.connectTimeout = 12000
         connection.readTimeout = 16000
-        connection.setRequestProperty("User-Agent", "CineBoxTV/0.10 (Android TV open-license video discovery)")
+        connection.setRequestProperty("User-Agent", "CineBoxTV/0.11 (Android TV open-license video discovery)")
         if (connection.responseCode !in 200..299) throw IllegalStateException("HTTP ${connection.responseCode}")
         val raw = connection.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
         val pages = JSONObject(raw).optJSONObject("query")?.optJSONArray("pages")
@@ -212,6 +213,12 @@ class MainActivity : ComponentActivity() {
                                 if (m.webUrl.isNotBlank()) OutlinedButton(onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                if (m.id == 7502) {
+                                    OutlinedButton(onClick = { openPublisherPage("https://www.youtube.com/watch?v=GgAkIcXFinA") }) {
+                                        Text("1999 · 1. bölüm — YouTube’da aç")
+                                    }
+                                    Text("Arşiv yüklemesi: Dizi Arşivi. Bölümler tek tek oynatılarak doğrulanmadı.", color = Color.LightGray, fontSize = 12.sp)
+                                }
                                 if (m.id == 7501) {
                                     Text("Sezon seç", color = Color.White, fontWeight = FontWeight.Bold)
                                     (1..5).forEach { season ->
@@ -344,7 +351,7 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
     }
     val player = remember(activeUrl, request.subtitleUrl, retryNumber) {
         val httpFactory = DefaultHttpDataSource.Factory()
-            .setUserAgent("CineBoxTV/0.10 (Android TV)")
+            .setUserAgent("CineBoxTV/0.11 (Android TV)")
             .setConnectTimeoutMs(15000)
             .setReadTimeoutMs(20000)
         ExoPlayer.Builder(context)

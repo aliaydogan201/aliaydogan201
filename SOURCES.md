@@ -62,3 +62,12 @@ Bağlantılar 27 Ekim 2026 tarihinde yayıncı sayfaları/arama sonuçlarından 
 Kaynak: https://www.kanald.com.tr/yaprakdokumu/bolumler
 
 Sezon bağlantıları sayfanın 1–5. sezon menüsünden 27 Ekim 2026 tarihinde alındı. Bölümlerin tamamı oynatılarak doğrulanmadı.
+
+
+# v0.11 — 27 Ekim 2026
+
+Eski seri arşivi (40 kayıt): https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/
+
+1999 ilk bölüm, Dizi Arşivi yüklemesi: https://www.youtube.com/watch?v=GgAkIcXFinA
+
+Başlık ve liste kontrol edildi; tüm bölümlerin oynatılması doğrulanmadı.

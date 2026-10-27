@@ -22,10 +22,13 @@ class WebPlayerActivity : ComponentActivity() {
     private var full: FrameLayout? = null
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
     private var pageUrl = ""
+    @Volatile private var adFilterEnabled = true
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val webPrefs = getSharedPreferences("cinebox_web", MODE_PRIVATE)
+        adFilterEnabled = webPrefs.getBoolean("ad_filter", true)
         pageUrl = intent.getStringExtra("url").orEmpty()
         if (Uri.parse(pageUrl).scheme != "https" || Uri.parse(pageUrl).host.isNullOrBlank()) {
             finish(); return
@@ -56,6 +59,15 @@ class WebPlayerActivity : ComponentActivity() {
         button("← Kapat") { finish() }
         button("Geri") { if (web.canGoBack()) web.goBack() }
         button("Yenile") { web.reload() }
+        tools.addView(Button(this).apply {
+            text = if (adFilterEnabled) "Reklam filtresi: Açık" else "Reklam filtresi: Kapalı"
+            setOnClickListener {
+                adFilterEnabled = !adFilterEnabled
+                webPrefs.edit().putBoolean("ad_filter", adFilterEnabled).apply()
+                text = if (adFilterEnabled) "Reklam filtresi: Açık" else "Reklam filtresi: Kapalı"
+                web.reload()
+            }
+        })
         button("Oynatıcıya geç") { web.requestFocus() }
         button("Tarayıcıda / YouTube'da aç") {
             try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(pageUrl))) }
@@ -77,11 +89,20 @@ class WebPlayerActivity : ComponentActivity() {
         web.isFocusableInTouchMode = true
         web.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                return request.url.scheme !in listOf("https", "http")
+                return request.url.scheme !in listOf("https", "http") ||
+                    (adFilterEnabled && AdHostRules.isBlockedHost(request.url.host))
             }
             @Deprecated("Compatibility for Android 6")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                return Uri.parse(url).scheme !in listOf("https", "http")
+                return Uri.parse(url).scheme !in listOf("https", "http") ||
+                    (adFilterEnabled && AdHostRules.isBlockedHost(Uri.parse(url).host))
+            }
+            override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
+                if (adFilterEnabled && AdHostRules.isBlockedHost(request.url.host)) {
+                    return WebResourceResponse("text/plain", "UTF-8", 204, "No Content",
+                        emptyMap<String, String>(), java.io.ByteArrayInputStream(ByteArray(0)))
+                }
+                return null
             }
             override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
                 status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
@@ -97,6 +118,10 @@ class WebPlayerActivity : ComponentActivity() {
             }
         }
         web.webChromeClient = object : WebChromeClient() {
+            override fun onCreateWindow(view: WebView, isDialog: Boolean, isUserGesture: Boolean, resultMsg: android.os.Message): Boolean {
+                status.text = "Açılır pencere engellendi. Gerekirse Tarayıcıda aç seçeneğini kullanın."
+                return false
+            }
             override fun onPermissionRequest(request: PermissionRequest) { request.deny() }
             override fun onShowCustomView(view: View, callback: WebChromeClient.CustomViewCallback) {
                 if (full != null) { callback.onCustomViewHidden(); return }

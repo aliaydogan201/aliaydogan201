@@ -62,5 +62,15 @@
         "url": "https://www.kanald.com.tr/yaprakdokumu/bolumler?activeSeasonNumber=5&seasonCount=5"
       }
     ]
+  },
+  {
+    "id": 7502,
+    "title": "Ayrılsak da Beraberiz (1999)",
+    "category": "Türk Dizileri",
+    "url": "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/",
+    "provider": "Diziizle — üçüncü taraf arşiv",
+    "listed_episodes": 40,
+    "alternate_first_episode": "https://www.youtube.com/watch?v=GgAkIcXFinA",
+    "playback_verified": false
   }
 ]
