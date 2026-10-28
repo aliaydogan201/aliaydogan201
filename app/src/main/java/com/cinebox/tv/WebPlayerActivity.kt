@@ -24,6 +24,9 @@ class WebPlayerActivity : ComponentActivity() {
     private var pageUrl = ""
     private var playerOnly = true
     private var focusPlayerPending = false
+    private var nativeTapPending = false
+    private var showingEpisodes = false
+    private lateinit var errorInfoButton: Button
     private var stageReady = false
     private var stageAttempts = 0
     private var stageEpoch = 0
@@ -37,10 +40,12 @@ class WebPlayerActivity : ComponentActivity() {
             web.evaluateJavascript("window.__alicoSeriesMode = " + intent.getBooleanExtra("series", false) + ";\n" + stageScript) { result ->
                 if (epoch != stageEpoch || !playerOnly || isFinishing || isDestroyed) return@evaluateJavascript
                 if (result == "\"ready\"" || result == "\"episodes\"") {
+                    showingEpisodes = result == "\"episodes\""
                     if (!stageReady) {
                         stageReady = true
                         web.alpha = 1f
                         status.text = if (result == "\"episodes\"") "Bölüm seçin · Seçtiğiniz bölümün oynatıcısı açılacak." else "Oynatıcı hazır · Oynat düğmesine basın. Kaynak/bölüm seçmek için Siteyi göster."
+                        if (!showingEpisodes) attemptPlay()
                         web.requestFocus()
                         if (focusPlayerPending) {
                             focusPlayerPending = false
@@ -72,8 +77,37 @@ class WebPlayerActivity : ComponentActivity() {
             stageHandler.postDelayed(stageTask, 300)
         }
     }
+    private fun attemptPlay() {
+        val epoch = stageEpoch
+        web.evaluateJavascript("window.__alicoStage && window.__alicoStage.tryPlay();") { result ->
+            if (epoch != stageEpoch || isFinishing || isDestroyed) return@evaluateJavascript
+            if (nativeTapPending && (result == "\"frame-unavailable\"" || result == "\"manual-play-needed\"")) {
+                nativeTapPending = false
+                web.evaluateJavascript("JSON.stringify(window.__alicoStage && window.__alicoStage.tapPoint());") pointCallback@ { raw ->
+                    if (epoch != stageEpoch || !playerOnly || showingEpisodes || full != null || !web.hasWindowFocus()) return@pointCallback
+                    try {
+                        val decoded = org.json.JSONTokener(raw).nextValue() as? String ?: return@pointCallback
+                        val point = org.json.JSONObject(decoded)
+                        val nx = point.getDouble("x")
+                        val ny = point.getDouble("y")
+                        if (nx !in 0.0..1.0 || ny !in 0.0..1.0) return@pointCallback
+                        val x = (nx * web.width).toFloat()
+                        val y = (ny * web.height).toFloat()
+                        val now = android.os.SystemClock.uptimeMillis()
+                        web.requestFocus()
+                        val down = android.view.MotionEvent.obtain(now, now, android.view.MotionEvent.ACTION_DOWN, x, y, 0)
+                        val up = android.view.MotionEvent.obtain(now, now + 80, android.view.MotionEvent.ACTION_UP, x, y, 0)
+                        try { web.dispatchTouchEvent(down); web.dispatchTouchEvent(up) }
+                        finally { down.recycle(); up.recycle() }
+                        status.text = "Oynatıcı ortasına bir dokunuş gönderildi. Başlamazsa oynat düğmesini seçin."
+                    } catch (_: Exception) { status.text = "Oynatıcıya dokunulamadı. Oynat düğmesini seçin." }
+                }
+            } else nativeTapPending = false
+        }
+    }
     private fun goToPlayer() {
         playerOnly = true
+        nativeTapPending = true
         focusPlayerPending = true
         stageButton.text = "Siteyi göster"
         stageEpoch++
@@ -144,6 +178,7 @@ class WebPlayerActivity : ComponentActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        nativeTapPending = true
         playerOnly = savedInstanceState?.getBoolean("alico_player_only", true) ?: true
         val webPrefs = getSharedPreferences("cinebox_web", MODE_PRIVATE)
         adFilterEnabled = webPrefs.getBoolean("ad_filter", true)
@@ -199,6 +234,7 @@ class WebPlayerActivity : ComponentActivity() {
             }
         }
         tools.addView(fullscreenButton)
+        button("Oynatıcıya geç") { goToPlayer() }
         button("Geri") { if (web.canGoBack()) web.goBack() }
         button("Yenile") { web.reload() }
         val defaultAgent = WebSettings.getDefaultUserAgent(this)
@@ -219,7 +255,12 @@ class WebPlayerActivity : ComponentActivity() {
                 web.loadUrl(pageUrl)
             }
         })
-        button("Hata bilgisi") { showDiagnostics() }
+        errorInfoButton = Button(this).apply {
+            text = "Hata bilgisi"
+            styleButton(this)
+            setOnClickListener { showDiagnostics() }
+        }
+        tools.addView(errorInfoButton)
 
         tools.addView(Button(this).apply {
             styleButton(this)
@@ -231,7 +272,6 @@ class WebPlayerActivity : ComponentActivity() {
                 web.reload()
             }
         })
-        button("Oynatıcıya geç") { goToPlayer() }
         button("Tarayıcıda / YouTube'da aç") {
             try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(pageUrl))) }
             catch (_: Exception) { status.text = "Bu bağlantıyı açacak harici uygulama bulunamadı." }
@@ -239,7 +279,7 @@ class WebPlayerActivity : ComponentActivity() {
         web.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
-            mediaPlaybackRequiresUserGesture = true
+            mediaPlaybackRequiresUserGesture = false
             useWideViewPort = true
             loadWithOverviewMode = true
             allowFileAccess = false
@@ -269,6 +309,7 @@ class WebPlayerActivity : ComponentActivity() {
                 return null
             }
             override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
+                nativeTapPending = true
                 startPlayerSearch()
                 if (!playerOnly) status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
             }
@@ -330,13 +371,31 @@ class WebPlayerActivity : ComponentActivity() {
         if (savedInstanceState == null || web.restoreState(savedInstanceState) == null) web.loadUrl(pageUrl)
         if (savedInstanceState != null) startPlayerSearch()
     }
-    override fun onKeyDown(keyCode: Int, event: android.view.KeyEvent): Boolean {
-        if (keyCode == android.view.KeyEvent.KEYCODE_MENU && ::web.isInitialized) {
-            if (full != null) hideFull()
-            fullscreenButton.requestFocus()
+    override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
+        val menu = event.keyCode == android.view.KeyEvent.KEYCODE_MENU
+        val upFromPlayer = event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_UP &&
+            ::web.isInitialized && web.hasFocus() && !showingEpisodes && full == null
+        if (menu || upFromPlayer) {
+            if (event.action == android.view.KeyEvent.ACTION_DOWN && event.repeatCount == 0) {
+                if (full != null) hideFull()
+                if (::errorInfoButton.isInitialized) {
+                    errorInfoButton.requestFocus()
+                    errorInfoButton.post { errorInfoButton.requestRectangleOnScreen(
+                        android.graphics.Rect(0, 0, errorInfoButton.width, errorInfoButton.height), true) }
+                    status.text = "Üst menü · Sağ/sol ile düğme seçin, aşağı ile oynatıcıya dönün."
+                }
+            }
             return true
         }
-        return super.onKeyDown(keyCode, event)
+        if (event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_DOWN &&
+            ::toolbar.isInitialized && toolbar.hasFocus()) {
+            if (event.action == android.view.KeyEvent.ACTION_DOWN && event.repeatCount == 0) {
+                web.requestFocus()
+                web.evaluateJavascript("window.__alicoStage && window.__alicoStage.focusPlayer();", null)
+            }
+            return true
+        }
+        return super.dispatchKeyEvent(event)
     }
     private fun hideFull() {
         full?.let { it.removeAllViews(); root.removeView(it) }

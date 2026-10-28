@@ -117,13 +117,39 @@
         control.scrollIntoView({block:'nearest'});
         return control.tagName==='IFRAME'?'frame-focused':'focused';
     }
+    var lastPlayTarget=null;
+    function tryPlay(){
+        if(!target || !target.isConnected || mode==='episodes')return 'not-player';
+        if(lastPlayTarget===target)return 'already-attempted';
+        lastPlayTarget=target;
+        var scope=target;
+        if(target.tagName==='IFRAME'){
+            try{scope=target.contentDocument;if(!scope)return 'frame-unavailable';}
+            catch(_){return 'frame-unavailable';}
+        }
+        var video=scope.tagName==='VIDEO'?scope:scope.querySelector('video');
+        if(video && !video.paused)return 'already-playing';
+        var selector='.vjs-big-play-button,.jw-display-icon-container .jw-icon-display,.jw-display-icon-display,.plyr__control--overlaid,.ytp-large-play-button,.dplayer-play-icon,[data-plyr="play"]';
+        var button=scope.querySelector(selector);
+        if(button){button.click();return 'play-clicked';}
+        if(video){try{var result=video.play();if(result&&result.catch)result.catch(function(){});return 'play-requested';}catch(_){return 'play-rejected';}}
+        return 'manual-play-needed';
+    }
+    function tapPoint(){
+        if(!target||!target.isConnected||mode==='episodes')return null;
+        var frame=target.tagName==='IFRAME'?target:target.querySelector('iframe');
+        if(!frame)return null;
+        var r=frame.getBoundingClientRect();
+        if(r.width<200||r.height<100)return null;
+        return {x:(r.left+r.width/2)/window.innerWidth,y:(r.top+r.height/2)/window.innerHeight};
+    }
     function openPlayer(){
         window.__alicoForcePlayer=true;
         if(mode==='episodes')restore();
         var result=refresh();
-        if(result==='ready')focusPlayer();
+        if(result==='ready'){focusPlayer();lastPlayTarget=null;}
         return result;
     }
-    window.__alicoStage={refresh:refresh,restore:restore,openPlayer:openPlayer,focusPlayer:focusPlayer};
+    window.__alicoStage={refresh:refresh,restore:restore,openPlayer:openPlayer,focusPlayer:focusPlayer,tryPlay:tryPlay,tapPoint:tapPoint};
     return refresh();
 })();
