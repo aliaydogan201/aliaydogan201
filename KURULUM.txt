@@ -1,6 +1,5 @@
-ALICOTV v30
-12 HTML dosyasından 288 yeni dizi eklendi. Viasat History resmî sitesinden 16 tarih belgeseli program kaydı eklendi. Toplam 975 kayıt.
-Viasat kayıtları tam bölüm değildir. Program bilgisi etiketi ve Resmî program bilgisini aç düğmesi vardır; resmî sayfaya yönlendirir. Tam bölüm/Türkçe dublaj kaynağı doğrulanamadı. Bu kartlar izlenebilir video gibi gösterilmez.
-Diziler mevcut sade bölüm listesi/oynatıcı akışını kullanır. Arama, sayfalama ve önceki oynatıcı düzeltmesi korunur.
-Kurulum: .github dahil bütün proje dosyalarını GitHub depo köküne aktarın ve Actions derlemesini çalıştırın.
-Kontrol: 975 benzersiz kimlik, önceki katalogların byte karşılaştırması ve ZIP bütünlüğü kontrol edildi. Android SDK/Gradle bulunmadığı için APK derlemesi ve cihaz testi yapılmadı.
+ALICOTV v33
+14 arama sonucu HTML dosyasından 110 yeni kayıt eklendi: 29 dizi, 81 film. 8 yinelenen bağlantı atlandı. Arama sonuçlarında film kayıtları da bulunduğu için türlerine uygun kategorilere eklendi. Toplam 1383 içerik.
+Önceki 315 belgesel ve tüm eski kayıtlar korunur. Arama, alfabetik sıralama, sayfalama ve oynatıcı akışı devam eder.
+Kurulum: Proje dosyalarını .github dahil GitHub depo köküne aktarın, Actions ile derleyin.
+Kontrol: Kimlik tekilliği, önceki katalogların korunması ve ZIP bütünlüğü doğrulandı. APK derleme ve cihaz testi yapılmadı.
