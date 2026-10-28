@@ -1,6 +1,5 @@
-ALICOTV v36
-Gönderilen iki YouTube HTML dosyasından 60 video eklendi: {'Belgesel': 30, 'Müzik': 30}. Toplam 1443 katalog kaydı. Yalnız kaydedilmiş HTML içindeki yüklü video kartları alınmıştır; kanalın tüm videoları taranmamıştır.
-BelgeselFlix kayıtları Belgesel, Musicom kayıtları Müzik kategorisindedir. Yayıncının başlıkları korunur. YouTube sayfası uygulama içi web oynatıcıda açılır; harici YouTube/tarayıcı seçeneği mevcuttur. Video erişimi cihazda denenmedi.
-Önceki kayıtlar, oynatıcı ve kumanda/dokunma kodları korunur.
-Kurulum: Proje dosyalarını .github dahil GitHub depo köküne aktarın ve Actions ile derleyin.
-Kontrol: Kimlik tekilliği, video bağlantısı tekrarları, eski katalogların korunması ve ZIP bütünlüğü doğrulandı. APK derleme ve cihaz testi yapılmadı.
+ALICOTV v38
+16 HTML dosyasındaki 384 kayıttan 377 yeni film eklendi. 7 yinelenen bağlantı atlandı. Toplam 1820 katalog kaydı.
+Önceki film, dizi, belgesel, müzik ve spor kayıtları korunur. TV imleci, oynatıcı, arama ve sayfalama kodları korunur. Yalnız gönderilen HTML içeriği aktarılmıştır; video oynatımı doğrulanmadı. Bu sürüm 232011 hatası için düzeltme içermez.
+Kurulum: Proje dosyalarını .github dahil GitHub depo köküne aktarın, Actions ile derleyin.
+Kontrol: Kimlik tekilliği, eski katalogların korunması ve ZIP bütünlüğü kontrol edildi. APK derleme ve cihaz testi yapılmadı.

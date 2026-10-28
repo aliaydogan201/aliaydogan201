@@ -21,6 +21,45 @@ class WebPlayerActivity : ComponentActivity() {
     private lateinit var status: TextView
     private var full: FrameLayout? = null
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
+    private var pointerEnabled = false
+    private var pointerX = 0f
+    private var pointerY = 0f
+    private lateinit var pointerOverlay: View
+    private fun pointerSurface(): View = full ?: web
+    private fun pointerBounds(): android.graphics.RectF {
+        val surface = pointerSurface()
+        val surfaceLocation = IntArray(2); surface.getLocationInWindow(surfaceLocation)
+        val rootLocation = IntArray(2); root.getLocationInWindow(rootLocation)
+        val left = (surfaceLocation[0] - rootLocation[0]).toFloat()
+        val top = (surfaceLocation[1] - rootLocation[1]).toFloat()
+        return android.graphics.RectF(left, top, left + surface.width, top + surface.height)
+    }
+    private fun setPointer(enabled: Boolean) {
+        pointerEnabled = enabled
+        pointerOverlay.visibility = if (enabled) View.VISIBLE else View.GONE
+        if (enabled) {
+            val bounds = pointerBounds()
+            pointerX = bounds.centerX(); pointerY = bounds.centerY()
+            pointerOverlay.bringToFront(); pointerOverlay.invalidate()
+            web.requestFocus()
+            status.text = "TV imleci · Yönlerle hareket, OK ile tıkla, Geri ile kapat."
+        }
+    }
+    private fun pointerEvent(action: Int) {
+        val bounds = pointerBounds()
+        if (bounds.width() <= 2 || bounds.height() <= 2) return
+        pointerX = pointerX.coerceIn(bounds.left + 1, bounds.right - 1)
+        pointerY = pointerY.coerceIn(bounds.top + 1, bounds.bottom - 1)
+        val now = android.os.SystemClock.uptimeMillis()
+        val event = android.view.MotionEvent.obtain(now, now, action,
+            pointerX - bounds.left, pointerY - bounds.top, 0)
+        try {
+            if (action == android.view.MotionEvent.ACTION_HOVER_MOVE) {
+                event.source = android.view.InputDevice.SOURCE_MOUSE
+                pointerSurface().dispatchGenericMotionEvent(event)
+            } else pointerSurface().dispatchTouchEvent(event)
+        } finally { event.recycle() }
+    }
     private var pageUrl = ""
     private var playerOnly = true
     private var focusPlayerPending = false
@@ -235,6 +274,7 @@ class WebPlayerActivity : ComponentActivity() {
         }
         tools.addView(fullscreenButton)
         button("Oynatıcıya geç") { goToPlayer() }
+        button("TV imleci") { setPointer(!pointerEnabled) }
         button("Geri") { if (web.canGoBack()) web.goBack() }
         button("Yenile") { web.reload() }
         val defaultAgent = WebSettings.getDefaultUserAgent(this)
@@ -357,6 +397,7 @@ class WebPlayerActivity : ComponentActivity() {
                     }, FrameLayout.LayoutParams(-2, -2, android.view.Gravity.TOP or android.view.Gravity.END))
                 }
                 root.addView(full, FrameLayout.LayoutParams(-1, -1))
+                if (pointerEnabled) pointerOverlay.post { setPointer(true) }
                 view.requestFocus()
             }
             override fun onHideCustomView() { hideFull() }
@@ -367,11 +408,58 @@ class WebPlayerActivity : ComponentActivity() {
                 when { full != null -> hideFull(); web.canGoBack() -> web.goBack(); else -> finish() }
             }
         })
+        pointerOverlay = object : View(this) {
+            private val paint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG)
+            override fun onDraw(canvas: android.graphics.Canvas) {
+                if (!pointerEnabled) return
+                paint.style = android.graphics.Paint.Style.FILL
+                paint.color = Color.BLACK
+                canvas.drawCircle(pointerX, pointerY, 13f, paint)
+                paint.color = Color.YELLOW
+                paint.style = android.graphics.Paint.Style.STROKE
+                paint.strokeWidth = 3f
+                canvas.drawCircle(pointerX, pointerY, 10f, paint)
+                canvas.drawLine(pointerX-17, pointerY, pointerX+17, pointerY, paint)
+                canvas.drawLine(pointerX, pointerY-17, pointerX, pointerY+17, paint)
+                paint.style = android.graphics.Paint.Style.FILL
+                paint.textSize = 18 * resources.displayMetrics.scaledDensity
+                canvas.drawText("Yönler: imleç  ·  OK: tıkla  ·  Geri: imleci kapat", 16f, height-20f, paint)
+            }
+        }.apply { visibility = View.GONE; isFocusable = false; isClickable = false }
+        root.addView(pointerOverlay, FrameLayout.LayoutParams(-1, -1))
         stageButton.requestFocus()
         if (savedInstanceState == null || web.restoreState(savedInstanceState) == null) web.loadUrl(pageUrl)
         if (savedInstanceState != null) startPlayerSearch()
     }
     override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
+        if (pointerEnabled) {
+            val code = event.keyCode
+            if (code == android.view.KeyEvent.KEYCODE_MENU) setPointer(false)
+            else if (code == android.view.KeyEvent.KEYCODE_BACK) {
+                if (event.action == android.view.KeyEvent.ACTION_UP) setPointer(false)
+                return true
+            } else if (code in listOf(android.view.KeyEvent.KEYCODE_DPAD_UP, android.view.KeyEvent.KEYCODE_DPAD_DOWN,
+                    android.view.KeyEvent.KEYCODE_DPAD_LEFT, android.view.KeyEvent.KEYCODE_DPAD_RIGHT,
+                    android.view.KeyEvent.KEYCODE_DPAD_CENTER, android.view.KeyEvent.KEYCODE_ENTER)) {
+                if (event.action == android.view.KeyEvent.ACTION_DOWN) {
+                    val step = (if (event.repeatCount > 8) 20 else 8) * resources.displayMetrics.density
+                    when (code) {
+                        android.view.KeyEvent.KEYCODE_DPAD_UP -> pointerY -= step
+                        android.view.KeyEvent.KEYCODE_DPAD_DOWN -> pointerY += step
+                        android.view.KeyEvent.KEYCODE_DPAD_LEFT -> pointerX -= step
+                        android.view.KeyEvent.KEYCODE_DPAD_RIGHT -> pointerX += step
+                        else -> if (event.repeatCount == 0) {
+                            pointerEvent(android.view.MotionEvent.ACTION_DOWN)
+                            pointerEvent(android.view.MotionEvent.ACTION_UP)
+                        }
+                    }
+                    pointerEvent(android.view.MotionEvent.ACTION_HOVER_MOVE)
+                    pointerOverlay.invalidate()
+                }
+                return true
+            }
+        }
+
         val menu = event.keyCode == android.view.KeyEvent.KEYCODE_MENU
         val upFromPlayer = event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_UP &&
             ::web.isInitialized && web.hasFocus() && !showingEpisodes && full == null
