@@ -22,6 +22,80 @@ class WebPlayerActivity : ComponentActivity() {
     private var full: FrameLayout? = null
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
     private var pageUrl = ""
+    private var playerOnly = true
+    private var stageReady = false
+    private var stageAttempts = 0
+    private var stageEpoch = 0
+    private lateinit var stageButton: Button
+    private val stageScript by lazy { assets.open("player_only.js").bufferedReader().use { it.readText() } }
+    private val stageHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private val stageTask = object : Runnable {
+        override fun run() {
+            if (!playerOnly || !::web.isInitialized || isFinishing || isDestroyed) return
+            val epoch = stageEpoch
+            web.evaluateJavascript("window.__alicoSeriesMode = " + intent.getBooleanExtra("series", false) + ";\n" + stageScript) { result ->
+                if (epoch != stageEpoch || !playerOnly || isFinishing || isDestroyed) return@evaluateJavascript
+                if (result == "\"ready\"" || result == "\"episodes\"") {
+                    if (!stageReady) {
+                        stageReady = true
+                        web.alpha = 1f
+                        status.text = if (result == "\"episodes\"") "Bölüm seçin · Seçtiğiniz bölümün oynatıcısı açılacak." else "Oynatıcı hazır · Oynat düğmesine basın. Kaynak/bölüm seçmek için Siteyi göster."
+                        web.requestFocus()
+                    }
+                    stageHandler.postDelayed(this, 1500)
+                } else {
+                    stageReady = false
+                    web.alpha = 0f
+                    stageAttempts++
+                    if (stageAttempts < 40) stageHandler.postDelayed(this, 500)
+                    else {
+                        status.text = "Oynatıcı veya bölüm listesi bulunamadı. Siteyi göster ile bölüm veya kaynak seçebilirsiniz."
+                        stageButton.requestFocus()
+                    }
+                }
+            }
+        }
+    }
+    private fun startPlayerSearch() {
+        stageEpoch++
+        stageHandler.removeCallbacks(stageTask)
+        stageReady = false
+        stageAttempts = 0
+        web.alpha = if (playerOnly) 0f else 1f
+        if (playerOnly) {
+            status.text = "Oynatıcı aranıyor… Gerekirse Siteyi göster düğmesini kullanın."
+            stageHandler.postDelayed(stageTask, 300)
+        }
+    }
+    private fun togglePlayerOnly() {
+        playerOnly = !playerOnly
+        stageEpoch++
+        stageHandler.removeCallbacks(stageTask)
+        stageButton.text = if (playerOnly) "Siteyi göster" else "Sade görünüm"
+        if (playerOnly) startPlayerSearch()
+        else {
+            web.evaluateJavascript("window.__alicoStage && window.__alicoStage.restore();", null)
+            web.alpha = 1f
+            stageReady = false
+            status.text = "Site görünümü · Bölüm/kaynak seçtikten sonra Sadece oynatıcı düğmesine basın."
+        }
+    }
+
+    private val diagnostics = java.util.ArrayDeque<String>()
+    private fun recordIssue(message: String) {
+        if (diagnostics.size >= 20) diagnostics.removeFirst()
+        diagnostics.addLast(message)
+    }
+    private fun showDiagnostics() {
+        val engine = if (android.os.Build.VERSION.SDK_INT >= 26) {
+            WebView.getCurrentWebViewPackage()?.let { "${it.packageName} ${it.versionName}" } ?: "Bilinmiyor"
+        } else "Bu Android sürümünde sürüm bilgisi alınamıyor"
+        val details = "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}\nAndroid ${android.os.Build.VERSION.RELEASE}\nWebView: $engine\n\n" +
+            "Kimlik: ${web.settings.userAgentString}\n\n" +
+            if (diagnostics.isEmpty()) "Henüz ağ/oynatıcı hatası yakalanmadı. Videoyu başlatıp tekrar açın." else diagnostics.joinToString("\n")
+        android.app.AlertDialog.Builder(this).setTitle("Oynatıcı tanılama")
+            .setMessage(details).setPositiveButton("Kapat", null).show()
+    }
     @Volatile private var adFilterEnabled: Boolean = true
     private lateinit var toolbar: HorizontalScrollView
     private lateinit var fullscreenButton: Button
@@ -49,6 +123,7 @@ class WebPlayerActivity : ComponentActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        playerOnly = savedInstanceState?.getBoolean("alico_player_only", true) ?: true
         val webPrefs = getSharedPreferences("cinebox_web", MODE_PRIVATE)
         adFilterEnabled = webPrefs.getBoolean("ad_filter", true)
         pageUrl = intent.getStringExtra("url").orEmpty()
@@ -79,6 +154,14 @@ class WebPlayerActivity : ComponentActivity() {
             tools.addView(Button(this).apply { text = label; styleButton(this); setOnClickListener { action() } })
         }
         button("← Kapat") { finish() }
+        stageButton = Button(this).apply {
+            styleButton(this)
+            text = if (playerOnly) "Siteyi göster" else "Sade görünüm"
+            setOnClickListener { togglePlayerOnly() }
+        }
+        tools.addView(stageButton)
+        web.alpha = if (playerOnly) 0f else 1f
+
         fullscreenButton = Button(this).apply {
             text = "⛶ Tam ekran"
             styleButton(this)
@@ -97,6 +180,26 @@ class WebPlayerActivity : ComponentActivity() {
         tools.addView(fullscreenButton)
         button("Geri") { if (web.canGoBack()) web.goBack() }
         button("Yenile") { web.reload() }
+        val defaultAgent = WebSettings.getDefaultUserAgent(this)
+        val browserAgent = defaultAgent.replace("; wv", "").replace("Version/4.0 ", "")
+        val compatibilityKey = "browser_identity_" + Uri.parse(pageUrl).host.orEmpty()
+        var browserIdentity = webPrefs.getBoolean(compatibilityKey, false)
+        web.settings.userAgentString = if (browserIdentity) browserAgent else defaultAgent
+        tools.addView(Button(this).apply {
+            styleButton(this)
+            text = if (browserIdentity) "Uyumluluk: Açık" else "Uyumluluk: Kapalı"
+            setOnClickListener {
+                browserIdentity = !browserIdentity
+                webPrefs.edit().putBoolean(compatibilityKey, browserIdentity).apply()
+                text = if (browserIdentity) "Uyumluluk: Açık" else "Uyumluluk: Kapalı"
+                diagnostics.clear()
+                web.stopLoading()
+                web.settings.userAgentString = if (browserIdentity) browserAgent else defaultAgent
+                web.loadUrl(pageUrl)
+            }
+        })
+        button("Hata bilgisi") { showDiagnostics() }
+
         tools.addView(Button(this).apply {
             styleButton(this)
             text = if (adFilterEnabled) "Reklam filtresi: Açık" else "Reklam filtresi: Kapalı"
@@ -124,6 +227,7 @@ class WebPlayerActivity : ComponentActivity() {
             javaScriptCanOpenWindowsAutomatically = false
             setSupportMultipleWindows(true)
         }
+        CookieManager.getInstance().setAcceptCookie(true)
         CookieManager.getInstance().setAcceptThirdPartyCookies(web, true)
         web.isFocusableInTouchMode = true
         web.webViewClient = object : WebViewClient() {
@@ -144,19 +248,35 @@ class WebPlayerActivity : ComponentActivity() {
                 return null
             }
             override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
-                status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
+                startPlayerSearch()
+                if (!playerOnly) status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
             }
             override fun onPageFinished(view: WebView, url: String) {
-                if (status.text.endsWith("Yükleniyor…")) status.text = "${Uri.parse(url).host.orEmpty()} · Sayfadaki oynat düğmesini seçin."
+                if (playerOnly && !stageReady) startPlayerSearch()
+                if (!playerOnly && status.text.endsWith("Yükleniyor…")) status.text = "${Uri.parse(url).host.orEmpty()} · Sayfadaki oynat düğmesini seçin."
             }
             override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
+                recordIssue("HTTP ${errorResponse.statusCode} · ${request.url.host.orEmpty()}")
                 if (request.isForMainFrame) status.text = "HTTP ${errorResponse.statusCode} · Site erişim vermedi. Harici uygulamada deneyebilirsiniz."
             }
             override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
+                recordIssue("Ağ hatası ${error.errorCode} · ${request.url.host.orEmpty()}")
                 if (request.isForMainFrame) status.text = "Sayfa açılamadı: ${error.description}"
             }
         }
         web.webChromeClient = object : WebChromeClient() {
+            override fun onConsoleMessage(message: ConsoleMessage): Boolean {
+                val text = message.message().orEmpty()
+                // Keep diagnostic categories only, never signed URLs, tokens or cookies.
+                when {
+                    text.contains("232011") -> recordIssue("Oynatıcı: 232011 · Alanlar arası yayın listesi erişimi")
+                    text.contains("cors", true) || text.contains("cross-origin", true) -> recordIssue("Tarayıcı: CORS / alanlar arası erişim hatası")
+                    text.contains("mixed content", true) -> recordIssue("Tarayıcı: HTTPS/HTTP karma içerik engeli")
+                    text.contains("ERR_", true) -> recordIssue("Tarayıcı: Kaynak yükleme hatası")
+                }
+                return true
+            }
+
             override fun onCreateWindow(view: WebView, isDialog: Boolean, isUserGesture: Boolean, resultMsg: android.os.Message): Boolean {
                 status.text = "Açılır pencere engellendi. Gerekirse Tarayıcıda aç seçeneğini kullanın."
                 return false
@@ -185,8 +305,9 @@ class WebPlayerActivity : ComponentActivity() {
                 when { full != null -> hideFull(); web.canGoBack() -> web.goBack(); else -> finish() }
             }
         })
-        fullscreenButton.requestFocus()
+        stageButton.requestFocus()
         if (savedInstanceState == null || web.restoreState(savedInstanceState) == null) web.loadUrl(pageUrl)
+        if (savedInstanceState != null) startPlayerSearch()
     }
     override fun onKeyDown(keyCode: Int, event: android.view.KeyEvent): Boolean {
         if (keyCode == android.view.KeyEvent.KEYCODE_MENU && ::web.isInitialized) {
@@ -207,12 +328,15 @@ class WebPlayerActivity : ComponentActivity() {
         if (::fullscreenButton.isInitialized) fullscreenButton.requestFocus()
     }
     override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("alico_player_only", playerOnly)
         if (::web.isInitialized) web.saveState(outState)
         super.onSaveInstanceState(outState)
     }
     override fun onPause() { if (::web.isInitialized) web.onPause(); super.onPause() }
     override fun onResume() { super.onResume(); if (::web.isInitialized) web.onResume() }
     override fun onDestroy() {
+        stageEpoch++
+        stageHandler.removeCallbacksAndMessages(null)
         if (::web.isInitialized) {
             hideFull(); web.stopLoading(); (web.parent as? ViewGroup)?.removeView(web)
             web.removeAllViews(); web.destroy()

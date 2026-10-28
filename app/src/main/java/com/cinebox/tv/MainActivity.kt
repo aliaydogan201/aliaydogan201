@@ -198,7 +198,7 @@ class MainActivity : ComponentActivity() {
                                 if (m.provider.isNotBlank()) Text("Kaynak: ${m.provider}" + if (m.license.isNotBlank()) " · ${m.license}" else "", color = Color.LightGray, fontSize = 13.sp)
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                        .putExtra("url", m.webUrl).putExtra("title", m.title))
+                                        .putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else "▶ Web oynatıcıda aç") }
                                 if (m.webUrl.isNotBlank()) TvAction(onClick = {
                                     openPublisherPage(m.webUrl)
@@ -206,7 +206,7 @@ class MainActivity : ComponentActivity() {
                                 seriesExtraLinks[m.id].orEmpty().forEach { link ->
                                     TvAction(onClick = {
                                         startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                            .putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
+                                            .putExtra("series", true).putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
                                     }) { Text(link.label) }
                                 }
                                 if (m.id == 7502) {
@@ -223,7 +223,7 @@ class MainActivity : ComponentActivity() {
                                             TvAction(onClick = { openPublisherPage(seasonUrl) }) { Text("$season. Sezon · Tarayıcıda aç") }
                                             TvAction(onClick = {
                                                 startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                                    .putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
+                                                    .putExtra("series", true).putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
                                             }) { Text("Uygulamada aç") }
                                         }
                                     }
