@@ -60,6 +60,27 @@ class WebPlayerActivity : ComponentActivity() {
             } else pointerSurface().dispatchTouchEvent(event)
         } finally { event.recycle() }
     }
+    private var historyActive = false
+    private val historyHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private val positionScript by lazy { assets.open("watch_position.js").bufferedReader().use { it.readText() } }
+    private val historyTask = object : Runnable {
+        override fun run() {
+            if (!historyActive || !::web.isInitialized || isFinishing || isDestroyed) return
+            web.evaluateJavascript(positionScript) { raw ->
+                if (!historyActive || isFinishing || isDestroyed) return@evaluateJavascript
+                try {
+                    val decoded=org.json.JSONTokener(raw).nextValue() as? String
+                    if (decoded != null) {
+                        val o=org.json.JSONObject(decoded)
+                        WatchHistory.save(this@WebPlayerActivity,WatchEntry(intent.getIntExtra("movie_id",0),
+                            intent.getStringExtra("title").orEmpty(),o.getString("url"),true,
+                            o.getLong("position"),o.getLong("duration"),episode=o.optString("title")))
+                    }
+                } catch (_: Exception) { }
+                historyHandler.postDelayed(this,5000)
+            }
+        }
+    }
     private var pageUrl = ""
     private var playerOnly = true
     private var focusPlayerPending = false
@@ -225,6 +246,8 @@ class WebPlayerActivity : ComponentActivity() {
         if (Uri.parse(pageUrl).scheme != "https" || Uri.parse(pageUrl).host.isNullOrBlank()) {
             finish(); return
         }
+        val oldEntry = WatchHistory.list(this).firstOrNull { it.url == pageUrl }
+        if (oldEntry == null) WatchHistory.save(this,WatchEntry(intent.getIntExtra("movie_id",0),intent.getStringExtra("title").orEmpty(),pageUrl,true))
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         root = FrameLayout(this)
         root.setBackgroundColor(Color.BLACK)
@@ -354,6 +377,10 @@ class WebPlayerActivity : ComponentActivity() {
                 if (!playerOnly) status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
             }
             override fun onPageFinished(view: WebView, url: String) {
+                if (url == pageUrl && intent.getLongExtra("resume_ms",0) > 0) {
+                    web.evaluateJavascript("window.__alicoResumeMs = " + intent.getLongExtra("resume_ms",0) + ";",null)
+                    intent.removeExtra("resume_ms")
+                }
                 if (playerOnly && !stageReady) startPlayerSearch()
                 if (!playerOnly && status.text.endsWith("Yükleniyor…")) status.text = "${Uri.parse(url).host.orEmpty()} · Sayfadaki oynat düğmesini seçin."
             }
@@ -500,9 +527,11 @@ class WebPlayerActivity : ComponentActivity() {
         if (::web.isInitialized) web.saveState(outState)
         super.onSaveInstanceState(outState)
     }
-    override fun onPause() { if (::web.isInitialized) web.onPause(); super.onPause() }
-    override fun onResume() { super.onResume(); if (::web.isInitialized) web.onResume() }
+    override fun onPause() { historyActive=false; historyHandler.removeCallbacksAndMessages(null); if (::web.isInitialized) web.onPause(); super.onPause() }
+    override fun onResume() { super.onResume(); if (::web.isInitialized) { web.onResume(); historyActive=true; historyHandler.removeCallbacks(historyTask); historyHandler.post(historyTask) } }
     override fun onDestroy() {
+        historyActive=false
+        historyHandler.removeCallbacksAndMessages(null)
         stageEpoch++
         stageHandler.removeCallbacksAndMessages(null)
         if (::web.isInitialized) {

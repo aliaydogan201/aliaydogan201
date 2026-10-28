@@ -131,6 +131,9 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
 }
 
 class MainActivity : ComponentActivity() {
+    private var historyRevision by mutableIntStateOf(0)
+    override fun onResume() { super.onResume(); historyRevision++ }
+
     private val prefs by lazy { getSharedPreferences("cinebox", Context.MODE_PRIVATE) }
     private fun openPublisherPage(url: String) {
         try {
@@ -179,33 +182,86 @@ class MainActivity : ComponentActivity() {
         MaterialTheme(colorScheme = darkColorScheme(background = bg, surface = panel, primary = accent)) {
             when {
                 playing != null -> PlayerScreen(playing!!, prefs) { playing = null }
+                tab == "İzlemeye Devam" && selected == null -> {
+                    val history = remember(historyRevision) { WatchHistory.list(this@MainActivity) }
+                    Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                        TvAction(onClick = { tab = "Ana Sayfa" }) { Text("← Ana sayfa") }
+                        Text("İzlemeye Devam", color = Color.White, fontSize = 32.sp, fontWeight = FontWeight.Bold)
+                        Text("Son izlediklerin · Kaldığın yerden devam et", color = accent)
+                        if (history.isEmpty()) Text("İzlediğin içerikler burada görünecek.", color = Color.White)
+                        history.forEach { entry ->
+                            Column(Modifier.fillMaxWidth().background(panel, RoundedCornerShape(14.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(entry.title, color = Color.White, fontSize = 23.sp, fontWeight = FontWeight.Bold)
+                                if (entry.episode.isNotBlank() && entry.episode != entry.title) Text(entry.episode, color = Color.LightGray)
+                                Text(if (entry.position >= 0) "${WatchHistory.time(entry.position)} konumunda kaldınız" else "Son açılan içerik · Süre bilgisi alınamadı", color = accent)
+                                if (entry.duration > 0 && entry.position >= 0) {
+                                    LinearProgressIndicator(progress = { (entry.position.toFloat()/entry.duration).coerceIn(0f,1f) }, modifier = Modifier.fillMaxWidth())
+                                    Text("Toplam ${WatchHistory.time(entry.duration)}", color = Color.LightGray)
+                                }
+                                Text(java.text.SimpleDateFormat("dd.MM.yyyy HH:mm", java.util.Locale("tr", "TR")).format(java.util.Date(entry.updated)), color = Color.LightGray)
+                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    TvAction(onClick = {
+                                        if (entry.web) startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
+                                            .putExtra("url",entry.url).putExtra("title",entry.title).putExtra("movie_id",entry.id)
+                                            .putExtra("resume_ms",entry.position.coerceAtLeast(0)))
+                                        else playing = PlayRequest(entry.id,entry.title,entry.url,prefs.getString("subtitle_${entry.id}","").orEmpty())
+                                    }) { Text(if (entry.position >= 0) "▶ Devam et" else "▶ Yeniden aç") }
+                                    TvAction(onClick = { WatchHistory.remove(this@MainActivity,entry.url); historyRevision++ }) { Text("Listeden kaldır") }
+                                }
+                            }
+                        }
+                    }
+                }
                 selected != null -> {
                     val m = selected!!
+                    val detail = remember(m.webUrl) { ContentDetails.get(this@MainActivity,m.webUrl) }
+                    var advanced by remember(m.id) { mutableStateOf(false) }
+                    val wideDetails = androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp >= 650
+
                     val playFocus = remember(m.id) { FocusRequester() }
                     LaunchedEffect(m.id) { if (m.webUrl.isNotBlank() || m.playableUrl.isNotBlank()) playFocus.requestFocus() }
                     var customUrl by remember(m.id) { mutableStateOf(prefs.getString("source_${m.id}", "").orEmpty()) }
                     var subtitleUrl by remember(m.id) { mutableStateOf(prefs.getString("subtitle_${m.id}", "").orEmpty()) }
                     var sourceError by remember(m.id) { mutableStateOf("") }
-                    Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(30.dp)) {
+                    Column(Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Brush.verticalGradient(listOf(Color(0xFF25140C), Color(0xFF101014)))).verticalScroll(rememberScrollState()).padding(24.dp)) {
                         TvAction(onClick = { selected = null }) { Text("← Geri") }
                         Row(horizontalArrangement = Arrangement.spacedBy(25.dp)) {
-                            AsyncImage(model = m.poster, contentDescription = m.title, modifier = Modifier.width(190.dp).height(270.dp), contentScale = ContentScale.Crop)
+                            if (wideDetails) Box(Modifier.width(190.dp).height(285.dp).background(panel, RoundedCornerShape(16.dp)), contentAlignment = Alignment.Center) {
+                                Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text("▶",color=accent,fontSize=48.sp)
+                                    Text(m.title,color=Color.White,fontSize=20.sp,fontWeight=FontWeight.Bold)
+                                    Text(m.category,color=accent,fontSize=13.sp)
+                                }
+                                if (m.poster.isNotBlank()) AsyncImage(model=m.poster,contentDescription=m.title,modifier=Modifier.fillMaxSize(),contentScale=ContentScale.Crop)
+                            }
                             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                Text(m.title, color = Color.White, fontSize = 31.sp, fontWeight = FontWeight.Bold)
-                                Text(if (m.score > 0) "${m.year}   ★ ${"%.1f".format(m.score)}" else m.year, color = accent)
-                                Text(m.overview.ifBlank { "Türkçe açıklama bulunamadı." }, color = Color.LightGray, maxLines = 6)
-                                if (m.provider.isNotBlank()) Text("Kaynak: ${m.provider}" + if (m.license.isNotBlank()) " · ${m.license}" else "", color = Color.LightGray, fontSize = 13.sp)
+                                Text(m.title, color = Color.White, fontSize = if (wideDetails) 36.sp else 27.sp, fontWeight = FontWeight.Bold)
+                                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    listOf(m.category, m.year, if(m.score>0) "★ ${"%.1f".format(m.score)}" else "", detail.optString("duration").let { if(it.isNotBlank()&&it!="0") "$it dk" else "" }).filter { it.isNotBlank() }.forEach { badge ->
+                                        Text(badge,color=accent,modifier=Modifier.background(Color(0xFF3B291E),RoundedCornerShape(6.dp)).padding(8.dp))
+                                    }
+                                }
+                                val genericOverview = m.overview.contains("HTML") || m.overview.startsWith("Film sayfasını") || m.overview.startsWith("Bölümleri dizi") || m.overview.startsWith("Uygulama içi web")
+                                Text("Hakkında",color=Color.White,fontSize=19.sp,fontWeight=FontWeight.Bold)
+                                Text(if(genericOverview || m.overview.isBlank()) "Bu içerik için konu özeti henüz eklenmemiş. Mevcut yapım bilgileri aşağıda yer alıyor." else m.overview,color=Color(0xFFE0DAD5),fontSize=16.sp)
+                                Column(Modifier.fillMaxWidth().background(Color(0xFF231F20),RoundedCornerShape(12.dp)).padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+                                    val fields = listOf("Tür" to detail.optString("type"),"Süre" to detail.optString("duration").let { if(it.isNotBlank()&&it!="0") "$it dakika" else "" },"Oyuncular" to detail.optString("actor"),"Yönetmen" to detail.optString("director"),"Ülke" to detail.optString("country"),"Yaş sınıflandırması (kaynak)" to detail.optString("derecelendirme"),"Kaynak" to m.provider)
+                                    fields.filter { it.second.isNotBlank() }.forEach { (label,value) ->
+                                        Text("$label: ${value.replace(",", ", ")}",color=Color.LightGray,fontSize=14.sp)
+                                    }
+                                    if (detail.length()==0) Text("Ek yapım bilgisi kaynak dosyada bulunmuyor.",color=Color.LightGray,fontSize=13.sp)
+                                }
                                 if (m.webUrl.isNotBlank() && m.id !in 970000..970015) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                        .putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
-                                }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else "▶ Web oynatıcıda aç") }
+                                        .putExtra("movie_id", m.id).putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
+                                }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else if(m.category in listOf("Dizi","Yerli Diziler")) "▶ Bölümleri aç" else "▶ Şimdi izle") }
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
                                 seriesExtraLinks[m.id].orEmpty().forEach { link ->
                                     TvAction(onClick = {
                                         startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                            .putExtra("series", true).putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
+                                            .putExtra("movie_id", m.id).putExtra("series", true).putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
                                     }) { Text(link.label) }
                                 }
                                 if (m.id == 7502) {
@@ -222,7 +278,7 @@ class MainActivity : ComponentActivity() {
                                             TvAction(onClick = { openPublisherPage(seasonUrl) }) { Text("$season. Sezon · Tarayıcıda aç") }
                                             TvAction(onClick = {
                                                 startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
-                                                    .putExtra("series", true).putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
+                                                    .putExtra("movie_id", m.id).putExtra("series", true).putExtra("url", seasonUrl).putExtra("title", "Yaprak Dökümü · $season. Sezon"))
                                             }) { Text("Uygulamada aç") }
                                         }
                                     }
@@ -235,6 +291,8 @@ class MainActivity : ComponentActivity() {
                                     }) { Text(if (favorites.contains(m.id)) "♥ Favorilerden çıkar" else "♡ Favorilere ekle") }
                                 }
                                 Spacer(Modifier.height(8.dp))
+                                TvAction(onClick = { advanced = !advanced }) { Text(if(advanced) "− Gelişmiş seçenekleri kapat" else "+ Bağlantı ve puanlama seçenekleri") }
+                                if (advanced) {
                                 Text("ALICOTV Player · Yayın kaynakları", color = Color.White, fontWeight = FontWeight.Bold)
                                 if (m.playableUrl.isBlank() && m.webUrl.isBlank() && customUrl.isBlank()) {
                                     Text("Bu film için oynatma bağlantısı henüz eklenmedi. Bu kart yalnızca katalog kaydıdır.", color = Color(0xFFFFD180))
@@ -260,6 +318,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                                 Text("Her film kendi kaynak bağlantısıyla oynatılır. Türkçe altyazı isterseniz VTT bağlantısı ekleyebilirsiniz.", color = Color.LightGray, fontSize = 12.sp)
+                                }
                             }
                         }
                         Spacer(Modifier.height(25.dp))
@@ -269,9 +328,9 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 else -> Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                    Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         androidx.compose.foundation.Image(painter = androidx.compose.ui.res.painterResource(R.drawable.alico_wordmark), contentDescription = "ALICOTV", modifier = Modifier.width(160.dp).height(52.dp))
-                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler").forEach { label ->
+                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam").forEach { label ->
                             TvAction(onClick = {
                                 tab = label
                                 page = 0
@@ -420,7 +479,8 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
     LaunchedEffect(player) {
         while (true) {
             delay(2500)
-            if (player.duration > 0 && player.currentPosition >= 0) {
+            if (player.duration > 0 && player.currentPosition > 0) {
+                WatchHistory.save(context,WatchEntry(request.movieId,request.title,activeUrl,false,player.currentPosition,player.duration))
                 if (player.playbackState == Player.STATE_ENDED) {
                     prefs.edit().remove(progressKey).apply()
                 } else {
@@ -433,6 +493,7 @@ private fun PlayerScreen(request: PlayRequest, prefs: android.content.SharedPref
         onDispose {
             if (player.playbackState == Player.STATE_ENDED) prefs.edit().remove(progressKey).apply()
             else if (player.currentPosition > 0) prefs.edit().putLong(progressKey, player.currentPosition).apply()
+            if (player.currentPosition > 0) WatchHistory.save(context,WatchEntry(request.movieId,request.title,activeUrl,false,player.currentPosition,player.duration.coerceAtLeast(0)))
             player.release()
         }
     }
