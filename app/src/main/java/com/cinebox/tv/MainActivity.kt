@@ -88,7 +88,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + viasatCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -196,13 +196,13 @@ class MainActivity : ComponentActivity() {
                                 Text(if (m.score > 0) "${m.year}   ★ ${"%.1f".format(m.score)}" else m.year, color = accent)
                                 Text(m.overview.ifBlank { "Türkçe açıklama bulunamadı." }, color = Color.LightGray, maxLines = 6)
                                 if (m.provider.isNotBlank()) Text("Kaynak: ${m.provider}" + if (m.license.isNotBlank()) " · ${m.license}" else "", color = Color.LightGray, fontSize = 13.sp)
-                                if (m.webUrl.isNotBlank()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
+                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else "▶ Web oynatıcıda aç") }
-                                if (m.webUrl.isNotBlank()) TvAction(onClick = {
+                                if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
-                                }) { Text(if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
                                 seriesExtraLinks[m.id].orEmpty().forEach { link ->
                                     TvAction(onClick = {
                                         startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
@@ -342,7 +342,7 @@ private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
                         Text(movie.title, color = Color.White, fontSize = 15.sp, minLines = 2, maxLines = 4, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
                         if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(150.dp))
                         else Box(Modifier.fillMaxWidth().height(150.dp), contentAlignment = Alignment.Center) { Text(movie.title, color = Color.LightGray, modifier = Modifier.padding(12.dp)) }
-                        Text(if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
+                        Text(if (movie.id in 970000..970015) "Belgesel · Program bilgisi" else if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
                     }
                 }
             }

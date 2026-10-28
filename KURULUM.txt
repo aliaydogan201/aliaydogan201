@@ -1,8 +1,6 @@
-ALICOTV v29 — Oynatıcıya geç düzeltmesi
-
-v28 düğmesi yalnız WebView'e odak veriyordu. Yeni düğme sade görünümü etkinleştirir, oynatıcıyı yeniden arar ve bulunan video/iframe/oynatıcı kontrolüne odak verir. Dizi bölüm listesi açıkken bu düğme mevcut sayfadaki oynatıcıyı arar; normal dizi açılışındaki bölüm listesi davranışı devam eder.
-Oynat düğmesine kullanıcı basar. Başka alan adındaki iframe'in iç düğmesine erişim garanti değildir. Kaynak sayfada video yoksa Siteyi göster ile önce bölüm veya kaynak seçilmelidir.
-671 içerik, arama ve sayfalama korunur.
-
-Kurulum: Proje dosyalarını .github dahil depo köküne aktarın ve Actions derlemesini çalıştırın.
-Doğrulama: JavaScript sözdizimi, XML ve katalogların korunması kontrol edildi. Android SDK/Gradle ve cihaz testi yapılamadı; TV'deki odak davranışı cihazda doğrulanmalıdır.
+ALICOTV v30
+12 HTML dosyasından 288 yeni dizi eklendi. Viasat History resmî sitesinden 16 tarih belgeseli program kaydı eklendi. Toplam 975 kayıt.
+Viasat kayıtları tam bölüm değildir. Program bilgisi etiketi ve Resmî program bilgisini aç düğmesi vardır; resmî sayfaya yönlendirir. Tam bölüm/Türkçe dublaj kaynağı doğrulanamadı. Bu kartlar izlenebilir video gibi gösterilmez.
+Diziler mevcut sade bölüm listesi/oynatıcı akışını kullanır. Arama, sayfalama ve önceki oynatıcı düzeltmesi korunur.
+Kurulum: .github dahil bütün proje dosyalarını GitHub depo köküne aktarın ve Actions derlemesini çalıştırın.
+Kontrol: 975 benzersiz kimlik, önceki katalogların byte karşılaştırması ve ZIP bütünlüğü kontrol edildi. Android SDK/Gradle bulunmadığı için APK derlemesi ve cihaz testi yapılmadı.
