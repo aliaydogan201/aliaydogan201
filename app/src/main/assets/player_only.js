@@ -100,7 +100,7 @@
         // Episode pages prefer the video; series indexes prefer their numbered links.
         var path=location.pathname;
         var episodePage=/\d+[-.]bolum|bolum[-/]\d+|sezon-\d+-bolum-\d+|\/watch|\/embed\//i.test(path) || selectedUrl===location.href;
-        if(window.__alicoSeriesMode && !episodePage){
+        if(window.__alicoSeriesMode && !episodePage && !window.__alicoForcePlayer){
             var links=episodeLinks();
             if(links.filter(function(x){return x.episode;}).length>1)return showEpisodes(links);
             // Wait for a list instead of showing the featured video on a series index.
@@ -108,6 +108,22 @@
         }
         var el=find();mode='ready';return el?apply(el):'waiting';
     }
-    window.__alicoStage={refresh:refresh,restore:restore};
+    function focusPlayer(){
+        if(!target || !target.isConnected)return 'missing';
+        var control=target.matches('iframe,video')?target:target.querySelector('iframe,button,[role="button"],video');
+        if(!control)control=target;
+        if(!control.hasAttribute('tabindex'))control.setAttribute('tabindex','0');
+        control.focus();
+        control.scrollIntoView({block:'nearest'});
+        return control.tagName==='IFRAME'?'frame-focused':'focused';
+    }
+    function openPlayer(){
+        window.__alicoForcePlayer=true;
+        if(mode==='episodes')restore();
+        var result=refresh();
+        if(result==='ready')focusPlayer();
+        return result;
+    }
+    window.__alicoStage={refresh:refresh,restore:restore,openPlayer:openPlayer,focusPlayer:focusPlayer};
     return refresh();
 })();

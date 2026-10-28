@@ -23,6 +23,7 @@ class WebPlayerActivity : ComponentActivity() {
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
     private var pageUrl = ""
     private var playerOnly = true
+    private var focusPlayerPending = false
     private var stageReady = false
     private var stageAttempts = 0
     private var stageEpoch = 0
@@ -41,6 +42,10 @@ class WebPlayerActivity : ComponentActivity() {
                         web.alpha = 1f
                         status.text = if (result == "\"episodes\"") "Bölüm seçin · Seçtiğiniz bölümün oynatıcısı açılacak." else "Oynatıcı hazır · Oynat düğmesine basın. Kaynak/bölüm seçmek için Siteyi göster."
                         web.requestFocus()
+                        if (focusPlayerPending) {
+                            focusPlayerPending = false
+                            web.evaluateJavascript("window.__alicoStage && window.__alicoStage.focusPlayer();", null)
+                        }
                     }
                     stageHandler.postDelayed(this, 1500)
                 } else {
@@ -67,6 +72,21 @@ class WebPlayerActivity : ComponentActivity() {
             stageHandler.postDelayed(stageTask, 300)
         }
     }
+    private fun goToPlayer() {
+        playerOnly = true
+        focusPlayerPending = true
+        stageButton.text = "Siteyi göster"
+        stageEpoch++
+        stageHandler.removeCallbacks(stageTask)
+        stageReady = false
+        stageAttempts = 0
+        status.text = "Oynatıcı aranıyor…"
+        val epoch = stageEpoch
+        web.evaluateJavascript("window.__alicoForcePlayer = true; " + stageScript +
+            "; if (window.__alicoStage) window.__alicoStage.openPlayer();") {
+            if (epoch == stageEpoch && !isFinishing && !isDestroyed) stageHandler.post(stageTask)
+        }
+    }
     private fun togglePlayerOnly() {
         playerOnly = !playerOnly
         stageEpoch++
@@ -74,7 +94,8 @@ class WebPlayerActivity : ComponentActivity() {
         stageButton.text = if (playerOnly) "Siteyi göster" else "Sade görünüm"
         if (playerOnly) startPlayerSearch()
         else {
-            web.evaluateJavascript("window.__alicoStage && window.__alicoStage.restore();", null)
+            focusPlayerPending = false
+            web.evaluateJavascript("window.__alicoForcePlayer = false; window.__alicoStage && window.__alicoStage.restore();", null)
             web.alpha = 1f
             stageReady = false
             status.text = "Site görünümü · Bölüm/kaynak seçtikten sonra Sadece oynatıcı düğmesine basın."
@@ -210,7 +231,7 @@ class WebPlayerActivity : ComponentActivity() {
                 web.reload()
             }
         })
-        button("Oynatıcıya geç") { web.requestFocus() }
+        button("Oynatıcıya geç") { goToPlayer() }
         button("Tarayıcıda / YouTube'da aç") {
             try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(pageUrl))) }
             catch (_: Exception) { status.text = "Bu bağlantıyı açacak harici uygulama bulunamadı." }
