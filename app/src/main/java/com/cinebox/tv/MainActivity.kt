@@ -1,6 +1,8 @@
 package com.cinebox.tv
 
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import android.net.Uri
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.Player
@@ -88,7 +90,7 @@ internal val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog + youngSheldonCatalog + hdSeriesCatalog + hdBatchCatalog + rFilmCatalog + ddiziCatalog + htmlBatch49Catalog + htmlBatch49Catalog + htmlBatch49Catalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog + youngSheldonCatalog + hdSeriesCatalog + hdBatchCatalog + rFilmCatalog + ddiziCatalog + htmlBatch49Catalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -133,6 +135,43 @@ private suspend fun searchCommons(term: String): List<Movie> = withContext(Dispa
 
 class MainActivity : ComponentActivity() {
     private var historyRevision by mutableIntStateOf(0)
+    private var backupBusy by mutableStateOf(false)
+    private var backupMessage by mutableStateOf("")
+    private fun runBackup(uri: Uri, restore: Boolean) {
+        if (backupBusy) return
+        backupBusy = true
+        lifecycleScope.launch {
+            try {
+                ArchiveSync.storageOperation {
+                    if (restore) AppBackup.restore(this@MainActivity,uri)
+                    else AppBackup.export(this@MainActivity,uri)
+                }
+                backupMessage = if (restore) "Yedek geri yüklendi." else "Yedek kaydedildi. Dosyayı uygulama dışında saklayın."
+                android.widget.Toast.makeText(this@MainActivity,backupMessage,android.widget.Toast.LENGTH_LONG).show()
+                if (restore) recreate()
+            } catch (e: Exception) {
+                backupMessage = "İşlem tamamlanamadı: " + (e.message ?: "Dosyaya erişilemedi.")
+            } finally { backupBusy = false }
+        }
+    }
+    private val backupExport = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+        if (uri != null) runBackup(uri,false) else backupBusy=false
+    }
+    private val backupImport = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) android.app.AlertDialog.Builder(this)
+            .setTitle("Yedeği geri yükle")
+            .setMessage("Mevcut ek arşiv, favoriler, izleme geçmişi ve takip kayıtları seçtiğiniz yedekle değiştirilecek.")
+            .setPositiveButton("Geri yükle") { _, _ -> runBackup(uri,true) }
+            .setNegativeButton("Vazgeç",null).show()
+    }
+    private fun chooseBackup(restore: Boolean) {
+        try {
+            if (restore) backupImport.launch(arrayOf("application/json","text/plain","application/octet-stream"))
+            else backupExport.launch("ALICOTV-yedek-" + java.text.SimpleDateFormat("yyyyMMdd-HHmmss",java.util.Locale.ROOT).format(java.util.Date()) + ".json")
+        } catch (_: android.content.ActivityNotFoundException) {
+            backupMessage = "Bu cihazda sistem dosya seçicisi bulunamadı. Yedekleme için Android dosya seçicisi gerekir."
+        }
+    }
     override fun onResume() { super.onResume(); historyRevision++ }
 
     private val prefs by lazy { getSharedPreferences("cinebox", Context.MODE_PRIVATE) }
@@ -158,7 +197,7 @@ class MainActivity : ComponentActivity() {
         var episodeRevision by remember { mutableIntStateOf(0) }
         var showNotices by remember { mutableStateOf(false) }
         suspend fun syncArchive(force: Boolean) {
-            if(syncing)return
+            if(syncing || backupBusy)return
             syncing=true
             try {
                 val before=ArchiveSync.notices(this@MainActivity)
@@ -396,6 +435,12 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 else -> Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp)) {
+                    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        TvAction(enabled=!syncing && !backupBusy,onClick={chooseBackup(false)}) { Text("Arşivi yedekle") }
+                        TvAction(enabled=!syncing && !backupBusy,onClick={chooseBackup(true)}) { Text("Yedeği geri yükle") }
+                    }
+                    if (backupBusy) Text("Yedek işlemi sürüyor…",color=Color.White)
+                    if (backupMessage.isNotBlank()) Text(backupMessage,color=Color.White)
                     Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         androidx.compose.foundation.Image(painter = androidx.compose.ui.res.painterResource(R.drawable.alico_wordmark), contentDescription = "ALICOTV", modifier = Modifier.width(160.dp).height(52.dp))
                         listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim").forEach { label ->

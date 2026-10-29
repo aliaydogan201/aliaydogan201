@@ -11,8 +11,14 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 51
-        versionName = "0.51.0"
+        versionCode = 52
+        versionName = "0.52.0"
+    }
+    signingConfigs.getByName("debug") {
+        storeFile = rootProject.file("signing/alico-update.jks")
+        storePassword = System.getenv("ALICO_KEYSTORE_PASSWORD")
+        keyAlias = System.getenv("ALICO_KEY_ALIAS") ?: "alico"
+        keyPassword = System.getenv("ALICO_KEY_PASSWORD")
     }
     // v12-v16 files may remain after uploading a ZIP over the repository.
     // The v11-based UI uses ImportedCatalog and WebPlayerActivity instead.

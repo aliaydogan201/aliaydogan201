@@ -1,0 +1,8 @@
+{
+  "preserved_catalogs": true,
+  "preserved_episode_data": true,
+  "legacy_converter_fixture_test": true,
+  "apk_build": false,
+  "device_test": false,
+  "signing_secrets_configured": false
+}

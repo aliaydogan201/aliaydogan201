@@ -16,6 +16,9 @@ import kotlinx.coroutines.sync.withLock
 
 internal object ArchiveSync {
     private val lock = Mutex()
+    suspend fun <T> storageOperation(block: () -> T): T = withContext(Dispatchers.IO) {
+        lock.withLock { block() }
+    }
     private val sources = listOf("https://filmmakinesi.to/", "https://www.fullhdfilmizlesene.now/", "https://www.hdfilmcehennemi.land/film/", "https://www.hdfilmcehennemi.land/dizi/", "https://www.hdfilmcehennemi.land/", "https://rfilmizle.com/", "https://www.ddizi.tel/", "https://ufilmizle.com/", "https://fullfilmizle.fit/")
     private fun prefs(c: Context) = c.getSharedPreferences("archive_sync", Context.MODE_PRIVATE)
     private fun norm(t: String) = Normalizer.normalize(t.lowercase(Locale.forLanguageTag("tr")).replace('ı','i'),Normalizer.Form.NFD).replace(Regex("[^a-z0-9]"),"")
