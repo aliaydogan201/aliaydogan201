@@ -6,6 +6,7 @@ import androidx.media3.common.MimeTypes
 import androidx.media3.common.Player
 import androidx.media3.common.C
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.HttpURLConnection
@@ -87,7 +88,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog + youngSheldonCatalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog + youngSheldonCatalog + hdSeriesCatalog + hdBatchCatalog + rFilmCatalog + ddiziCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -149,6 +150,27 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun App() {
+        var liveCatalog by remember { mutableStateOf(ArchiveSync.load(this@MainActivity,catalogMovies)) }
+        val syncScope = rememberCoroutineScope()
+        var syncing by remember { mutableStateOf(false) }
+        var syncMessage by remember { mutableStateOf("") }
+        var episodeRevision by remember { mutableIntStateOf(0) }
+        var showNotices by remember { mutableStateOf(false) }
+        suspend fun syncArchive(force: Boolean) {
+            if(syncing)return
+            syncing=true
+            try {
+                val before=ArchiveSync.notices(this@MainActivity)
+                syncMessage=ArchiveSync.update(this@MainActivity,catalogMovies,force)
+                if(ArchiveSync.notices(this@MainActivity)!=before)showNotices=true
+                liveCatalog=ArchiveSync.load(this@MainActivity,catalogMovies)
+                episodeRevision++
+            } catch(e:Exception) { syncMessage="Güncelleme tamamlanamadı; kayıtlı arşiv kullanılabilir." }
+            finally { syncing=false }
+        }
+        LaunchedEffect(Unit) { syncArchive(false) }
+        if(showNotices) AlertDialog(onDismissRequest={showNotices=false},title={Text("Arşiv bildirimleri")},text={Text(ArchiveSync.notices(this@MainActivity),modifier=Modifier.verticalScroll(rememberScrollState()))},confirmButton={TextButton(onClick={showNotices=false}){Text("Kapat")}})
+
         var category by remember { mutableStateOf("Tümü") }
         var tab by remember { mutableStateOf("Ana Sayfa") }
         var query by remember { mutableStateOf("") }
@@ -163,7 +185,7 @@ class MainActivity : ComponentActivity() {
         val ratings = remember { mutableStateMapOf<Int, Int>().apply {
             prefs.all.forEach { (key, value) -> if (key.startsWith("rating_") && value is Int) key.removePrefix("rating_").toIntOrNull()?.let { put(it, value) } }
         } }
-        val savedMovies = remember { mutableStateMapOf<Int, Movie>().apply { catalogMovies.forEach { put(it.id, it) } } }
+        val savedMovies = remember { mutableStateMapOf<Int, Movie>().apply { liveCatalog.forEach { put(it.id, it) } } }
 
         fun showMovies(list: List<Movie>) {
             movies = list
@@ -171,10 +193,19 @@ class MainActivity : ComponentActivity() {
             busy = false
             message = if (list.isEmpty()) "Film bulunamadı." else ""
         }
-        LaunchedEffect(Unit) { showMovies(catalogMovies) }
+        LaunchedEffect(liveCatalog) { showMovies(liveCatalog) }
+        LaunchedEffect(selected?.id) {
+            selected?.let { item ->
+                try {
+                    val result=ArchiveSync.refreshEpisodes(this@MainActivity,item)
+                    if(result.isNotBlank()) { syncMessage=result; android.widget.Toast.makeText(this@MainActivity,result,android.widget.Toast.LENGTH_LONG).show() }
+                    episodeRevision++
+                } catch(e:Exception) { syncMessage="Bölümler güncellenemedi; kayıtlı liste korunuyor." }
+            }
+        }
         LaunchedEffect(selected?.id) {
             val genre = selected?.genreIds?.firstOrNull()
-            recommended = catalogMovies.filter { it.id != selected?.id && genre != null && genre in it.genreIds }
+            recommended = liveCatalog.filter { it.id != selected?.id && genre != null && genre in it.genreIds }
         }
         BackHandler(enabled = playing != null || selected != null) {
             if (playing != null) playing = null else selected = null
@@ -214,7 +245,11 @@ class MainActivity : ComponentActivity() {
                 }
                 selected != null -> {
                     val m = selected!!
-                    var pickedSeason by remember(m.id) { mutableIntStateOf(1) }
+                    val offlineEpisodes = remember(m.id,episodeRevision) { if(m.id==980001) youngSheldonEpisodes else OfflineEpisodes.get(this@MainActivity,m.webUrl) }
+                    val availableSeasons = offlineEpisodes.map { it.season }.distinct().sorted()
+                    val continuousEpisodes = m.id in ddiziContinuousIds || (m.webUrl.contains("ddizi.tel") && availableSeasons==listOf(1))
+                    var pickedSeason by remember(m.id) { mutableIntStateOf(availableSeasons.firstOrNull() ?: 1) }
+                    LaunchedEffect(availableSeasons) { if(availableSeasons.isNotEmpty() && pickedSeason !in availableSeasons) pickedSeason=availableSeasons.first() }
                     val detail = remember(m.webUrl) { ContentDetails.get(this@MainActivity,m.webUrl) }
                     var advanced by remember(m.id) { mutableStateOf(false) }
                     val wideDetails = androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp >= 650
@@ -252,30 +287,30 @@ class MainActivity : ComponentActivity() {
                                     }
                                     if (detail.length()==0) Text("Ek yapım bilgisi kaynak dosyada bulunmuyor.",color=Color.LightGray,fontSize=13.sp)
                                 }
-                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && m.id != 980001) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
+                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && offlineEpisodes.isEmpty()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("movie_id", m.id).putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else if(m.category in listOf("Dizi","Yerli Diziler")) "▶ Bölümleri aç" else "▶ Şimdi izle") }
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
-                                if (m.id == 980001) {
-                                    Text("Sezonlar ve Bölümler", color=Color.White, fontSize=22.sp, fontWeight=FontWeight.Bold)
+                                if (offlineEpisodes.isNotEmpty()) {
+                                    Text(if(continuousEpisodes) "Bölümler" else "Sezonlar ve Bölümler", color=Color.White, fontSize=22.sp, fontWeight=FontWeight.Bold)
                                     Row(Modifier.horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-                                        (1..7).forEach { season ->
-                                            TvAction(modifier=if(season==1) Modifier.focusRequester(playFocus) else Modifier,
-                                                onClick={pickedSeason=season}) { Text(if(pickedSeason==season) "✓ $season. Sezon" else "$season. Sezon") }
+                                        availableSeasons.forEach { season ->
+                                            TvAction(modifier=if(season==availableSeasons.first()) Modifier.focusRequester(playFocus) else Modifier,
+                                                onClick={pickedSeason=season}) { Text(if(continuousEpisodes) "Tüm bölümler" else if(pickedSeason==season) "✓ $season. Sezon" else "$season. Sezon") }
                                         }
                                     }
-                                    youngSheldonEpisodes.filter { it.season==pickedSeason }.forEach { episode ->
+                                    offlineEpisodes.filter { it.season==pickedSeason }.forEach { episode ->
                                         TvAction(onClick={
                                             startActivity(android.content.Intent(this@MainActivity,WebPlayerActivity::class.java)
                                                 .putExtra("movie_id",m.id).putExtra("url",episode.url)
-                                                .putExtra("title","Young Sheldon · ${episode.season}. Sezon ${episode.episode}. Bölüm"))
-                                        }) { Text("▶ ${episode.season}. Sezon · ${episode.episode}. Bölüm") }
+                                                .putExtra("title",if(continuousEpisodes) "${m.title} · ${episode.episode}. Bölüm" else "${m.title} · ${episode.season}. Sezon ${episode.episode}. Bölüm"))
+                                        }) { Text(if(continuousEpisodes) "▶ ${episode.episode}. Bölüm" else "▶ ${episode.season}. Sezon · ${episode.episode}. Bölüm") }
                                     }
                                 }
-                                seriesExtraLinks[m.id].orEmpty().forEach { link ->
+                                (seriesExtraLinks[m.id].orEmpty() + rFilmSeriesLinks[m.id].orEmpty()).distinctBy { it.url }.forEach { link ->
                                     TvAction(onClick = {
                                         startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                             .putExtra("movie_id", m.id).putExtra("series", true).putExtra("url", link.url).putExtra("title", m.title + " · " + link.label))
@@ -338,7 +373,12 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         }
-                        Spacer(Modifier.height(25.dp))
+                        Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+                        TvAction(enabled=!syncing,onClick={syncScope.launch { syncArchive(true) }}) { Text(if(syncing) "Güncelleniyor…" else "Arşivi güncelle") }
+                        TvAction(onClick={showNotices=true}) { Text("Bildirimler") }
+                    }
+                    if(syncMessage.isNotBlank()) Text(syncMessage,color=Color.White)
+                    Spacer(Modifier.height(25.dp))
                         Text("Bunları da beğenebilirsin", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.height(12.dp))
                         MovieRow(recommended.filter { it.id != m.id }) { selected = it }
@@ -352,15 +392,20 @@ class MainActivity : ComponentActivity() {
                                 tab = label
                                 page = 0
                                 when (label) {
-                                    "Ana Sayfa", "Ara" -> showMovies(catalogMovies)
+                                    "Ana Sayfa", "Ara" -> showMovies(liveCatalog)
                                     "Öneriler" -> {
                                         val preferred = savedMovies.values.filter { (ratings[it.id] ?: 0) >= 7 }.flatMap { it.genreIds }.toSet()
-                                        showMovies(catalogMovies.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
+                                        showMovies(liveCatalog.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
                                     }
                                 }
                             }, colors = ButtonDefaults.buttonColors(containerColor = if (tab == label) accent else panel)) { Text(label) }
                         }
                     }
+                    Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+                        TvAction(enabled=!syncing,onClick={syncScope.launch { syncArchive(true) }}) { Text(if(syncing) "Güncelleniyor…" else "Arşivi güncelle") }
+                        TvAction(onClick={showNotices=true}) { Text("Bildirimler") }
+                    }
+                    if(syncMessage.isNotBlank()) Text(syncMessage,color=Color.White)
                     Spacer(Modifier.height(25.dp))
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         TextField(value = query, onValueChange = { query = it; page = 0 },

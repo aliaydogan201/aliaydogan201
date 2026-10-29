@@ -1,0 +1,17 @@
+{
+  "base_catalog_preserved": 2557,
+  "base_episodes_preserved": true,
+  "fixture_selector_counts": {
+    "filmmakinesi": 24,
+    "fullhd": 18,
+    "rfilm": 83,
+    "hdfilmcehennemi": 24,
+    "ddizi": 74
+  },
+  "apk_built": false,
+  "device_tested": false,
+  "unverified_sources": [
+    "ufilmizle.com",
+    "fullfilmizle.fit"
+  ]
+}

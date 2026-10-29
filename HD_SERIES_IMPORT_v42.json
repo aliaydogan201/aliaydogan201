@@ -1,0 +1,2253 @@
+{
+  "input_files": 16,
+  "unique_series": 24,
+  "repeated_rows": 360,
+  "episodes": 401,
+  "records": [
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/helluva-boss/",
+      "title": "Helluva Boss",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/helluva-boss-2019-izle.webp",
+      "year": "2019",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 0,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-0-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-10-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-11-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-2-sezon-12-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-3-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-3-sezon-2-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/helluva-boss-3-sezon-3-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990000
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/crystal-lake-2026-izle/",
+      "title": "Crystal Lake",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/crystal-lake-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/crystal-lake-1-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990001
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/visionquest-izle/",
+      "title": "VisionQuest",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/visionquest-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/visionquest-1-sezon-6-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990002
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/sterling-point-izle/",
+      "title": "Sterling Point",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/sterling-point-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sterling-point-1-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990003
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/small-prophets-2026-izle/",
+      "title": "Small Prophets",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/small-prophets-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/small-prophets-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/small-prophets-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/small-prophets-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/small-prophets-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/small-prophets-1-sezon-5-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990004
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/carrie-2026-izle/",
+      "title": "Carrie",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/carrie-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carrie-1-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990005
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/ballers/",
+      "title": "Ballers",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/ballers-2015-izle.webp",
+      "year": "2015",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-8-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-9-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-1-sezon-10-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-2-sezon-10-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-1-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-2-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-3-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-4-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-5-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-6-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-7-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-8-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-9-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-3-sezon-10-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-1-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-2-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-3-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-4-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-5-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-6-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-7-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-8-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-4-sezon-9-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-1-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-2-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-3-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-4-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-5-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-6-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-7-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ballers-5-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990006
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/prefiero-la-muerte/",
+      "title": "Prefiero La Muerte",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/prefiero-la-muerte-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/prefiero-la-muerte-1-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990007
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/east-of-eden-2026-izle/",
+      "title": "East of Eden",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/east-of-eden-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/east-of-eden-1-sezon-7-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990008
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/lanterns-2026-izle/",
+      "title": "Lanterns",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/lanterns-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/lanterns-1-sezon-7-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990009
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/carnival-row-2019-izle/",
+      "title": "Carnival Row",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/10/carnival-row-2019-izle.webp",
+      "year": "2019",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/carnival-row-2-sezon-10-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990010
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/13-reasons-why/",
+      "title": "13 Reasons Why",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/13-reasons-why-2017-izle.webp",
+      "year": "2017",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-8-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-9-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-10-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-11-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-12-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 13,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-1-sezon-13-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-10-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-11-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-12-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 13,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-2-sezon-13-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-1-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-2-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-3-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-4-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-5-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-6-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-7-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-8-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-9-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-10-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-11-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-12-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 13,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-3-sezon-13-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-1-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-2-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-3-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-4-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-5-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-6-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-7-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-8-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-9-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/13-reasons-why-4-sezon-10-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990011
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/marco-polo/",
+      "title": "Marco Polo",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/marco-polo-2014-izle.webp",
+      "year": "2014",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-8-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-9-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-1-sezon-10-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/marco-polo-2-sezon-10-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990012
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/sex-education/",
+      "title": "Sex Education",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/sex-education-2019-izle.webp",
+      "year": "2019",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-2-sezon-8-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-1-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-2-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-3-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-4-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-5-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-6-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-7-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-3-sezon-8-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-1-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-2-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-3-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-4-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-5-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-6-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-7-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/sex-education-4-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990013
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/the-terminal-list-izle/",
+      "title": "The Terminal List",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/the-terminal-list-2022-izle.webp",
+      "year": "2022",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-3-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-6-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-7-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-terminal-list-2-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990014
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/brothers-2026-izle/",
+      "title": "Brothers",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/brothers-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/brothers-1-sezon-7-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990015
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/a-love-other-than-yours/",
+      "title": "A Love Other Than Yours",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/a-love-other-than-yours-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/a-love-other-than-yours-1-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/a-love-other-than-yours-1-sezon-2-bolum-izle/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990016
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/neagley/",
+      "title": "Neagley",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/neagley-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/neagley-1-sezon-8-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990017
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/mousetrap/",
+      "title": "Mousetrap",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/09/mousetrap-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-8-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-9-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/mousetrap-1-sezon-10-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990018
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/the-marvelous-mrs-maisel/",
+      "title": "The Marvelous Mrs. Maisel",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/08/the-marvelous-mrs-maisel-2017-izle.webp",
+      "year": "2017",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-4-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-3-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-6-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-8-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-2-sezon-10-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-3-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-4-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-6-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-3-sezon-8-bolum-izle/"
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-1-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-2-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-3-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-4-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 4,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-6-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-4-sezon-8-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 5,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 5,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-3-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-4-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-5-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-6-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-7-bolum/"
+        },
+        {
+          "season": 5,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-8-bolum-izle/"
+        },
+        {
+          "season": 5,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/the-marvelous-mrs-maisel-5-sezon-9-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990019
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/ted-lasso-izle/",
+      "title": "Ted Lasso",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/08/ted-lasso-2020-izle.webp",
+      "year": "2020",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-5-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-8-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-9-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-1-sezon-10-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-3-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-9-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-10-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-11-bolum-izle/"
+        },
+        {
+          "season": 2,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-2-sezon-12-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-2-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-3-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-4-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-5-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-6-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-7-bolum-izle-1/"
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-8-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-9-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-10-bolum/"
+        },
+        {
+          "season": 3,
+          "episode": 11,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-11-bolum-izle/"
+        },
+        {
+          "season": 3,
+          "episode": 12,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-3-sezon-12-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-1-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-2-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-3-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-4-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-5-bolum-izle-1/"
+        },
+        {
+          "season": 4,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-6-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-7-bolum-izle/"
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-8-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-9-bolum/"
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "url": "https://www.hdfilmcehennemi.land/bolum/ted-lasso-4-sezon-10-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990020
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/one-hundred-years-of-solitude/",
+      "title": "One Hundred Years of Solitude",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/08/one-hundred-years-of-solitude-2024-izle.webp",
+      "year": "2024",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-6-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-7-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-1-sezon-8-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-1-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-2-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-3-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-4-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-5-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-6-bolum/"
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "url": "https://www.hdfilmcehennemi.land/bolum/one-hundred-years-of-solitude-2-sezon-7-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990021
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/furious/",
+      "title": "Furious",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/08/furious-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/furious-1-sezon-1-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/furious-1-sezon-2-bolum-izle/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/furious-1-sezon-3-bolum-izle/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990022
+    },
+    {
+      "url": "https://www.hdfilmcehennemi.land/dizi/wrath/",
+      "title": "Wrath",
+      "poster": "https://www.hdfilmcehennemi.land/thumb_/149x224-1/wp-content/uploads/2026/07/wrath-2026-izle.webp",
+      "year": "2026",
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-1-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 2,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-2-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 3,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-3-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-4-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 5,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-5-bolum/"
+        },
+        {
+          "season": 1,
+          "episode": 6,
+          "url": "https://www.hdfilmcehennemi.land/bolum/wrath-1-sezon-6-bolum/"
+        }
+      ],
+      "status": "parsed",
+      "id": 990023
+    }
+  ]
+}

@@ -1,7 +1,9 @@
-ALICOTV v41 — Young Sheldon
-Gönderilen HTML'deki 7 sezon ve 141 benzersiz bölüm bağlantısı eklendi. Bölüm sayıları: 22,22,21,18,22,22,14. Her sezonda 1'den son bölüme kadar numara dizisi tamdır.
-Uygulamadaki dizi detayında sezon düğmeleri ve numaralı bölüm seçimi vardır. Bölüme basınca ilgili sayfa sade web oynatıcıda açılır. Bölüm adı izleme geçmişine taşınır.
-Erişim kontrolü sonucu: {'200': 122, 'TimeoutError': 2, 'URLError': 17}. 122 sayfa HTTP 200 döndürdü; 19 bağlantının erişimi bu ortamda doğrulanamadı. HTTP 200 videonun oynadığı anlamına gelmez. Bölüm sayfalarının içindeki videoların tümü oynatılarak doğrulanmadı.
-Önceki kataloglar korunur; toplam 1821 katalog kaydı (141 bölüm tek Young Sheldon kartının altındadır).
-Kurulum: .github dahil bütün proje dosyalarını GitHub depo köküne aktarın, Actions üzerinden derleyin.
-Kontrol: HTML kaynak eşleştirmesi, numara sürekliliği, tekil kimlikler ve ZIP bütünlüğü kontrol edildi. APK derlemesi ve Android TV testi yapılmadı.
+ALICOTV v46 — Otomatik arşiv kontrolü
+Uygulama açılışında son denemeden 12 saat geçtiyse güncel kaynak listeleri kontrol edilir. Arşivi güncelle düğmesiyle elle tekrar çalıştırılır. Uygulama kapalıyken zamanlanmış görev çalıştırılmaz.
+Kaynaklar: FilmMakinesi, FullHDFilmİzlesene, HDFilmcehennemi, RFilmizle, DDizi, UFilmizle, FullFilmizle. Güncel liste sayfaları okunur; uzun süre çevrimdışı kalınca eski sayfalara düşen tüm kayıtları yakalama garantisi yoktur. Ulaşılamayan veya yapısı değişen kaynaklar durum mesajında gösterilir.
+Yeni film/dizi kayıtları cihazda kalıcı ve atomik JSON dosyalarında saklanır. URL ve normalize ad/kategori/yıl karşılaştırılır; eski kimlikler korunur. Özgün/Türkçe adı tamamen farklı kayıtlar her zaman eşleştirilemeyebilir.
+DDizi/HDFilmcehennemi güncel sayfalarında görülen numaralı bölümler mevcut dizilere bağlanır. Dizi açıldığında ayrıca bölüm kontrolü yapılır; en fazla saatte bir, 100 liste sayfasına kadar kontrol edilir. Kaynak desteği sayfa yapısına bağlıdır. RFilmizle'de farklı URL'deki yeni sezonların otomatik keşfi garanti edilmez.
+Bildirimler uygulama içindedir: yeni içerik geldiğinde bildirim penceresi açılır; Bildirimler düğmesiyle eklenen adlar görülür. Android sistem bildirim çubuğu/push bildirimi yoktur. Yeni bölüm sonucu ayrıca ekranda gösterilir ve bildirim geçmişine yazılır.
+Başlangıçtaki 2557 kayıt ve tüm önceki bölüm verileri aynen korunur. Uygulama verileri silinirse cihazda sonradan alınan kayıtlar da silinir.
+Doğrulama: 5 kaynaktan gerçek HTML üzerinde Jsoup liste seçicileri çalıştırıldı (FilmMakinesi 24, FullHD 18, RFilm 83, HDFilmcehennemi 24, DDizi 74 bağlantı). UFilmizle/FullFilmizle ortak okuyucusu ve cihazdaki uçtan uca güncelleme doğrulanmadı. APK derlemesi ve TV testi yapılmadı.
+Kurulum: .github dahil tüm dosyaları depo köküne aktararak Actions ile APK oluşturun. Yeni jsoup bağımlılığı Gradle tarafından indirilir.

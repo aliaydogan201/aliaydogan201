@@ -1,0 +1,9 @@
+{
+  "catalog_records": 365,
+  "new_series": 6,
+  "previous_catalogs_and_player_preserved": true,
+  "unique_ids": true,
+  "xml": "passed",
+  "build": "not run: Android SDK/Gradle unavailable",
+  "device_playback": "not tested"
+}
