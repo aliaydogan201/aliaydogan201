@@ -1,0 +1,3 @@
+v49: Duraklatma kontrolleri açılınca TV imleci otomatik etkinleşir. Devam et ile kapanır. İmleç açıklama yazısı kaldırıldı. İmleç üst kontrollere de ulaşır.
+20 HTML dosyasından yeni içerikler film/dizi olarak eklendi; afiş, yıl ve mevcut tür/oyuncu bilgileri alındı. Bölüm sayfaları bu HTML paketinde yok; yeni dizilerin tüm sezon/bölümleri çevrimiçi doğrulanmadı.
+APK ve cihaz testi yapılmadı.

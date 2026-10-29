@@ -50,12 +50,14 @@ class WebPlayerActivity : ComponentActivity() {
             resumeButton.visibility = View.VISIBLE
             resumeButton.requestFocus()
             toolbar.smoothScrollTo(0, 0)
+            setPointer(true)
             status.text = if (confirmed) "Duraklatıldı · Devam et ile izlemeye dönün."
                 else "Kontroller açık · Kaynak duraklatmayı doğrulamadı; gerekirse TV imlecini kullanın."
         }
     }
     private fun resumePlayback() {
         if (transportPending) return
+        setPointer(false)
         transportPending = true
         controlPlayback("play") { confirmed ->
             transportPending = false
@@ -71,7 +73,7 @@ class WebPlayerActivity : ComponentActivity() {
     private var pointerX = 0f
     private var pointerY = 0f
     private lateinit var pointerOverlay: View
-    private fun pointerSurface(): View = full ?: web
+    private fun pointerSurface(): View = full ?: root
     private fun pointerBounds(): android.graphics.RectF {
         val surface = pointerSurface()
         val surfaceLocation = IntArray(2); surface.getLocationInWindow(surfaceLocation)
@@ -88,7 +90,6 @@ class WebPlayerActivity : ComponentActivity() {
             pointerX = bounds.centerX(); pointerY = bounds.centerY()
             pointerOverlay.bringToFront(); pointerOverlay.invalidate()
             web.requestFocus()
-            status.text = "TV imleci · Yönlerle hareket, OK ile tıkla, Geri ile kapat."
         }
     }
     private fun pointerEvent(action: Int) {
@@ -503,7 +504,6 @@ class WebPlayerActivity : ComponentActivity() {
                 canvas.drawLine(pointerX, pointerY-17, pointerX, pointerY+17, paint)
                 paint.style = android.graphics.Paint.Style.FILL
                 paint.textSize = 18 * resources.displayMetrics.scaledDensity
-                canvas.drawText("Yönler: imleç  ·  OK: tıkla  ·  Geri: imleci kapat", 16f, height-20f, paint)
             }
         }.apply { visibility = View.GONE; isFocusable = false; isClickable = false }
         root.addView(pointerOverlay, FrameLayout.LayoutParams(-1, -1))
