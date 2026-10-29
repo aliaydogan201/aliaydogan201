@@ -1,0 +1,7 @@
+v50 – Sonraki bölüm
+Dizi web oynatıcısında üst çubuğa Sonraki bölüm düğmesi eklendi.
+Kayıtlı bölümler sezon ve bölüm numarasıyla sıralanır; sezon sonundan sonraki kayıtlı sezona geçilir.
+Tam ekranda OK ile üst kontrolleri açıp Sonraki bölüm seçilir.
+Mevcut bölüm eşleştirilemezse veya sonraki kayıt yoksa düğme devre dışıdır. Film ekranında gösterilmez.
+Bu sürüm yeni bölüm bağlantısı toplamaz; uygulamanın kayıtlı bölüm listesini kullanır.
+Arşiv/favori/geçmiş verileri korunur. APK ve gerçek TV testi yapılmadı.

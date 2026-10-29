@@ -69,6 +69,83 @@ class WebPlayerActivity : ComponentActivity() {
                 else "Oynatma isteği gönderildi · Başlamazsa oynatıcıdaki oynat düğmesini kullanın."
         }
     }
+    private lateinit var nextEpisodeButton: Button
+    private var episodeList: List<SeriesEpisode> = emptyList()
+    private var seriesTitle = ""
+    private var episodePageUrl = ""
+    private var episodeLoading = false
+    private fun updateNextEpisode() {
+        if (!::nextEpisodeButton.isInitialized) return
+        val next = EpisodeNavigation.next(episodeList, episodePageUrl)
+        nextEpisodeButton.isEnabled = next != null && !episodeLoading
+        nextEpisodeButton.text = if (episodeList.none { it.url.trimEnd('/') == episodePageUrl.trimEnd('/') }) "Bölüm sırası bulunamadı"
+            else if (next == null) "Sonraki bölüm yok"
+            else "Sonraki bölüm ▶ " + next.season + ".S " + next.episode + ".B"
+    }
+    private fun openNextEpisode() {
+        if (episodeLoading) return
+        val next = EpisodeNavigation.next(episodeList, episodePageUrl) ?: return
+        openEpisode(next)
+    }
+    private fun openEpisode(next: SeriesEpisode) {
+        if (episodeLoading) return
+        episodeLoading = true
+        updateNextEpisode()
+        setPointer(false)
+        if (full != null) hideFull()
+        resumeFullscreen = false
+        resumeButton.visibility = View.GONE
+        intent.removeExtra("resume_ms")
+        intent.putExtra("series", false)
+        val title = seriesTitle + " · " + next.season + ". Sezon " + next.episode + ". Bölüm"
+        intent.putExtra("title", title)
+        intent.putExtra("url", next.url)
+        pageUrl = next.url
+        episodePageUrl = next.url
+        playerOnly = true
+        stageButton.text = "Siteyi göster"
+        status.text = title + " yükleniyor…"
+        WatchHistory.save(this, WatchEntry(intent.getIntExtra("movie_id", 0), title, next.url, true))
+        web.loadUrl(next.url)
+    }
+    private fun showEpisodePanel() {
+        setPointer(false)
+        if (full != null) hideFull()
+        if (episodeList.isEmpty()) {
+            android.app.AlertDialog.Builder(this).setTitle("Bölümler")
+                .setMessage("Bu dizi için kayıtlı bölüm listesi bulunmuyor.")
+                .setPositiveButton("Kapat", null).show()
+            return
+        }
+        val seasons = episodeList.map { it.season }.distinct().sorted()
+        android.app.AlertDialog.Builder(this).setTitle(seriesTitle + " · Sezon seç")
+            .setItems(seasons.map { "$it. Sezon" }.toTypedArray()) { _, index ->
+                showSeasonEpisodes(seasons[index])
+            }.setNegativeButton("Kapat", null).show()
+    }
+    private fun showSeasonEpisodes(season: Int) {
+        val rows = episodeList.filter { it.season == season }.sortedBy { it.episode }
+        val labels = rows.map {
+            SeriesTracking.label(this, intent.getIntExtra("movie_id",0), it.url) + it.episode + ". Bölüm"
+        }.toTypedArray()
+        val current = rows.indexOfFirst { it.url == episodePageUrl }
+        val dialog = android.app.AlertDialog.Builder(this).setTitle("$season. Sezon · Bölümler")
+            .setSingleChoiceItems(labels, current) { d, index ->
+                d.dismiss()
+                val episode = rows[index]
+                android.app.AlertDialog.Builder(this).setTitle("$season. Sezon · ${episode.episode}. Bölüm")
+                    .setItems(arrayOf("▶ Bölümü aç", if (SeriesTracking.watched(this,episode.url)) "İzlendi işaretini kaldır" else "✓ İzlendi olarak işaretle")) { _, action ->
+                        if (action == 0) openEpisode(episode)
+                        else {
+                            SeriesTracking.mark(this,episode.url,!SeriesTracking.watched(this,episode.url))
+                            showSeasonEpisodes(season)
+                        }
+                    }.setNegativeButton("Bölümlere dön") { _, _ -> showSeasonEpisodes(season) }.show()
+            }.setNegativeButton("Sezonlar") { _, _ -> showEpisodePanel() }
+            .setPositiveButton("Kapat", null).create()
+        dialog.show()
+        if (current >= 0) dialog.listView.setSelection(current)
+    }
     private var pointerEnabled = false
     private var pointerX = 0f
     private var pointerY = 0f
@@ -119,6 +196,11 @@ class WebPlayerActivity : ComponentActivity() {
                     val decoded=org.json.JSONTokener(raw).nextValue() as? String
                     if (decoded != null) {
                         val o=org.json.JSONObject(decoded)
+                        val position = o.optLong("position",-1)
+                        val duration = o.optLong("duration",0)
+                        if (duration >= 300000 && position >= duration * 0.95 &&
+                            episodeList.any { it.url.trimEnd('/') == o.optString("url").trimEnd('/') })
+                            SeriesTracking.mark(this@WebPlayerActivity,o.getString("url"),true)
                         WatchHistory.save(this@WebPlayerActivity,WatchEntry(intent.getIntExtra("movie_id",0),
                             intent.getStringExtra("title").orEmpty(),o.getString("url"),true,
                             o.getLong("position"),o.getLong("duration"),episode=o.optString("title")))
@@ -292,7 +374,7 @@ class WebPlayerActivity : ComponentActivity() {
         playerOnly = savedInstanceState?.getBoolean("alico_player_only", true) ?: true
         val webPrefs = getSharedPreferences("cinebox_web", MODE_PRIVATE)
         adFilterEnabled = webPrefs.getBoolean("ad_filter", true)
-        pageUrl = intent.getStringExtra("url").orEmpty()
+        pageUrl = savedInstanceState?.getString("alico_episode_url") ?: intent.getStringExtra("url").orEmpty()
         if (Uri.parse(pageUrl).scheme != "https" || Uri.parse(pageUrl).host.isNullOrBlank()) {
             finish(); return
         }
@@ -326,6 +408,28 @@ class WebPlayerActivity : ComponentActivity() {
             setOnClickListener { resumePlayback() }
         }
         tools.addView(resumeButton)
+        val seriesMovie = ArchiveSync.load(this, catalogMovies).firstOrNull {
+            it.id == intent.getIntExtra("movie_id", 0) && it.category in listOf("Dizi", "Yerli Diziler")
+        }
+        seriesTitle = seriesMovie?.title.orEmpty()
+        episodePageUrl = pageUrl
+        episodeList = if (seriesMovie != null) SeriesTracking.episodes(this,seriesMovie) else emptyList()
+        nextEpisodeButton = Button(this).apply {
+            styleButton(this)
+            visibility = if (seriesMovie == null) View.GONE else View.VISIBLE
+            setOnClickListener { openNextEpisode() }
+        }
+        tools.addView(nextEpisodeButton)
+        if (seriesMovie != null) {
+            button("☷ Bölümler") { showEpisodePanel() }
+            button("◀ Önceki bölüm") {
+                val ordered = episodeList.sortedWith(compareBy({it.season},{it.episode}))
+                val index = ordered.indexOfFirst { it.url == episodePageUrl }
+                if (index > 0) openEpisode(ordered[index-1])
+                else android.widget.Toast.makeText(this, "Önceki kayıtlı bölüm bulunamadı.", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
+        updateNextEpisode()
         button("← Kapat") { finish() }
         stageButton = Button(this).apply {
             styleButton(this)
@@ -427,6 +531,11 @@ class WebPlayerActivity : ComponentActivity() {
                 return null
             }
             override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
+                episodePageUrl = url
+                if (episodeList.any { it.url.trimEnd('/') == url.trimEnd('/') })
+                    SeriesTracking.opened(this@WebPlayerActivity,intent.getIntExtra("movie_id",0),url)
+                episodeLoading = true
+                updateNextEpisode()
                 resumeFullscreen = false
                 resumeButton.visibility = View.GONE
                 nativeTapPending = true
@@ -434,6 +543,9 @@ class WebPlayerActivity : ComponentActivity() {
                 if (!playerOnly) status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
             }
             override fun onPageFinished(view: WebView, url: String) {
+                episodePageUrl = url
+                episodeLoading = false
+                updateNextEpisode()
                 if (url == pageUrl && intent.getLongExtra("resume_ms",0) > 0) {
                     web.evaluateJavascript("window.__alicoResumeMs = " + intent.getLongExtra("resume_ms",0) + ";",null)
                     intent.removeExtra("resume_ms")
@@ -604,6 +716,7 @@ class WebPlayerActivity : ComponentActivity() {
         if (::fullscreenButton.isInitialized) fullscreenButton.requestFocus()
     }
     override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("alico_episode_url", episodePageUrl.ifBlank { pageUrl })
         outState.putBoolean("alico_player_only", playerOnly)
         if (::web.isInitialized) web.saveState(outState)
         super.onSaveInstanceState(outState)

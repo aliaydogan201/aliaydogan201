@@ -1,0 +1,8 @@
+{
+  "catalog_preserved": true,
+  "episode_asset_preserved": true,
+  "history_storage_preserved": true,
+  "apk_build": false,
+  "device_test": false,
+  "checks": "Source review and package integrity only"
+}

@@ -1,0 +1,9 @@
+v51
+Oynatıcı üst çubuğunda Bölümler: sezon ve bölüm seçimi, önceki bölüme geçiş, izlendi işaretini ekleme/kaldırma.
+Kayıtlı bölüm listesi gerekir; bu sürüm yeni kaynak okuyucusu eklemez.
+Erişilebilir videolarda en az 5 dakikalık video %95'e gelirse izlendi işaretlenir. Süre okunamayan oynatıcılarda panelden elle işaretlenir.
+Son açılan bölüm Kaldığın bölüm olarak belirtilir; süre garantisi değildir.
+Dizi detayından takip açılır/kapatılır; Takip Ettiklerim sekmesinde görüntülenir.
+Uygulama açılışı ve Arşivi güncelle sırasında takip edilen diziler mevcut okuyucuyla kontrol edilir. Okuyucunun 1 saatlik bölüm kontrol sınırı geçerlidir.
+Yeni bölüm isimleri mevcut uygulama içi Arşiv bildirimlerine yazılır; uygulama kapalıyken kontrol veya sistem bildirimi yoktur.
+Mevcut arşiv/favori/geçmiş korunur. APK ve gerçek TV testi yapılmadı.

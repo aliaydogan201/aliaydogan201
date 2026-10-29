@@ -77,7 +77,7 @@ data class Movie(
 )
 
 // Full-length sources checked with ranged HTTP requests; no shared demo fallback.
-private val catalogMovies = listOf(
+internal val catalogMovies = listOf(
     Movie(id = 7502, title = "Ayrılsak da Beraberiz (1999)", overview = "Janset ve Hakan Yılmaz’lı eski seri. Bağlı arşiv sayfasında 40 bölüm listeleniyor; tüm seri veya yalnız 1999 yılında yayımlanan bölümler olarak doğrulanmadı. 2015 uyarlaması değildir.", poster = "", backdrop = "", year = "1999", score = 0.0, genreIds = listOf(35), provider = "Diziizle — üçüncü taraf arşiv", webUrl = "https://www.diziizle.you/ayrilsak-da-beraberiz-eski-bolumler/", category = "Yerli Diziler"),
     Movie(id = 7501, title = "Yaprak Dökümü", overview = "Kanal D’nin resmî bölüm arşivi. Tüm bölümler sayfasını veya aşağıdaki sezonlardan birini açıp izlemek istediğiniz bölümü seçin.", poster = "", backdrop = "", year = "2006–2010", score = 0.0, genreIds = listOf(18), provider = "Kanal D", webUrl = "https://www.kanald.com.tr/yaprakdokumu/bolumler", category = "Yerli Diziler"),
     Movie(id = 7401, title = "Guguk Kuşu", overview = "Verdiğiniz sitedeki oynatıcıyı uygulama içinde açar. Doğrudan video kaynağı doğrulanmadı; site erişimi TV üzerinde denenmelidir.", poster = "", backdrop = "", year = "1975", score = 0.0, genreIds = emptyList(), provider = "Kullanıcının seçtiği site", webUrl = "https://www.fullhdfilmizlesene.now/film/guguk-kusu/", category = "Film"),
@@ -151,6 +151,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun App() {
         var liveCatalog by remember { mutableStateOf(ArchiveSync.load(this@MainActivity,catalogMovies)) }
+        val followed = remember { mutableStateListOf<Int>().apply { addAll(SeriesTracking.following(this@MainActivity)) } }
         val syncScope = rememberCoroutineScope()
         var syncing by remember { mutableStateOf(false) }
         var syncMessage by remember { mutableStateOf("") }
@@ -162,6 +163,9 @@ class MainActivity : ComponentActivity() {
             try {
                 val before=ArchiveSync.notices(this@MainActivity)
                 syncMessage=ArchiveSync.update(this@MainActivity,catalogMovies,force)
+                for (item in liveCatalog.filter { it.id in followed }) {
+                    ArchiveSync.refreshEpisodes(this@MainActivity,item)
+                }
                 if(ArchiveSync.notices(this@MainActivity)!=before)showNotices=true
                 liveCatalog=ArchiveSync.load(this@MainActivity,catalogMovies)
                 episodeRevision++
@@ -245,7 +249,7 @@ class MainActivity : ComponentActivity() {
                 }
                 selected != null -> {
                     val m = selected!!
-                    val offlineEpisodes = remember(m.id,episodeRevision) { if(m.id==980001) youngSheldonEpisodes else OfflineEpisodes.get(this@MainActivity,m.webUrl) }
+                    val offlineEpisodes = remember(m.id,episodeRevision,historyRevision) { SeriesTracking.episodes(this@MainActivity,m) }
                     val availableSeasons = offlineEpisodes.map { it.season }.distinct().sorted()
                     val continuousEpisodes = m.id in ddiziContinuousIds || (m.webUrl.contains("ddizi.tel") && availableSeasons==listOf(1))
                     var pickedSeason by remember(m.id) { mutableIntStateOf(availableSeasons.firstOrNull() ?: 1) }
@@ -294,6 +298,13 @@ class MainActivity : ComponentActivity() {
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                if (m.category in listOf("Dizi", "Yerli Diziler")) {
+                                    TvAction(onClick = {
+                                        val enable = m.id !in followed
+                                        SeriesTracking.follow(this@MainActivity,m.id,enable)
+                                        if (enable) followed.add(m.id) else followed.remove(m.id)
+                                    }) { Text(if (m.id in followed) "✓ Takip ediliyor · Takibi bırak" else "+ Diziyi takip et") }
+                                }
                                 if (offlineEpisodes.isNotEmpty()) {
                                     Text(if(continuousEpisodes) "Bölümler" else "Sezonlar ve Bölümler", color=Color.White, fontSize=22.sp, fontWeight=FontWeight.Bold)
                                     Row(Modifier.horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
@@ -307,7 +318,7 @@ class MainActivity : ComponentActivity() {
                                             startActivity(android.content.Intent(this@MainActivity,WebPlayerActivity::class.java)
                                                 .putExtra("movie_id",m.id).putExtra("url",episode.url)
                                                 .putExtra("title",if(continuousEpisodes) "${m.title} · ${episode.episode}. Bölüm" else "${m.title} · ${episode.season}. Sezon ${episode.episode}. Bölüm"))
-                                        }) { Text(if(continuousEpisodes) "▶ ${episode.episode}. Bölüm" else "▶ ${episode.season}. Sezon · ${episode.episode}. Bölüm") }
+                                        }) { Text(SeriesTracking.label(this@MainActivity,m.id,episode.url) + if(continuousEpisodes) "▶ ${episode.episode}. Bölüm" else "▶ ${episode.season}. Sezon · ${episode.episode}. Bölüm") }
                                     }
                                 }
                                 (seriesExtraLinks[m.id].orEmpty() + rFilmSeriesLinks[m.id].orEmpty()).distinctBy { it.url }.forEach { link ->
@@ -387,9 +398,10 @@ class MainActivity : ComponentActivity() {
                 else -> Column(Modifier.fillMaxSize().background(bg).verticalScroll(rememberScrollState()).padding(24.dp)) {
                     Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         androidx.compose.foundation.Image(painter = androidx.compose.ui.res.painterResource(R.drawable.alico_wordmark), contentDescription = "ALICOTV", modifier = Modifier.width(160.dp).height(52.dp))
-                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam").forEach { label ->
+                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim").forEach { label ->
                             TvAction(onClick = {
                                 tab = label
+                                if (label == "Takip Ettiklerim") { category = "Tümü"; query = "" }
                                 page = 0
                                 when (label) {
                                     "Ana Sayfa", "Ara" -> showMovies(liveCatalog)
@@ -424,7 +436,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Spacer(Modifier.height(12.dp))
-                    val baseMovies = if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
+                    val baseMovies = if (tab == "Takip Ettiklerim") liveCatalog.filter { it.id in followed } else if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
                     val shown = baseMovies.filter {
                         (category == "Tümü" || (category == "Filmler" && it.category == "Film") ||
                          (category == "Diziler" && it.category in listOf("Dizi", "Yerli Diziler")) || it.category == category) &&
