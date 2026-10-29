@@ -1,7 +1,7 @@
-ALICOTV v40 — Film detay tasarımı
-Detay ekranı koyu sinema görünümü ve turuncu vurgularla yenilendi. Büyük başlık, kategori/yıl/puan/süre etiketleri, hakkında alanı ve yapım bilgisi kartı eklendi. Afiş olmasa veya yüklenemese bile içerik adı ve kategori görünen yedek kart vardır. Dar telefon ekranlarında afiş sütunu gizlenir, bilgiler tam genişlikte görünür.
-Gönderilen HTML dosyalarından 823 URL için tür/süre/oyuncu/yönetmen/ülke/yaş sınıflandırması bilgileri çıkarıldı; bunların 823 tanesi mevcut katalog URL'leriyle eşleşiyor. Boş alanlar uydurulmaz, konu özeti olmayanlarda eksik olduğu belirtilir. Diğer kaynakların başlık, mevcut açıklama ve kaynak bilgileri gösterilir.
-Oynat düğmesi Şimdi izle/Bölümleri aç biçiminde belirginleştirildi. Favorilere ekle kolay erişimde kalır. Özel bağlantı, altyazı ve puanlama açılır gelişmiş seçeneklere taşındı.
-1820 katalog kaydı, TV imleci, izleme geçmişi ve oynatıcı kodları korunur.
-Projenin tüm dosyalarını .github dahil GitHub depo köküne aktarın, Actions ile derleyin.
-Kontrol: Metadata JSON, katalog/oynatıcı/geçmiş dosyası karşılaştırması, XML ve ZIP bütünlüğü kontrol edildi. APK derlemesi ve cihazda görsel/odak testi yapılamadı.
+ALICOTV v41 — Young Sheldon
+Gönderilen HTML'deki 7 sezon ve 141 benzersiz bölüm bağlantısı eklendi. Bölüm sayıları: 22,22,21,18,22,22,14. Her sezonda 1'den son bölüme kadar numara dizisi tamdır.
+Uygulamadaki dizi detayında sezon düğmeleri ve numaralı bölüm seçimi vardır. Bölüme basınca ilgili sayfa sade web oynatıcıda açılır. Bölüm adı izleme geçmişine taşınır.
+Erişim kontrolü sonucu: {'200': 122, 'TimeoutError': 2, 'URLError': 17}. 122 sayfa HTTP 200 döndürdü; 19 bağlantının erişimi bu ortamda doğrulanamadı. HTTP 200 videonun oynadığı anlamına gelmez. Bölüm sayfalarının içindeki videoların tümü oynatılarak doğrulanmadı.
+Önceki kataloglar korunur; toplam 1821 katalog kaydı (141 bölüm tek Young Sheldon kartının altındadır).
+Kurulum: .github dahil bütün proje dosyalarını GitHub depo köküne aktarın, Actions üzerinden derleyin.
+Kontrol: HTML kaynak eşleştirmesi, numara sürekliliği, tekil kimlikler ve ZIP bütünlüğü kontrol edildi. APK derlemesi ve Android TV testi yapılmadı.

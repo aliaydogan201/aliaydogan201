@@ -87,7 +87,7 @@ private val catalogMovies = listOf(
     Movie(7201, "Arizona Haydutları", "Robbers’ Roost. Bir çiftlikte karşı karşıya gelen haydut grupları üzerine bir western. Yaklaşık 80 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/arizona-haydutlari-1955.jpg", "", "1955", 0.0, listOf(37), "https://archive.org/download/arizona-haydutlari-1955/Arizona%20Haydutlar%C4%B1%20%281955%29.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7202, "30 Winchester per El Diablo", "Meksika’ya taşınacak altının peşindeki haydutlar arasında geçen western. Yaklaşık 85 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/30-winchester-per-el-diablo.jpg", "", "1965", 0.0, listOf(37), "https://archive.org/download/30-winchester-per-el-diablo/30%20Winchester%20per%20El%20Diablo.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive"),
     Movie(7203, "Yalnız Kovboy", "Ride Lonesome. Bir ödül avcısının tutsağıyla çıktığı tehlikeli yolculuk. Yaklaşık 73 dakika. Kaynak kaydı: Türkçe dublaj. Ses dili kaynaktaki etikete dayanır.", "file:///android_asset/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv.jpg", "", "1959", 0.0, listOf(37), "https://archive.org/download/yalniz-kovboy-ride-lonesome-1959-turkce-dublaj-tek-parca-full-film-izle-otukenim.tv/Yaln%C4%B1z%20Kovboy%20%E2%80%93%20Ride%20Lonesome%201959%20%E2%80%93%20T%C3%BCrk%C3%A7e%20Dublaj%20Tek%20Par%C3%A7a%20Full%20Film%20izle%20-%20Otukenim.tv.mp4", "Lisans bilgisi belirtilmemiş", "Internet Archive")
-) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog
+) + importedCatalog + ultraCatalog + fullFilmCatalog + galatasaray2025Catalog + fullHdCatalog + yerliDiziCatalog + extraFullHdCatalog + addedSeriesCatalog + belgeselCatalog + izle7Catalog + searchImportCatalog + youtubeImportCatalog + filmPagesCatalog + youngSheldonCatalog
 
 // Wikimedia Commons API: openly licensed media metadata and direct downloadable video URLs.
 // This code does not extract third-party player URLs or circumvent access controls.
@@ -214,6 +214,7 @@ class MainActivity : ComponentActivity() {
                 }
                 selected != null -> {
                     val m = selected!!
+                    var pickedSeason by remember(m.id) { mutableIntStateOf(1) }
                     val detail = remember(m.webUrl) { ContentDetails.get(this@MainActivity,m.webUrl) }
                     var advanced by remember(m.id) { mutableStateOf(false) }
                     val wideDetails = androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp >= 650
@@ -251,13 +252,29 @@ class MainActivity : ComponentActivity() {
                                     }
                                     if (detail.length()==0) Text("Ek yapım bilgisi kaynak dosyada bulunmuyor.",color=Color.LightGray,fontSize=13.sp)
                                 }
-                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
+                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && m.id != 980001) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("movie_id", m.id).putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
                                 }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else if(m.category in listOf("Dizi","Yerli Diziler")) "▶ Bölümleri aç" else "▶ Şimdi izle") }
                                 if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
                                 }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                if (m.id == 980001) {
+                                    Text("Sezonlar ve Bölümler", color=Color.White, fontSize=22.sp, fontWeight=FontWeight.Bold)
+                                    Row(Modifier.horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                                        (1..7).forEach { season ->
+                                            TvAction(modifier=if(season==1) Modifier.focusRequester(playFocus) else Modifier,
+                                                onClick={pickedSeason=season}) { Text(if(pickedSeason==season) "✓ $season. Sezon" else "$season. Sezon") }
+                                        }
+                                    }
+                                    youngSheldonEpisodes.filter { it.season==pickedSeason }.forEach { episode ->
+                                        TvAction(onClick={
+                                            startActivity(android.content.Intent(this@MainActivity,WebPlayerActivity::class.java)
+                                                .putExtra("movie_id",m.id).putExtra("url",episode.url)
+                                                .putExtra("title","Young Sheldon · ${episode.season}. Sezon ${episode.episode}. Bölüm"))
+                                        }) { Text("▶ ${episode.season}. Sezon · ${episode.episode}. Bölüm") }
+                                    }
+                                }
                                 seriesExtraLinks[m.id].orEmpty().forEach { link ->
                                     TvAction(onClick = {
                                         startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
