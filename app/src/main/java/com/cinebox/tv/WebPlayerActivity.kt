@@ -21,6 +21,52 @@ class WebPlayerActivity : ComponentActivity() {
     private lateinit var status: TextView
     private var full: FrameLayout? = null
     private var fullCallback: WebChromeClient.CustomViewCallback? = null
+    private lateinit var resumeButton: Button
+    private var resumeFullscreen = false
+    private var okCaptured = false
+    private var transportPending = false
+    private val transportScript by lazy { assets.open("playback_control.js").bufferedReader().use { it.readText() } }
+    private fun controlPlayback(action: String, done: (Boolean) -> Unit) {
+        val surface = full?.getChildAt(0) ?: web
+        web.evaluateJavascript("(function(){ var action = '" + action + "'; " + transportScript + " })();") { result ->
+            if (isFinishing || isDestroyed) return@evaluateJavascript
+            val confirmed = result == "\"ok\""
+            if (!confirmed) {
+                // Explicit media keys, never a blind click or a play/pause toggle.
+                val key = if (action == "pause") android.view.KeyEvent.KEYCODE_MEDIA_PAUSE else android.view.KeyEvent.KEYCODE_MEDIA_PLAY
+                surface.dispatchKeyEvent(android.view.KeyEvent(android.view.KeyEvent.ACTION_DOWN, key))
+                surface.dispatchKeyEvent(android.view.KeyEvent(android.view.KeyEvent.ACTION_UP, key))
+            }
+            done(confirmed)
+        }
+    }
+    private fun pauseAndShowControls() {
+        if (transportPending) return
+        transportPending = true
+        resumeFullscreen = full != null
+        controlPlayback("pause") { confirmed ->
+            transportPending = false
+            if (full != null) hideFull()
+            resumeButton.visibility = View.VISIBLE
+            resumeButton.requestFocus()
+            toolbar.smoothScrollTo(0, 0)
+            status.text = if (confirmed) "Duraklatıldı · Devam et ile izlemeye dönün."
+                else "Kontroller açık · Kaynak duraklatmayı doğrulamadı; gerekirse TV imlecini kullanın."
+        }
+    }
+    private fun resumePlayback() {
+        if (transportPending) return
+        transportPending = true
+        controlPlayback("play") { confirmed ->
+            transportPending = false
+            resumeButton.visibility = View.GONE
+            web.requestFocus()
+            if (resumeFullscreen) web.evaluateJavascript(assets.open("video_fullscreen.js").bufferedReader().use { it.readText() }, null)
+            resumeFullscreen = false
+            status.text = if (confirmed) "Oynatma isteği gönderildi · OK: duraklat ve kontrolleri aç."
+                else "Oynatma isteği gönderildi · Başlamazsa oynatıcıdaki oynat düğmesini kullanın."
+        }
+    }
     private var pointerEnabled = false
     private var pointerX = 0f
     private var pointerY = 0f
@@ -274,6 +320,11 @@ class WebPlayerActivity : ComponentActivity() {
         fun button(label: String, action: () -> Unit) {
             tools.addView(Button(this).apply { text = label; styleButton(this); setOnClickListener { action() } })
         }
+        resumeButton = Button(this).apply {
+            text = "▶ Devam et"; styleButton(this); visibility = View.GONE
+            setOnClickListener { resumePlayback() }
+        }
+        tools.addView(resumeButton)
         button("← Kapat") { finish() }
         stageButton = Button(this).apply {
             styleButton(this)
@@ -375,6 +426,8 @@ class WebPlayerActivity : ComponentActivity() {
                 return null
             }
             override fun onPageStarted(view: WebView, url: String, favicon: android.graphics.Bitmap?) {
+                resumeFullscreen = false
+                resumeButton.visibility = View.GONE
                 nativeTapPending = true
                 startPlayerSearch()
                 if (!playerOnly) status.text = "${Uri.parse(url).host.orEmpty()} · Yükleniyor…"
@@ -422,9 +475,6 @@ class WebPlayerActivity : ComponentActivity() {
                 full = FrameLayout(this@WebPlayerActivity).apply {
                     setBackgroundColor(Color.BLACK)
                     addView(view, FrameLayout.LayoutParams(-1, -1))
-                    addView(Button(this@WebPlayerActivity).apply {
-                        text = "Tam ekrandan çık"; styleButton(this); setOnClickListener { hideFull() }
-                    }, FrameLayout.LayoutParams(-2, -2, android.view.Gravity.TOP or android.view.Gravity.END))
                 }
                 root.addView(full, FrameLayout.LayoutParams(-1, -1))
                 if (pointerEnabled) pointerOverlay.post { setPointer(true) }
@@ -488,6 +538,19 @@ class WebPlayerActivity : ComponentActivity() {
                 }
                 return true
             }
+        }
+
+        val ok = event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_CENTER ||
+            event.keyCode == android.view.KeyEvent.KEYCODE_ENTER
+        if (ok && okCaptured) {
+            if (event.action == android.view.KeyEvent.ACTION_UP) okCaptured = false
+            return true
+        }
+        if (ok && event.action == android.view.KeyEvent.ACTION_DOWN &&
+            full != null) {
+            okCaptured = true
+            pauseAndShowControls()
+            return true
         }
 
         // Keep episode-list navigation, but let its top edge escape to native controls.

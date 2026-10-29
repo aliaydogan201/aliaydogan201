@@ -1,0 +1,6 @@
+ALICOTV v48
+Sabit tam ekrandan çık düğmesi kaldırıldı. Geri tuşu tam ekrandan çıkar.
+Oynatıcıda OK: duraklatma isteği ve üst kontroller; Devam et: oynatma isteği ve önceki tam ekrana dönüş.
+Bölüm listesi ve TV imleci tuşları korunur.
+Erişilebilir videolar doğrudan kontrol edilir. Korumalı iframe kaynaklarında medya tuşu gönderilir; her kaynak desteklemeyebilir. Doğrulanamayan duraklatma ekranda belirtilir.
+APK/gerçek cihaz testi yapılmadı.
