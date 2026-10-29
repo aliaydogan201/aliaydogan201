@@ -127,6 +127,7 @@ class WebPlayerActivity : ComponentActivity() {
         }
     }
     private fun startPlayerSearch() {
+        showingEpisodes = false
         stageEpoch++
         stageHandler.removeCallbacks(stageTask)
         stageReady = false
@@ -166,6 +167,7 @@ class WebPlayerActivity : ComponentActivity() {
         }
     }
     private fun goToPlayer() {
+        showingEpisodes = false
         playerOnly = true
         nativeTapPending = true
         focusPlayerPending = true
@@ -182,6 +184,7 @@ class WebPlayerActivity : ComponentActivity() {
         }
     }
     private fun togglePlayerOnly() {
+        showingEpisodes = false
         playerOnly = !playerOnly
         stageEpoch++
         stageHandler.removeCallbacks(stageTask)
@@ -487,18 +490,26 @@ class WebPlayerActivity : ComponentActivity() {
             }
         }
 
+        // Keep episode-list navigation, but let its top edge escape to native controls.
+        if (event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_UP &&
+            ::web.isInitialized && web.hasFocus() && showingEpisodes && full == null) {
+            if (event.action == android.view.KeyEvent.ACTION_DOWN) {
+                val epoch = stageEpoch
+                web.evaluateJavascript("window.__alicoStage ? window.__alicoStage.navigateEpisodeUp() : 'toolbar';") { result ->
+                    if (epoch == stageEpoch && !isFinishing && !isDestroyed &&
+                        web.hasFocus() && full == null && result != "\"moved\"") focusToolbar()
+                }
+            }
+            return true
+        }
+
         val menu = event.keyCode == android.view.KeyEvent.KEYCODE_MENU
         val upFromPlayer = event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_UP &&
             ::web.isInitialized && web.hasFocus() && !showingEpisodes && full == null
         if (menu || upFromPlayer) {
             if (event.action == android.view.KeyEvent.ACTION_DOWN && event.repeatCount == 0) {
                 if (full != null) hideFull()
-                if (::errorInfoButton.isInitialized) {
-                    errorInfoButton.requestFocus()
-                    errorInfoButton.post { errorInfoButton.requestRectangleOnScreen(
-                        android.graphics.Rect(0, 0, errorInfoButton.width, errorInfoButton.height), true) }
-                    status.text = "Üst menü · Sağ/sol ile düğme seçin, aşağı ile oynatıcıya dönün."
-                }
+                focusToolbar()
             }
             return true
         }
@@ -511,6 +522,13 @@ class WebPlayerActivity : ComponentActivity() {
             return true
         }
         return super.dispatchKeyEvent(event)
+    }
+    private fun focusToolbar() {
+        if (!::errorInfoButton.isInitialized) return
+        errorInfoButton.requestFocus()
+        errorInfoButton.post { errorInfoButton.requestRectangleOnScreen(
+            android.graphics.Rect(0, 0, errorInfoButton.width, errorInfoButton.height), true) }
+        status.text = "Üst menü · Sağ/sol ile düğme seçin, aşağı ile oynatıcıya dönün."
     }
     private fun hideFull() {
         full?.let { it.removeAllViews(); root.removeView(it) }

@@ -11,8 +11,8 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 46
-        versionName = "0.46.0"
+        versionCode = 47
+        versionName = "0.47.0"
     }
     // v12-v16 files may remain after uploading a ZIP over the repository.
     // The v11-based UI uses ImportedCatalog and WebPlayerActivity instead.

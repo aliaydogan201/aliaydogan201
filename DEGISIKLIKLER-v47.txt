@@ -1,0 +1,8 @@
+ALICOTV v47 – Android TV dizi üst menü geçişi
+Bölüm listesinin ilk öğesinde Yukarı: üst kontroller.
+Diğer bölümlerde Yukarı: önceki bölüm.
+Üst kontrollerde Aşağı: bölüm listesine veya oynatıcıya dönüş.
+Menü tuşu: üst kontrollere geçiş. TV imleci açıkken yönler imleci taşır.
+Oynatıcıya geçişte ve sayfa değişiminde eski bölüm-listesi durumu temizlenir.
+Mevcut arşiv ve kayıt anahtarları değiştirilmedi.
+APK derlemesi ve gerçek TV testi bu ortamda yapılmadı.

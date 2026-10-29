@@ -108,7 +108,20 @@
         }
         var el=find();mode='ready';return el?apply(el):'waiting';
     }
+    function navigateEpisodeUp(){
+        if(mode!=='episodes' || !episodePanel || !episodePanel.isConnected)return 'toolbar';
+        var items=Array.prototype.slice.call(episodePanel.querySelectorAll('a'));
+        var i=items.indexOf(document.activeElement);
+        if(i<=0)return 'toolbar';
+        items[i-1].focus();
+        items[i-1].scrollIntoView({block:'nearest'});
+        return 'moved';
+    }
     function focusPlayer(){
+        if(mode==='episodes' && episodePanel && episodePanel.isConnected){
+            var item=episodePanel.contains(document.activeElement)?document.activeElement:episodePanel.querySelector('a');
+            if(item){item.focus();item.scrollIntoView({block:'nearest'});return 'episode-focused';}
+        }
         if(!target || !target.isConnected)return 'missing';
         var control=target.matches('iframe,video')?target:target.querySelector('iframe,button,[role="button"],video');
         if(!control)control=target;
@@ -150,6 +163,6 @@
         if(result==='ready'){focusPlayer();lastPlayTarget=null;}
         return result;
     }
-    window.__alicoStage={refresh:refresh,restore:restore,openPlayer:openPlayer,focusPlayer:focusPlayer,tryPlay:tryPlay,tapPoint:tapPoint};
+    window.__alicoStage={refresh:refresh,navigateEpisodeUp:navigateEpisodeUp,restore:restore,openPlayer:openPlayer,focusPlayer:focusPlayer,tryPlay:tryPlay,tapPoint:tapPoint};
     return refresh();
 })();
