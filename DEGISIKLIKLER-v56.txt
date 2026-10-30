@@ -1,0 +1,11 @@
+ALICOTV v56 — Güldür Güldür
+Güldür Güldür (@guldurguldurtv) kanalından 9964 yeni içerik eklendi.
+Taranan liste: 6303 video, 3660 Shorts, 1 canlı yayın kaydı. Aynı video kimliği tekrar eklenmez.
+Bölümler, skeçler, kısa videolar ve yayınlar Eğlence kategorisinde isim/kapaklarıyla görünür. İsim arama, alfabetik sıralama ve sayfalama kullanılır.
+İlk açılışta ekleme bildirimi bir kez gösterilir. Son 500 ekleme Yeni eklenenler ekranında; tüm içerikler Eğlence kategorisindedir.
+Kanal otomatik kaynak listesine eklendi. Arşivi güncelle yeni videoları tarar; türüne göre ekler ve uygulama içi bildirim verir.
+Otomatik kontrol uygulama açılışında 12 saatlik aralıkla; düğmeye basıldığında beklemeden yapılır. Uygulama kapalıyken arka plan bildirimi yoktur. Kaynak başına mevcut 10 sayfalık güncelleme sınırı korunur.
+Mevcut içerikler, kimlikler, bölüm arşivi, favori/izleme/takip/yedekleme kodu ve kalıcı imza ayarları korundu. Paket com.cinebox.tv, versionCode 56.
+GitHub klasörüne ZIP içeriğini kopyalayıp Commit/Push yapın. Aynı dört Secrets değerini kullanın; aynı anahtarla imzalı uygulamayı kaldırmadan güncelleyin.
+Veri ve ZIP bütünlüğü kontrol edildi. Yeni katalog/güncelleme kodu JVM üzerinde Android test taklitleriyle derlendi; yükleme, kategori, kimlik/URL tekrarı ve tek seferlik bildirim kontrol edildi.
+Android SDK olmadığı için tam APK derlemesi ve TV/telefon oynatımı burada test edilmedi. YouTube video erişimi yayıncıya ve cihaza bağlıdır; gizli/silinmiş/bölgesel olarak kısıtlı içerikler garanti edilmez.

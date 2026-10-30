@@ -184,6 +184,8 @@ class MainActivity : ComponentActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ArchiveSync.announceBundle(this)
+        ArchiveSync.announceGuldur(this)
         setContent { App() }
     }
 
@@ -195,7 +197,8 @@ class MainActivity : ComponentActivity() {
         var syncing by remember { mutableStateOf(false) }
         var syncMessage by remember { mutableStateOf("") }
         var episodeRevision by remember { mutableIntStateOf(0) }
-        var showNotices by remember { mutableStateOf(false) }
+        var showNotices by remember { mutableStateOf(ArchiveSync.hasUnread(this@MainActivity)) }
+        var showSources by remember { mutableStateOf(false) }
         suspend fun syncArchive(force: Boolean) {
             if(syncing || backupBusy)return
             syncing=true
@@ -212,8 +215,11 @@ class MainActivity : ComponentActivity() {
             finally { syncing=false }
         }
         LaunchedEffect(Unit) { syncArchive(false) }
-        if(showNotices) AlertDialog(onDismissRequest={showNotices=false},title={Text("Arşiv bildirimleri")},text={Text(ArchiveSync.notices(this@MainActivity),modifier=Modifier.verticalScroll(rememberScrollState()))},confirmButton={TextButton(onClick={showNotices=false}){Text("Kapat")}})
+        if(showNotices) AlertDialog(onDismissRequest={showNotices=false; ArchiveSync.markRead(this@MainActivity)},title={Text("Arşiv bildirimleri")},text={Text(ArchiveSync.notices(this@MainActivity),modifier=Modifier.verticalScroll(rememberScrollState()))},confirmButton={TextButton(onClick={showNotices=false; ArchiveSync.markRead(this@MainActivity)}){Text("Kapat")}})
 
+        if(showSources) AlertDialog(onDismissRequest={showSources=false},title={Text("Güncellenen kaynaklar")},text={Text(ArchiveSync.sourcesDescription(),modifier=Modifier.verticalScroll(rememberScrollState()))},confirmButton={TextButton(onClick={showSources=false}){Text("Kapat")}})
+        val recentIds = remember(liveCatalog, episodeRevision) { ArchiveSync.recentIds(this@MainActivity) }
+        val recentMovies = remember(liveCatalog, recentIds) { val index=liveCatalog.associateBy { it.id }; recentIds.mapNotNull { index[it] } }
         var category by remember { mutableStateOf("Tümü") }
         var tab by remember { mutableStateOf("Ana Sayfa") }
         var query by remember { mutableStateOf("") }
@@ -428,6 +434,14 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick={showNotices=true}) { Text("Bildirimler") }
                     }
                     if(syncMessage.isNotBlank()) Text(syncMessage,color=Color.White)
+                    Row(Modifier.horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                        TvAction(onClick={selected=null; tab="Yeni eklenenler"; category="Tümü"; query=""; page=0}) { Text("Yeni eklenenler (${recentIds.size})") }
+                        TvAction(onClick={showSources=true}) { Text("Güncellenen kaynaklar") }
+                    }
+                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.LightGray,fontSize=12.sp)
+                    recentMovies.take(3).forEach { item ->
+                        TvAction(onClick={selected=item}) { Text("Yeni · ${item.title}",maxLines=1) }
+                    }
                     Spacer(Modifier.height(25.dp))
                         Text("Bunları da beğenebilirsin", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.height(12.dp))
@@ -443,10 +457,10 @@ class MainActivity : ComponentActivity() {
                     if (backupMessage.isNotBlank()) Text(backupMessage,color=Color.White)
                     Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         androidx.compose.foundation.Image(painter = androidx.compose.ui.res.painterResource(R.drawable.alico_wordmark), contentDescription = "ALICOTV", modifier = Modifier.width(160.dp).height(52.dp))
-                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim").forEach { label ->
+                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim", "Yeni eklenenler").forEach { label ->
                             TvAction(onClick = {
                                 tab = label
-                                if (label == "Takip Ettiklerim") { category = "Tümü"; query = "" }
+                                if (label in listOf("Takip Ettiklerim", "Yeni eklenenler")) { category = "Tümü"; query = "" }
                                 page = 0
                                 when (label) {
                                     "Ana Sayfa", "Ara" -> showMovies(liveCatalog)
@@ -463,6 +477,14 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick={showNotices=true}) { Text("Bildirimler") }
                     }
                     if(syncMessage.isNotBlank()) Text(syncMessage,color=Color.White)
+                    Row(Modifier.horizontalScroll(rememberScrollState()),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                        TvAction(onClick={selected=null; tab="Yeni eklenenler"; category="Tümü"; query=""; page=0}) { Text("Yeni eklenenler (${recentIds.size})") }
+                        TvAction(onClick={showSources=true}) { Text("Güncellenen kaynaklar") }
+                    }
+                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.LightGray,fontSize=12.sp)
+                    recentMovies.take(3).forEach { item ->
+                        TvAction(onClick={selected=item}) { Text("Yeni · ${item.title}",maxLines=1) }
+                    }
                     Spacer(Modifier.height(25.dp))
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         TextField(value = query, onValueChange = { query = it; page = 0 },
@@ -471,17 +493,17 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick = { query = ""; page = 0 }) { Text("Temizle") }
                     }
                     Spacer(Modifier.height(16.dp))
-                    Text(when (tab) { "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor ve müzik" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Yeni eklenenler" -> "Yeni eklenen içerikler"; "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor, müzik ve eğlence" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Filmler", "Diziler", "Yerli Diziler", "Belgesel", "Maç Özeti", "Müzik").forEach { label ->
+                        listOf("Tümü", "Filmler", "Diziler", "Yerli Diziler", "Belgesel", "Maç Özeti", "Müzik", "Eğlence").forEach { label ->
                             TvAction(onClick = { category = label; page = 0 }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
                     Spacer(Modifier.height(12.dp))
-                    val baseMovies = if (tab == "Takip Ettiklerim") liveCatalog.filter { it.id in followed } else if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
+                    val baseMovies = if (tab == "Yeni eklenenler") recentMovies else if (tab == "Takip Ettiklerim") liveCatalog.filter { it.id in followed } else if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
                     val shown = remember(baseMovies, category, query) {
                         val searchText = query.trim().lowercase(java.util.Locale("tr", "TR"))
                         baseMovies.filter {

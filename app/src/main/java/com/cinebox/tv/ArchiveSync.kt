@@ -19,7 +19,7 @@ internal object ArchiveSync {
     suspend fun <T> storageOperation(block: () -> T): T = withContext(Dispatchers.IO) {
         lock.withLock { block() }
     }
-    private val sources = listOf("https://filmmakinesi.to/", "https://www.fullhdfilmizlesene.now/", "https://www.hdfilmcehennemi.land/film/", "https://www.hdfilmcehennemi.land/dizi/", "https://www.hdfilmcehennemi.land/", "https://rfilmizle.com/", "https://www.ddizi.tel/", "https://ufilmizle.com/", "https://fullfilmizle.fit/")
+    private val sources = listOf("https://filmmakinesi.to/", "https://www.fullhdfilmizlesene.now/", "https://www.hdfilmcehennemi.land/film/", "https://www.hdfilmcehennemi.land/dizi/", "https://www.hdfilmcehennemi.land/", "https://rfilmizle.com/", "https://www.ddizi.tel/", "https://ufilmizle.com/", "https://fullfilmizle.fit/", "https://www.belgeselizlesene.com/", "https://www.izle7.com/ulketv/kategori/belgeseller")
     private fun prefs(c: Context) = c.getSharedPreferences("archive_sync", Context.MODE_PRIVATE)
     private fun norm(t: String) = Normalizer.normalize(t.lowercase(Locale.forLanguageTag("tr")).replace('ı','i'),Normalizer.Form.NFD).replace(Regex("[^a-z0-9]"),"")
     private fun title(t: String) = t.replace(Regex("(?i)\\s+izle.*$"),"").replace(Regex("\\s*\\(?((19|20)\\d{2})\\)?$"),"").trim()
@@ -32,8 +32,29 @@ internal object ArchiveSync {
     private fun movie(o:JSONObject) = Movie(id=o.getInt("id"),title=o.getString("title"),overview=o.optString("overview"),poster=o.optString("poster"),backdrop="",year=o.optString("year"),score=0.0,genreIds=emptyList(),webUrl=o.getString("url"),provider=o.optString("provider"),category=o.optString("category","Film"))
     fun load(c:Context,base:List<Movie>):List<Movie> {
         val a=read(c,"archive_dynamic.json").optJSONArray("movies")?:JSONArray()
-        return (base+NetdCatalog.load(c)+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
+        return (base+NetdCatalog.load(c)+machHikayeleriCatalog+GuldurCatalog.load(c)+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
     }
+    fun announceBundle(c:Context) {
+        val p=prefs(c)
+        if(p.getBoolean("bundled_55",false))return
+        val ids=(machHikayeleriCatalog.map { it.id } + recentIds(c)).distinct().take(500)
+        p.edit().putBoolean("bundled_55",true).putBoolean("unread",true)
+            .putString("recent_added_ids",ids.joinToString(","))
+            .putString("notices","v55: Maç Hikayeleri kanalından 103 içerik eklendi. Maç Özeti veya Yeni eklenenler bölümünden açabilirsiniz.\n\n"+notices(c).take(12000)).apply()
+    }
+    fun announceGuldur(c:Context) {
+        val p=prefs(c)
+        if(p.getBoolean("bundled_56",false))return
+        val items=GuldurCatalog.load(c)
+        val ids=(items.map { it.id } + recentIds(c)).distinct().take(500)
+        p.edit().putBoolean("bundled_56",true).putBoolean("unread",true)
+            .putString("recent_added_ids",ids.joinToString(","))
+            .putString("notices","v56: Güldür Güldür kanalından ${items.size} içerik eklendi. Eğlence bölümünden açabilirsiniz.\n\n"+notices(c).take(12000)).apply()
+    }
+    fun hasUnread(c:Context):Boolean = prefs(c).getBoolean("unread",false)
+    fun markRead(c:Context) { prefs(c).edit().putBoolean("unread",false).apply() }
+    fun recentIds(c:Context):List<Int> = prefs(c).getString("recent_added_ids", "").orEmpty().split(",").mapNotNull { it.toIntOrNull() }
+    fun sourcesDescription():String = sources.joinToString("\n") + "\n\nYouTube kanalları:\n" + YouTubeSources.channels.joinToString("\n") { it.name }
     fun notices(c:Context):String = prefs(c).getString("notices","Henüz yeni içerik bildirimi yok.")!!
     fun episodes(c:Context,u:String):List<SeriesEpisode> {
         val a=read(c,"archive_episodes.json").optJSONArray(u)?:return emptyList()
@@ -47,7 +68,7 @@ internal object ArchiveSync {
         p.edit().putLong("attempt",now).apply()
         val current=load(c,base).toMutableList();val added=mutableListOf<String>();val failures=mutableListOf<String>()
         val state=read(c,"archive_dynamic.json");val a=state.optJSONArray("movies")?:JSONArray()
-        val ids=current.map { it.id }.toMutableSet()
+        val ids=current.map { it.id }.toMutableSet(); val addedIds=mutableListOf<Int>()
         val episodeState=read(c,"archive_episodes.json"); var episodeChanges=false
         for(source in sources) {
           try {
@@ -67,6 +88,7 @@ internal object ArchiveSync {
               added.add("Yeni bölüm: ${match.title} · $season. Sezon $number. Bölüm")
             }
             val cards=when {
+              source.contains("izle7") -> doc.select("div.category-item")
               source.contains("filmmakinesi") -> doc.select("a.item[data-title]")
               source.contains("ddizi") -> doc.select("a[href*=/diziler/]")
               source.contains("rfilmizle") -> doc.select(".listmovie")
@@ -79,10 +101,12 @@ internal object ArchiveSync {
               val u=link.absUrl("href").substringBefore('#');if(!valid(u))continue
               val path=URI(u).path
               if(source.contains("ddizi")) { if(!path.startsWith("/diziler/"))continue }
+              else if(source.contains("izle7")) { if(!Regex("/ulketv/izle-[0-9]+-.*\\.html").matches(path))continue }
+              else if(source.contains("belgeselizlesene")) { if(path.count { it == '/' } != 2 || !path.endsWith("/"))continue }
               else if(!source.contains("rfilmizle") && !path.contains("/film/") && !path.contains("/dizi/") && !path.contains("-izle"))continue
-              if(path.contains("/bolum/") || path.contains("/kategori/") || path.contains("/tur/"))continue
+              if(path.contains("/bolum/") || path.contains("/kategori/") || path.contains("/tur/") || path.contains("/category/") || path.contains("/tag/"))continue
               val img=card.selectFirst("img")
-              val raw=card.attr("data-title").takeIf { it.isNotBlank() } ?:card.selectFirst("h2, h3, .film-ismi, .title")?.text()?.takeIf { it.isNotBlank() }
+              val raw=card.attr("data-title").takeIf { it.isNotBlank() } ?:card.selectFirst("h2, h3, .film-ismi, .title, .category-item-title")?.text()?.takeIf { it.isNotBlank() }
                 ?:img?.attr("alt")?.takeIf { it.isNotBlank() }?:link.text()
               val name=title(raw).removeSuffix(" Poster").trim();if(name.length<2)continue
               if(Regex("(?i)fragman|masterchef|müge anlı").containsMatchIn(name))continue
@@ -91,20 +115,40 @@ internal object ArchiveSync {
               val series=season || path.contains("/dizi/") || path.contains("/diziler/") || card.hasClass("tvshows")
               val cleanName=name.replace(Regex("(?i)\\s*\\d+\\s*\\.?\\s*Sezon.*$"),"").trim()
               val year=Regex("(?:19|20)\\d{2}").find(card.selectFirst(".anayil, .film-yil, .year")?.text().orEmpty())?.value.orEmpty()
-              if(current.any { it.webUrl.trimEnd('/')==u.trimEnd('/') || ((it.category in listOf("Dizi","Yerli Diziler"))==series && norm(title(it.title))==norm(cleanName) && (it.year.isBlank() || year.isBlank() || it.year==year)) })continue
+              val category = if(source.contains("belgeselizlesene") || source.contains("izle7")) "Belgesel" else if(series) "Dizi" else "Film"
+              if(current.any { it.webUrl.trimEnd('/')==u.trimEnd('/') || ((if(series) it.category in listOf("Dizi","Yerli Diziler") else it.category==category) && norm(title(it.title))==norm(cleanName) && (it.year.isBlank() || year.isBlank() || it.year==year)) })continue
               var id=1_500_000_000+(u.hashCode() and 0x0fffffff);while(id in ids)id++
               val poster=img?.let { if(it.hasAttr("data-src"))it.absUrl("data-src") else it.absUrl("src") }.orEmpty().takeIf { it.startsWith("https://") }.orEmpty()
               val o=JSONObject().put("id",id).put("title",cleanName).put("url",u).put("poster",poster).put("year",year).put("provider",URI(source).host)
-                .put("category",if(series) "Dizi" else "Film")
+                .put("category",category)
                 .put("overview","Kaynak sayfa arşive eklendi. İzlemek için içeriği açın.")
-              a.put(o);current.add(movie(o));ids.add(id);added.add((if(series)"Dizi: " else "Film: ")+cleanName)
+              a.put(o);current.add(movie(o));ids.add(id);addedIds.add(id);added.add(category+": "+cleanName)
             }
             if(parsed==0)failures.add(URI(source).host+": liste okunamadı")
           } catch(e:Exception) { failures.add(URI(source).host+": erişilemedi") }
         }
+        val knownVideos = current.mapNotNull { YouTubeSources.videoId(it.webUrl) }.toMutableSet()
+        for (channel in YouTubeSources.channels) {
+            val result = YouTubeSources.fetch(channel, knownVideos)
+            failures.addAll(result.warnings)
+            for (video in result.videos) {
+                if (!knownVideos.add(video.id)) continue
+                val url = "https://www.youtube.com/watch?v=${video.id}"
+                var id = 1_500_000_000 + (url.hashCode() and 0x0fffffff)
+                while (id in ids) id++
+                val o = JSONObject().put("id",id).put("title",video.title).put("url",url)
+                    .put("poster","https://i.ytimg.com/vi/${video.id}/hqdefault.jpg").put("year", "")
+                    .put("provider",channel.name + " · YouTube").put("category",channel.category)
+                    .put("overview",channel.name + " kanalından eklendi. YouTube üzerinden açılır.")
+                a.put(o); current.add(movie(o)); ids.add(id); addedIds.add(id)
+                added.add("${channel.category}: ${video.title} · ${channel.name}")
+            }
+        }
         state.put("movies",a);write(c,"archive_dynamic.json",state)
+        if (addedIds.isNotEmpty()) p.edit().putString("recent_added_ids",(addedIds + recentIds(c)).distinct().take(500).joinToString(",")).apply()
         if(episodeChanges)write(c,"archive_episodes.json",episodeState)
-        if(added.isNotEmpty())p.edit().putString("notices",java.text.DateFormat.getDateTimeInstance().format(java.util.Date())+"\n"+added.joinToString("\n")+"\n\n"+notices(c).take(12000)).apply()
+        if(added.isNotEmpty())p.edit().putBoolean("unread",true).putString("notices",java.text.DateFormat.getDateTimeInstance().format(java.util.Date())+"\n"+added.joinToString("\n")+"\n\n"+notices(c).take(12000)).apply()
+        if(failures.isNotEmpty()) p.edit().putLong("attempt", now - 11*60*60*1000L).apply()
         "${added.size} yeni içerik eklendi."+(if(failures.isNotEmpty()) "\n"+failures.distinct().joinToString("\n") else "")
       }
     }
@@ -142,7 +186,7 @@ internal object ArchiveSync {
           val state=read(c,"archive_episodes.json");val a=JSONArray()
           existing.values.sortedWith(compareBy({it.season},{it.episode})).forEach { a.put(JSONObject().put("season",it.season).put("episode",it.episode).put("url",it.url)) }
           state.put(m.webUrl,a);write(c,"archive_episodes.json",state)
-          p.edit().putString("notices",added.joinToString("\n")+"\n\n"+notices(c).take(12000)).apply()
+          p.edit().putBoolean("unread",true).putString("notices",added.joinToString("\n")+"\n\n"+notices(c).take(12000)).apply()
         }
         if(!failed)p.edit().putLong(stamp,now).apply()
         if(added.isNotEmpty())"${m.title}: ${added.size} yeni bölüm eklendi." else if(failed)"Bazı bölüm sayfalarına ulaşılamadı; kayıtlı bölümler gösteriliyor." else ""

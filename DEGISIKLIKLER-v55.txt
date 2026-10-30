@@ -1,0 +1,39 @@
+ALICOTV v55 — Maç Hikayeleri ve kaynak güncellemeleri
+
+EKLENEN KANAL
+Maç Hikayeleri (@machikayeleri / YouTube adı MH): 99 video + 4 Shorts = 103 içerik.
+Maç Özeti kategorisinde ad ve kapaklarıyla bulunur. Kanal futbol hikâyeleri de yayınlar; tüm kayıtlar maç özeti değildir.
+
+YENİ İÇERİK GÜNCELLEMESİ
+Arşivi güncelle düğmesi kayıtlı desteklenen siteleri ve üç YouTube kanalını kontrol eder:
+- netd müzik -> Müzik
+- Nature Empire Türkçe -> Belgesel
+- Maç Hikayeleri -> Maç Özeti
+YouTube video, Shorts ve varsa canlı yayın arşivi sekmeleri kontrol edilir.
+Kayıtlı video kimlikleri tekrar eklenmez; başlıkları aynı fakat video kimlikleri farklı olan kayıtlar ayrı kalır.
+YouTube sekmesi başına en fazla 10 sayfa taranır; daha fazla geçmiş içerik varsa eksiklik uyarısı verilir. Güncel liste bilinen videoya ulaşınca tarama durur. Gizli, silinmiş veya erişime kapalı videolar garanti edilmez.
+
+SİTELER
+FilmMakinesi, FullHDFilmİzlesene, HDFilmCehennemi.land, RFilmİzle, DDizi, UFilmİzle, FullFilmİzle, Belgesel İzlesene ve İzle7 belgeseller.
+Sitelerin güncel liste sayfaları taranır; bütün geçmiş sayfaların eksiksiz yeniden taranması değildir. Erişim/yapı hataları sonuçta gösterilir. Önceden kaldırılması istenen eski kaynaklar yeniden etkinleştirilmedi.
+Kanal D, Show TV gibi tekil eski içerik bağlantıları bu otomatik kaynak listesine dahil değildir. Yeni bir site veya kanal için kaynak tanımı eklemek gerekir. Sohbete link yazmak kurulu uygulamayı tek başına değiştirmez.
+
+EKRAN VE BİLDİRİMLER
+Arşivi güncelle altında son eklenenlerin kısa listesi, Yeni eklenenler ve Güncellenen kaynaklar düğmeleri bulunur.
+Yeni eklenenler ekranında son 500 ekleme, kategori filtresi, isim araması ve sayfalama vardır. Daha eski kayıtlar ana arşivde kalır.
+Yeni kayıtlar bulununca uygulama içi bildirim açılır; Bildirimler ekranında adları ve ekleme tarihi saklanır. Yeni dizi bölümlerinin mevcut bildirimleri korunur.
+v55 ilk açılışında Maç Hikayeleri eklemeleri bir kez duyurulur.
+Otomatik kontrol uygulama açılışında, son kontrolden 12 saat geçmişse yapılır. Hata olmuşsa sonraki açılışta 1 saat sonra yeniden denenebilir. Arşivi güncelle düğmesi bekleme süresini atlar.
+Uygulama kapalıyken çalışan arka plan servisi veya Android sistem bildirimi bu sürümde yoktur.
+
+KURULUM
+ZIP içeriğini aynı GitHub proje klasörüne kopyalayın; Commit ve Push yapın.
+Dört imza Secrets değerini değiştirmeyin. Aynı anahtarla imzalı mevcut APK üzerine güncelleyin; uygulamayı kaldırmayın.
+Paket kimliği com.cinebox.tv, kalıcı imza ayarları ve eski kayıt kimlikleri korundu.
+
+DOĞRULAMA
+Gerçek YouTube HTML verileriyle liste/Shorts/sayfalama/tekrar/hatalı veri testleri JVM'de geçti.
+Güncelleme ve katalog Kotlin kodu Android sınıfları için test taklitleriyle derlendi. Katalog yükleme, kategori, benzersiz kimlik/URL, tek seferlik bildirim ve okundu durumu testleri geçti.
+Belgesel kaynak seçicileri kaydedilen HTML üzerinde test edildi (İzle7: 32 kart).
+Mevcut katalog dosyaları, bölüm verileri, geçmiş/takip kodu ve imza iş akışı karşılaştırıldı. ZIP bütünlüğü kontrol edildi.
+Android SDK olmadığından tam APK derlemesi ve gerçek TV/telefon oynatımı burada test edilmedi.
