@@ -1,0 +1,3 @@
+Nature Empire Türkçe kanalının Videolar sekmesinden 87 belgesel eklendi. Üç liste sayfası tarandı. Shorts/canlı yayın sekmeleri dahil değil. Video oynatımı cihazda test edilmedi.
+Kalıcı imza ve yedekleme korunur. SDK workflow paket hatası düzeltildi. Aynı GitHub Secrets kullanılmalı.
+Bu kanal otomatik arşiv tarama kaynaklarına eklenmedi; mevcut liste içe aktarıldı.
