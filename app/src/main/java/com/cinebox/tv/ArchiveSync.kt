@@ -32,7 +32,7 @@ internal object ArchiveSync {
     private fun movie(o:JSONObject) = Movie(id=o.getInt("id"),title=o.getString("title"),overview=o.optString("overview"),poster=o.optString("poster"),backdrop="",year=o.optString("year"),score=0.0,genreIds=emptyList(),webUrl=o.getString("url"),provider=o.optString("provider"),category=o.optString("category","Film"))
     fun load(c:Context,base:List<Movie>):List<Movie> {
         val a=read(c,"archive_dynamic.json").optJSONArray("movies")?:JSONArray()
-        return (base+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
+        return (base+NetdCatalog.load(c)+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
     }
     fun notices(c:Context):String = prefs(c).getString("notices","Henüz yeni içerik bildirimi yok.")!!
     fun episodes(c:Context,u:String):List<SeriesEpisode> {

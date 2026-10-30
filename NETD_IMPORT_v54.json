@@ -1,0 +1,27 @@
+{
+  "channel": "netd müzik",
+  "channel_id": "UCR5wZcXtOUka8jTA57flzMg",
+  "source": "https://www.youtube.com/@netdmuzik",
+  "retrieved_date": "2026-10-30",
+  "latest_count": 11790,
+  "oldest_count": 18421,
+  "shorts_count": 648,
+  "latest_oldest_overlap": 11790,
+  "unique_listed": 19069,
+  "added": 19069,
+  "existing_video_ids_skipped": [],
+  "latest_ended_with_empty_response": true,
+  "oldest_status": {
+    "complete": true,
+    "count": 18421
+  },
+  "shorts_status": {
+    "complete": true,
+    "count": 648
+  },
+  "streams_tab_present": false,
+  "private_deleted_region_restricted_videos_not_guaranteed": true,
+  "automatic_channel_updates": false,
+  "apk_build_tested": false,
+  "playback_tested": false
+}

@@ -482,11 +482,14 @@ class MainActivity : ComponentActivity() {
                     }
                     Spacer(Modifier.height(12.dp))
                     val baseMovies = if (tab == "Takip Ettiklerim") liveCatalog.filter { it.id in followed } else if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
-                    val shown = baseMovies.filter {
+                    val shown = remember(baseMovies, category, query) {
+                        val searchText = query.trim().lowercase(java.util.Locale("tr", "TR"))
+                        baseMovies.filter {
                         (category == "Tümü" || (category == "Filmler" && it.category == "Film") ||
                          (category == "Diziler" && it.category in listOf("Dizi", "Yerli Diziler")) || it.category == category) &&
-                        it.title.lowercase(java.util.Locale("tr", "TR")).contains(query.trim().lowercase(java.util.Locale("tr", "TR")))
+                        it.title.lowercase(java.util.Locale("tr", "TR")).contains(searchText)
                     }.sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title })
+                    }
                     val pageSize = 20
                     val pageCount = maxOf(1, (shown.size + pageSize - 1) / pageSize)
                     val currentPage = page.coerceIn(0, pageCount - 1)

@@ -1,0 +1,9 @@
+ALICOTV v54 — netd müzik
+19069 yeni kayıt Müzik kategorisine eklendi. Başlık, YouTube kapak görseli ve varsa süre bilgisi bulunur.
+Videolar ve Shorts sekmeleri tarandı; yeni/eski sıralamaları birleştirildi. Aynı YouTube video kimliği tekrar eklenmedi. Farklı video kimliğine sahip aynı isimli kayıtlar korunur.
+Gizli/silinmiş veya bölgesel erişime kapalı videoların tamamına erişim garanti edilmez. Ayrı canlı yayın sekmesi bulunmadı.
+Video dosyaları indirilmez; mevcut YouTube web oynatıcısı kullanılır. Bu aktarım mevcut listenin kopyasıdır; kanal otomatik taramaya eklenmedi.
+Büyük katalog JSON varlığında saklanır ve uygulama sürecinde bir kez okunur. Sayfa değişiminde gereksiz yeniden sıralama önlendi.
+Eski kataloglar, bölümler, kayıt kimlikleri, paket adı ve kalıcı imza düzeni korundu. versionCode 54.
+ZIP içeriğini GitHub proje klasörüne kopyalayın, Commit/Push yapın. Aynı dört GitHub Secrets değeriyle APK oluşturun. Mevcut APK aynı anahtarla imzalıysa kaldırmadan güncelleyin.
+Kaynak/veri ve ZIP kontrolleri yapıldı. Android SDK olmadığı için burada APK derlenmedi; TV/telefon oynatımı test edilmedi.
