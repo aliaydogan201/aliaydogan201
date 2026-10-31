@@ -1,0 +1,2409 @@
+{
+  "source": "https://ddizibox.net/filmler",
+  "pages": [
+    {
+      "file": "Film izle - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 10 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 11 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 12 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 13 - DiziBox(1).html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 2 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 3 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 4 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 5 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 6 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 7 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 8 - DiziBox.html",
+      "cards": 24
+    },
+    {
+      "file": "Film izle Sayfa 9 - DiziBox.html",
+      "cards": 24
+    }
+  ],
+  "cards": 312,
+  "unique_urls": 312,
+  "added": 261,
+  "skipped": [
+    {
+      "title": "Örümcek-Adam: Yepyeni Bir Gün",
+      "url": "https://ddizibox.net/film/orumcek-adam-yepyeni-bir-gun",
+      "reason": "Arşivde aynı ad/yıl: Örümcek-Adam: Yepyeni Bir Gün"
+    },
+    {
+      "title": "Supergirl",
+      "url": "https://ddizibox.net/film/supergirl",
+      "reason": "Arşivde aynı ad/yıl: Supergirl"
+    },
+    {
+      "title": "Backrooms",
+      "url": "https://ddizibox.net/film/backrooms",
+      "reason": "Arşivde aynı ad/yıl: Backrooms"
+    },
+    {
+      "title": "Oyuncak Hikayesi 5",
+      "url": "https://ddizibox.net/film/oyuncak-hikayesi-5",
+      "reason": "Arşivde aynı ad/yıl: Oyuncak Hikâyesi 5"
+    },
+    {
+      "title": "Grand Theft Auto VI: An Extended Look",
+      "url": "https://ddizibox.net/film/grand-theft-auto-vi-an-extended-look",
+      "reason": "Arşivde aynı ad/yıl: Grand Theft Auto VI: An Extended Look"
+    },
+    {
+      "title": "Oak Caddesi'nin Sonu",
+      "url": "https://ddizibox.net/film/oak-caddesinin-sonu",
+      "reason": "Arşivde aynı ad/yıl: Oak Caddesi'nin Sonu"
+    },
+    {
+      "title": "Star Wars: Mandalorian ve Grogu",
+      "url": "https://ddizibox.net/film/star-wars-mandalorian-ve-grogu",
+      "reason": "Arşivde aynı ad/yıl: Star Wars: Mandalorian ve Grogu"
+    },
+    {
+      "title": "Kurtuluş Projesi",
+      "url": "https://ddizibox.net/film/kurtulus-projesi",
+      "reason": "Arşivde aynı ad/yıl: Kurtuluş Projesi"
+    },
+    {
+      "title": "İfşa Günü",
+      "url": "https://ddizibox.net/film/ifsa-gunu",
+      "reason": "Arşivde aynı ad/yıl: İfşa Günü"
+    },
+    {
+      "title": "Batman: Knightfall Part 1: Knightfall",
+      "url": "https://ddizibox.net/film/batman-knightfall-part-1-knightfall",
+      "reason": "Arşivde aynı ad/yıl: Batman: Knightfall - Part 1: Knightfall"
+    },
+    {
+      "title": "Şeytan Marka Giyer 2",
+      "url": "https://ddizibox.net/film/seytan-marka-giyer-2",
+      "reason": "Arşivde aynı ad/yıl: Şeytan Marka Giyer 2"
+    },
+    {
+      "title": "Soulm8te",
+      "url": "https://ddizibox.net/film/soulm8te",
+      "reason": "Arşivde aynı ad/yıl: Soulm8te"
+    },
+    {
+      "title": "Mortal Kombat II",
+      "url": "https://ddizibox.net/film/mortal-kombat-ii",
+      "reason": "Arşivde aynı ad/yıl: Mortal Kombat II"
+    },
+    {
+      "title": "Yolcu",
+      "url": "https://ddizibox.net/film/yolcu",
+      "reason": "Arşivde aynı ad/yıl: Yolcu"
+    },
+    {
+      "title": "THE RIBBON HERO",
+      "url": "https://ddizibox.net/film/the-ribbon-hero",
+      "reason": "Arşivde aynı ad/yıl: THE RIBBON HERO"
+    },
+    {
+      "title": "Hizmetçi",
+      "url": "https://ddizibox.net/film/hizmetci-2",
+      "reason": "Arşivde aynı ad/yıl: Hizmetçi"
+    },
+    {
+      "title": "Guguk Kuşu",
+      "url": "https://ddizibox.net/film/guguk-kusu",
+      "reason": "Arşivde aynı ad/yıl: Guguk Kuşu"
+    },
+    {
+      "title": "İsyan",
+      "url": "https://ddizibox.net/film/isyan",
+      "reason": "Arşivde aynı ad/yıl: İsyan"
+    },
+    {
+      "title": "Büyük Budapeşte Oteli",
+      "url": "https://ddizibox.net/film/buyuk-budapeste-oteli",
+      "reason": "Arşivde aynı ad/yıl: Büyük Budapeşte Oteli"
+    },
+    {
+      "title": "Prenses Mononoke",
+      "url": "https://ddizibox.net/film/prenses-mononoke",
+      "reason": "Arşivde aynı ad/yıl: Prenses Mononoke"
+    },
+    {
+      "title": "Şeytan",
+      "url": "https://ddizibox.net/film/seytan",
+      "reason": "Arşivde aynı ad/yıl: Şeytan"
+    },
+    {
+      "title": "Seni Öldürecekler",
+      "url": "https://ddizibox.net/film/seni-oldurecekler",
+      "reason": "Arşivde aynı ad/yıl: Seni Öldürecekler"
+    },
+    {
+      "title": "The Simpsons Extreme Makeover Homer Edition",
+      "url": "https://ddizibox.net/film/the-simpsons-extreme-makeover-homer-edition",
+      "reason": "Arşivde aynı ad/yıl: The Simpsons Extreme Makeover Homer Edition"
+    },
+    {
+      "title": "Komşum Totoro",
+      "url": "https://ddizibox.net/film/komsum-totoro",
+      "reason": "Arşivde aynı ad/yıl: Komşum Totoro"
+    },
+    {
+      "title": "Bıçaklar Çekildi: Ölü Adamın Uyanışı",
+      "url": "https://ddizibox.net/film/bicaklar-cekildi-olu-adamin-uyanisi",
+      "reason": "Arşivde aynı ad/yıl: Bıçaklar Çekildi: Ölü Adamın Uyanışı"
+    },
+    {
+      "title": "Avengers: Secret Wars",
+      "url": "https://ddizibox.net/film/avengers-secret-wars",
+      "reason": "Arşivde aynı ad/yıl: Avengers: Secret Wars"
+    },
+    {
+      "title": "Tomb Raider",
+      "url": "https://ddizibox.net/film/tomb-raider",
+      "reason": "Arşivde aynı ad/yıl: Tomb Raider"
+    },
+    {
+      "title": "Neşeli Günler",
+      "url": "https://ddizibox.net/film/neseli-gunler",
+      "reason": "Arşivde aynı ad/yıl: Neşeli Günler"
+    },
+    {
+      "title": "Oyun Gecesi",
+      "url": "https://ddizibox.net/film/oyun-gecesi",
+      "reason": "Arşivde aynı ad/yıl: Oyun Gecesi"
+    },
+    {
+      "title": "Sessiz Tepe: Dönüş",
+      "url": "https://ddizibox.net/film/sessiz-tepe-donus",
+      "reason": "Arşivde aynı ad/yıl: Sessiz Tepe: Dönüş"
+    },
+    {
+      "title": "Avatar: Ateş ve Kül",
+      "url": "https://ddizibox.net/film/avatar-ates-ve-kul",
+      "reason": "Arşivde aynı ad/yıl: Avatar: Ateş ve Kül"
+    },
+    {
+      "title": "Borderline",
+      "url": "https://ddizibox.net/film/borderline",
+      "reason": "Arşivde aynı ad/yıl: Borderline"
+    },
+    {
+      "title": "Moana",
+      "url": "https://ddizibox.net/film/moana",
+      "reason": "Arşivde aynı ad/yıl: Moana"
+    },
+    {
+      "title": "Son Bir Şans",
+      "url": "https://ddizibox.net/film/son-bir-sans",
+      "reason": "Arşivde aynı ad/yıl: Son Bir Şans"
+    },
+    {
+      "title": "Apex",
+      "url": "https://ddizibox.net/film/apex",
+      "reason": "Arşivde aynı ad/yıl: Apex"
+    },
+    {
+      "title": "Lee Cronin'den Mumya",
+      "url": "https://ddizibox.net/film/lee-croninden-mumya",
+      "reason": "Arşivde aynı ad/yıl: Lee Cronin’den Mumya"
+    },
+    {
+      "title": "Yürüyen Şato",
+      "url": "https://ddizibox.net/film/yuruyen-sato",
+      "reason": "Arşivde aynı ad/yıl: Yürüyen Şato"
+    },
+    {
+      "title": "Tom Clancy'den Jack Ryan: Hayalet Savaş",
+      "url": "https://ddizibox.net/film/tom-clancyden-jack-ryan-hayalet-savas",
+      "reason": "Arşivde aynı ad/yıl: Tom Clancy’den Jack Ryan: Hayalet Savaş"
+    },
+    {
+      "title": "Yardım Çağrısı",
+      "url": "https://ddizibox.net/film/yardim-cagrisi",
+      "reason": "Arşivde aynı ad/yıl: Yardım Çağrısı"
+    },
+    {
+      "title": "Yeşil Yol",
+      "url": "https://ddizibox.net/film/yesil-yol",
+      "reason": "Arşivde aynı ad/yıl: Yeşil Yol"
+    },
+    {
+      "title": "Şampiyon Keçi: Tüm Zamanların En İyisi",
+      "url": "https://ddizibox.net/film/sampiyon-keci-tum-zamanlarin-en-iyisi",
+      "reason": "Arşivde aynı ad/yıl: Şampiyon Keçi: Tüm Zamanların En İyisi"
+    },
+    {
+      "title": "Harry Potter ve Ölüm Yadigârları: Bölüm 2",
+      "url": "https://ddizibox.net/film/harry-potter-ve-olum-yadigarlari-bolum-2",
+      "reason": "Arşivde aynı ad/yıl: Harry Potter Ve Ölüm Yadigarları Bölüm 2"
+    },
+    {
+      "title": "Son Gün Doğumu",
+      "url": "https://ddizibox.net/film/son-gun-dogumu",
+      "reason": "Arşivde aynı ad/yıl: Son Gün Doğumu"
+    },
+    {
+      "title": "Onun Şahsi Cehennemi",
+      "url": "https://ddizibox.net/film/onun-sahsi-cehennemi",
+      "reason": "Arşivde aynı ad/yıl: Onun Şahsi Cehennemi"
+    },
+    {
+      "title": "The Punisher: One Last Kill",
+      "url": "https://ddizibox.net/film/the-punisher-one-last-kill",
+      "reason": "Arşivde aynı ad/yıl: The Punisher: One Last Kill"
+    },
+    {
+      "title": "Günahkârlar",
+      "url": "https://ddizibox.net/film/gunahkarlar",
+      "reason": "Arşivde aynı ad/yıl: Günahkarlar"
+    },
+    {
+      "title": "Ejderhanı Nasıl Eğitirsin",
+      "url": "https://ddizibox.net/film/ejderhani-nasil-egitirsin",
+      "reason": "Arşivde aynı ad/yıl: Ejderhanı Nasıl Eğitirsin"
+    },
+    {
+      "title": "Ölüme Koşan Adam",
+      "url": "https://ddizibox.net/film/olume-kosan-adam",
+      "reason": "Arşivde aynı ad/yıl: Ölüme Koşan Adam"
+    },
+    {
+      "title": "The Rip",
+      "url": "https://ddizibox.net/film/the-rip",
+      "reason": "Arşivde aynı ad/yıl: The Rip"
+    },
+    {
+      "title": "Chainsaw Man - The Movie: Reze Arc",
+      "url": "https://ddizibox.net/film/chainsaw-man-the-movie-reze-arc",
+      "reason": "Arşivde aynı ad/yıl: Chainsaw Man - The Movie: Reze Arc"
+    },
+    {
+      "title": "Rezervuar Köpekleri",
+      "url": "https://ddizibox.net/film/rezervuar-kopekleri",
+      "reason": "Arşivde aynı ad/yıl: Rezervuar Köpekleri"
+    }
+  ],
+  "items": [
+    {
+      "id": 4000000,
+      "title": "Örümcek-Adam: Eve Dönüş Yok",
+      "year": "2021",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/owp86mH42Un19egdeeZPImufBxN.webp?v=1787188676",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/orumcek-adam-eve-donus-yok"
+    },
+    {
+      "id": 4000001,
+      "title": "Saplantı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/rjQ0GbYsLX6WDWefPrxGMCqPqx6.jpg?v=1787032880",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/saplanti"
+    },
+    {
+      "id": 4000002,
+      "title": "Son Ev",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/asnbB11BomfAwip40zWOwnS319h.webp?v=1787032572",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/son-ev"
+    },
+    {
+      "id": 4000003,
+      "title": "Kâinatın Hâkimleri",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/sj8fmgVdfjldKMTCDFdVaRKvdgF.webp?v=1787032903",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/kainatin-hakimleri"
+    },
+    {
+      "id": 4000004,
+      "title": "Korkunç Bir Film",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9mia27aPqVkvPtFbHZphG0tXpXY.webp?v=1787032532",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/korkunc-bir-film"
+    },
+    {
+      "id": 4000005,
+      "title": "Rage of Stars",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/oLld47ZT1I3iecM3OWhIphohQUJ.webp?v=1787032817",
+      "score": 2.3,
+      "url": "https://ddizibox.net/film/rage-of-stars"
+    },
+    {
+      "id": 4000006,
+      "title": "Arzular",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qSi09KODKYvzwsBdPFiBNzrbfeN.webp?v=1787032855",
+      "score": 7.1,
+      "url": "https://ddizibox.net/film/arzular"
+    },
+    {
+      "id": 4000007,
+      "title": "Kötü Ruh: Cehennem Ateşi",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iViNADqAm9NNfVeOsPUmF44ND35.webp?v=1787032706",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/kotu-ruh-cehennem-atesi"
+    },
+    {
+      "id": 4000008,
+      "title": "Alacaklı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2h4ikWt6TddvIAhMdS3WGVXhaRf.webp?v=1787032410",
+      "score": 6.7,
+      "url": "https://ddizibox.net/film/alacakli"
+    },
+    {
+      "id": 4000009,
+      "title": "Örümcek-Adam: Eve Dönüş",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7KQ8dSUHk1yDpiBfOQ4hqMLAqrX.webp?v=1787188672",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/orumcek-adam-eve-donus"
+    },
+    {
+      "id": 4000010,
+      "title": "Çığlık 7",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zCgNJJXXYmajAW5qPxRKO0vSsQ3.webp?v=1787033030",
+      "score": 6.2,
+      "url": "https://ddizibox.net/film/ciglik-7"
+    },
+    {
+      "id": 4000011,
+      "title": "Kıyamet",
+      "year": "1979",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/d4upwbYvt4p293O4Fo38alH9mQ3.webp?v=1790212669",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/kiyamet"
+    },
+    {
+      "id": 4000012,
+      "title": "Büyük Hesaplaşma",
+      "year": "1995",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/avp9LgmtnCiOj9l07SYA7U0yNkG.webp?v=1790299068",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/buyuk-hesaplasma"
+    },
+    {
+      "id": 4000013,
+      "title": "Awarapan 2",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/lD3J6zTbWkVtPYuSUuuBwpuKMCO.webp?v=1787032753",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/awarapan-2"
+    },
+    {
+      "id": 4000014,
+      "title": "Can Dostum",
+      "year": "1997",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qXzGp5BfVeC9fOxdpVxBReyNMOF.webp?v=1790212674",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/can-dostum"
+    },
+    {
+      "id": 4000015,
+      "title": "Söyleyemediklerimiz",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/q4D5OSltKad8aZlhs8xOq6xN98G.webp?v=1787032848",
+      "score": 4.5,
+      "url": "https://ddizibox.net/film/soyleyemediklerimiz"
+    },
+    {
+      "id": 4000016,
+      "title": "Bir Zamanlar Amerika",
+      "year": "1984",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vpbS5T9Y6y1ozK5p1ECwGAaZz9m.webp?v=1790212676",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/bir-zamanlar-amerika"
+    },
+    {
+      "id": 4000017,
+      "title": "Amerikan Sapığı",
+      "year": "2000",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fKZq9UdctmeTl5Gic5FeC3o6qSZ.webp?v=1789953426",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/amerikan-sapigi"
+    },
+    {
+      "id": 4000018,
+      "title": "Korku Seansı 4: Son Ayin",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/aAqXIa3gl5IAZYiiGOwVZu72kNw.webp?v=1787032558",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/korku-seansi-4-son-ayin"
+    },
+    {
+      "id": 4000019,
+      "title": "Piyanist",
+      "year": "2002",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/8gdOy6vd1lK2KyakZroETXyB4re.webp?v=1790212666",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/piyanist"
+    },
+    {
+      "id": 4000020,
+      "title": "X-Men: Geçmiş Günler Gelecek",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iN7h408RGxMXaEMVtbuYhKuCEnc.webp?v=1787188675",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/x-men-gecmis-gunler-gelecek"
+    },
+    {
+      "id": 4000021,
+      "title": "Asfaltın Kralları",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7yXOh2PqutxhruHzVuoR35D1r4m.webp?v=1790299066",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/asfaltin-krallari"
+    },
+    {
+      "id": 4000022,
+      "title": "Taksi Şoförü",
+      "year": "1976",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pnPFEAOr8Spf1eQC8Cy5nLZWxuz.webp?v=1790299075",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/taksi-soforu"
+    },
+    {
+      "id": 4000023,
+      "title": "Ejderhanı Nasıl Eğitirsin",
+      "year": "2010",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vurfC4fEqOw2lp6AESkbkIRcz9m.webp?v=1790990227",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/ejderhani-nasil-egitirsin-3"
+    },
+    {
+      "id": 4000024,
+      "title": "Sapık",
+      "year": "1960",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/dx1GWvjwCSYgQATVyS1D1OuTtni.webp?v=1790212670",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/sapik"
+    },
+    {
+      "id": 4000025,
+      "title": "Ant-Man",
+      "year": "2015",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vURbKrz7fD7vVWm3CtkKafxezqh.webp?v=1787188678",
+      "score": 7.1,
+      "url": "https://ddizibox.net/film/ant-man"
+    },
+    {
+      "id": 4000026,
+      "title": "Miyazma Kampında Ergenlik Arzuları ve Ölüm",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/c07S1wCUJGzpDcSeUf34rWaISiZ.webp?v=1787032589",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/miyazma-kampinda-ergenlik-arzulari-ve-olum"
+    },
+    {
+      "id": 4000027,
+      "title": "Pamuk Prenses",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/13iAm4aXBvnXBBSxUjtU2USzL6S.webp?v=1787032383",
+      "score": 4.3,
+      "url": "https://ddizibox.net/film/pamuk-prenses"
+    },
+    {
+      "id": 4000028,
+      "title": "28 Yıl Sonra",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9r5MhviULOsrmHb3IUwCt6I2Bf.webp?v=1787032534",
+      "score": 6.6,
+      "url": "https://ddizibox.net/film/28-yil-sonra"
+    },
+    {
+      "id": 4000029,
+      "title": "Canavar",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7NrvUI3vnW8H3rD7ExKcTL7KRcQ.webp?v=1787032489",
+      "score": 6.3,
+      "url": "https://ddizibox.net/film/canavar"
+    },
+    {
+      "id": 4000030,
+      "title": "Kim Demiş Kötüyüz Diye? 2",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/40oBDh8aWKtVeJ4XFzrdeB9xJyC.webp?v=1787032430",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/kim-demis-kotuyuz-diye-2"
+    },
+    {
+      "id": 4000031,
+      "title": "Silahlar",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xhOBuRRfQFH0IQyLPJeMOCa4hlY.webp?v=1787033001",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/silahlar"
+    },
+    {
+      "id": 4000032,
+      "title": "Merhamet Yok",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iWuSPdmKRj6qJWhNGewkbw3zPu7.webp?v=1787032706",
+      "score": 7.1,
+      "url": "https://ddizibox.net/film/merhamet-yok"
+    },
+    {
+      "id": 4000033,
+      "title": "İhtiyarlara Yer Yok",
+      "year": "2007",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/20SlBJZS0Hfjt4WeT6GTCMu7lzq.webp?v=1790299064",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/ihtiyarlara-yer-yok"
+    },
+    {
+      "id": 4000034,
+      "title": "Olağan Şüpheliler",
+      "year": "1995",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/6GZuBIZnBvbt3yi8hfq4RHVIb5P.webp?v=1790212665",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/olagan-supheliler"
+    },
+    {
+      "id": 4000035,
+      "title": "Muhteşem Marty",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/8Ii10oSwzLQquPfXpwpK2vJwFxU.webp?v=1787032506",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/muhtesem-marty"
+    },
+    {
+      "id": 4000036,
+      "title": "Shang-Chi ve On Halka Efsanesi",
+      "year": "2021",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/nuFRut0rHI7L2NqC3RyYu6Tj8Od.webp?v=1787188676",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/shang-chi-ve-on-halka-efsanesi"
+    },
+    {
+      "id": 4000037,
+      "title": "TRON: Ares",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5eqqaCjWPTcstit7mXluhSjECj1.webp?v=1787032460",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/tron-ares"
+    },
+    {
+      "id": 4000038,
+      "title": "Deadpool 2",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/oTUIcMwOgAeA0Z7PIMKeNqutqmQ.webp?v=1787188676",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/deadpool-2"
+    },
+    {
+      "id": 4000039,
+      "title": "Bugün Aslında Dündü",
+      "year": "1993",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/88NSZjWGBYoEsPpaxnM5SKthhuh.webp?v=1790299066",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/bugun-aslinda-dundu"
+    },
+    {
+      "id": 4000040,
+      "title": "Ant-Man ve Wasp",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/sgJ4YlHDZVTmOYAkSXOZiJjgPqp.webp?v=1787188677",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/ant-man-ve-wasp"
+    },
+    {
+      "id": 4000041,
+      "title": "Geçmişin Gölgesinde",
+      "year": "1998",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/gR1LQ4WEO9eJlA1Niv6JxOcukUY.webp?v=1790212671",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/gecmisin-golgesinde"
+    },
+    {
+      "id": 4000042,
+      "title": "Mickey 17",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/edKpE9B5qN3e559OuMCLZdW1iBZ.webp?v=1787032638",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/mickey-17"
+    },
+    {
+      "id": 4000043,
+      "title": "Pan'ın Labirenti",
+      "year": "2006",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vbumwidvLwQ3IOFVGnFRHB5aZ3c.webp?v=1790299077",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/panin-labirenti"
+    },
+    {
+      "id": 4000044,
+      "title": "X-Men: Dark Phoenix",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5Ew3c5MTo3Tb903Cps0k1qAcbUD.webp?v=1787188671",
+      "score": 6.0,
+      "url": "https://ddizibox.net/film/x-men-dark-phoenix"
+    },
+    {
+      "id": 4000045,
+      "title": "Şey",
+      "year": "1982",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9bpMNsWNouFdHAl25Bm8J3wy9jC.webp?v=1790299067",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/sey"
+    },
+    {
+      "id": 4000046,
+      "title": "Batwara 1947",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/n66Q78zJcx5lL5HGRZPUpHxcsG6.webp?v=1787032793",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/batwara-1947"
+    },
+    {
+      "id": 4000047,
+      "title": "Oz Büyücüsü",
+      "year": "1939",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/lo2JL1tAPGqHBAS53zyKuEq9wtQ.webp?v=1790299073",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/oz-buyucusu"
+    },
+    {
+      "id": 4000048,
+      "title": "Kill Bill: Vol. 2",
+      "year": "2004",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2yhg0mZQMhDyvUQ4rG1IZ4oIA8L.webp?v=1789953425",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/kill-bill-vol-2"
+    },
+    {
+      "id": 4000049,
+      "title": "V for Vendetta",
+      "year": "2006",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wpm0WskmVH5GCKiRSvWsTeqhMBm.webp?v=1790299078",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/v-for-vendetta"
+    },
+    {
+      "id": 4000050,
+      "title": "Cesur Yürek",
+      "year": "1995",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/h98Ml18umVRDuS9nLoJoLK7qIm8.webp?v=1790212671",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/cesur-yurek"
+    },
+    {
+      "id": 4000051,
+      "title": "undertone",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2PFgFMnrdCPXWiZl1PUvky7Mo9D.webp?v=1787032405",
+      "score": 6.2,
+      "url": "https://ddizibox.net/film/undertone"
+    },
+    {
+      "id": 4000052,
+      "title": "Indiana Jones: Son Macera",
+      "year": "1989",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/grTXFQ12RWr0u4qmAEqFFrWOQpg.webp?v=1790299070",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/indiana-jones-son-macera"
+    },
+    {
+      "id": 4000053,
+      "title": "Hamnet",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5U5jdveEA3zXrM8YSPmCmHgyI5S.webp?v=1787032456",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/hamnet"
+    },
+    {
+      "id": 4000054,
+      "title": "Coyote Acme'ye Karşı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tiS1RDaTrPftGZ0yGNaUW5DLuir.webp?v=1787032920",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/coyote-acmeye-karsi"
+    },
+    {
+      "id": 4000055,
+      "title": "Kapışma",
+      "year": "2000",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/26Pdbk6iNjNiHi1KnSoytCKnTSQ.webp?v=1790299065",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/kapisma"
+    },
+    {
+      "id": 4000056,
+      "title": "Ballerina",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vUSpLo317QH7uIsxpqSHZpc8Fav.webp?v=1787032958",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/ballerina"
+    },
+    {
+      "id": 4000057,
+      "title": "Ağır İşçi",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/z5DCFQ1TiyiZF1OwAkNUSE3OHEr.webp?v=1787033027",
+      "score": 6.7,
+      "url": "https://ddizibox.net/film/agir-isci"
+    },
+    {
+      "id": 4000058,
+      "title": "SüngerBob: Korsan Macerası",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/oRwi8Ogzm0PnEjOf2eDOg33MkEf.webp?v=1787032818",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/sungerbob-korsan-macerasi"
+    },
+    {
+      "id": 4000059,
+      "title": "Amerikan Güzeli",
+      "year": "1999",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/al7lLfyGPtzJivdcK6dl67B2Z6S.webp?v=1790212668",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/amerikan-guzeli"
+    },
+    {
+      "id": 4000060,
+      "title": "Otomatik Portakal",
+      "year": "1971",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/kOcJpqibBezU00tG4FVEhML8PU8.webp?v=1790212673",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/otomatik-portakal"
+    },
+    {
+      "id": 4000061,
+      "title": "Alaaddin",
+      "year": "1992",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/eLFfl7vS8dkeG1hKp5mwbm37V83.webp?v=1790212670",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/alaaddin"
+    },
+    {
+      "id": 4000062,
+      "title": "Tanrı Kent",
+      "year": "2002",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ltoNh0NJ8hJTOKbuRvTNc8918Mi.webp?v=1790212673",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/tanri-kent"
+    },
+    {
+      "id": 4000063,
+      "title": "“Uğultulu Tepeler”",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tBtungYBSGJZylDnXU6xyqySrex.webp?v=1787032911",
+      "score": 6.7,
+      "url": "https://ddizibox.net/film/ugultulu-tepeler"
+    },
+    {
+      "id": 4000064,
+      "title": "Otel Transilvanya 3: Yaz Tatili",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3xTAQ7gsEx1wYB7j6NGMFzShheO.webp?v=1791163030",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/otel-transilvanya-3-yaz-tatili"
+    },
+    {
+      "id": 4000065,
+      "title": "Anakonda",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/cIFMjt5MllFA6TJFkNufJ7uxHvT.webp?v=1787032594",
+      "score": 5.8,
+      "url": "https://ddizibox.net/film/anakonda"
+    },
+    {
+      "id": 4000066,
+      "title": "Amelie",
+      "year": "2001",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/d6aA2hQmrUN1pGzioXldstNelur.webp?v=1790212669",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/amelie"
+    },
+    {
+      "id": 4000067,
+      "title": "Ruhlar Bölgesi: Aramızdalar",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iq3bhJULAxVsgW3WtVFguwbsXrZ.webp?v=1787032714",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/ruhlar-bolgesi-aramizdalar"
+    },
+    {
+      "id": 4000068,
+      "title": "Benim Hatam: Londra",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9tjSCAmJKWVq0olFjkYiwyy1hqA.webp?v=1787032534",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/benim-hatam-londra"
+    },
+    {
+      "id": 4000069,
+      "title": "Space Jam: Yeni Efsane",
+      "year": "2021",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/241esQbr6MQVh0Ke041bJKYtxtx.webp?v=1790471829",
+      "score": 6.6,
+      "url": "https://ddizibox.net/film/space-jam-yeni-efsane"
+    },
+    {
+      "id": 4000070,
+      "title": "Akıl Defteri",
+      "year": "2000",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/31yNVJl968krAHy3f5nFB6kLl7i.webp?v=1790212663",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/akil-defteri"
+    },
+    {
+      "id": 4000071,
+      "title": "Büyü de Gel",
+      "year": "2023",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/z68X7s0aHSDgxMfIQ36R8keHC8a.webp?v=1791681429",
+      "score": 6.7,
+      "url": "https://ddizibox.net/film/buyu-de-gel"
+    },
+    {
+      "id": 4000072,
+      "title": "Kusursuz Arkadaş",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/6guIbrI70MtDVVI2sMjanwHtXds.webp?v=1787032477",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/kusursuz-arkadas"
+    },
+    {
+      "id": 4000073,
+      "title": "Büyük Lebowski",
+      "year": "1998",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/gtrCjDRxFf5YAXJDzQbT1B4yRnF.webp?v=1790299071",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/buyuk-lebowski"
+    },
+    {
+      "id": 4000074,
+      "title": "Primat",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vElU6SotbFhUjDkkE9d8rb1XmkY.webp?v=1787032953",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/primat"
+    },
+    {
+      "id": 4000075,
+      "title": "Galaksinin Koruyucuları",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/g9NAhhkM3nSstFRVHWgnnDdavv5.webp?v=1787188674",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/galaksinin-koruyuculari"
+    },
+    {
+      "id": 4000076,
+      "title": "Yıldız Savaşları: İmparator'un Dönüşü",
+      "year": "1980",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/r9w1NH3495IW27qEjUCJ8r7Wt4Y.webp?v=1790212675",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/yildiz-savaslari-imparatorun-donusu"
+    },
+    {
+      "id": 4000077,
+      "title": "Arka Pencere",
+      "year": "1954",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/g50uFnTJy6NnC23NGbE7FmZWHjC.webp?v=1790212671",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/arka-pencere"
+    },
+    {
+      "id": 4000078,
+      "title": "Logan: Wolverine",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3U06IOlGpzIX1b6RsqXqqjv9EpU.webp?v=1787188670",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/logan-wolverine"
+    },
+    {
+      "id": 4000079,
+      "title": "Sevgili Suikastçım",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/mIVrW1XBTE3ZPN2QfQijafZhHCr.webp?v=1787032775",
+      "score": 8.6,
+      "url": "https://ddizibox.net/film/sevgili-suikastcim"
+    },
+    {
+      "id": 4000080,
+      "title": "Ölünü Göreyim",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/uqZLPus1vIZ9hgPd1BQ0lYMENd5.webp?v=1787032944",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/olunu-goreyim"
+    },
+    {
+      "id": 4000081,
+      "title": "Bir Şans Daha",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9x4Qxzt1KTmChAdp1JV6M5R04s5.webp?v=1792113425",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/bir-sans-daha"
+    },
+    {
+      "id": 4000082,
+      "title": "Otel Transilvanya 2",
+      "year": "2015",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/osdUQB47lU3XVL0u93zlIYnDV0Y.webp?v=1791163031",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/otel-transilvanya-2"
+    },
+    {
+      "id": 4000083,
+      "title": "Batıda Kan Var",
+      "year": "1968",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ma98KeWxVhlecM8QttQdcPqWljz.webp?v=1790212673",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/batida-kan-var"
+    },
+    {
+      "id": 4000084,
+      "title": "Cadılar Bayramı",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/68NwFv2vI4Ne2FBSPeldz7Dadd9.webp?v=1792631824",
+      "score": 6.6,
+      "url": "https://ddizibox.net/film/cadilar-bayrami"
+    },
+    {
+      "id": 4000085,
+      "title": "Hachi: Bir Köpeğin Hikayesi",
+      "year": "2009",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/790t62GrOvAeSo9Oalbar22boPb.webp?v=1790299066",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/hachi-bir-kopegin-hikayesi"
+    },
+    {
+      "id": 4000086,
+      "title": "1917",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/cTzIxbvk3zcvN2X4PLaEdnRkPvh.webp?v=1790212669",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/1917"
+    },
+    {
+      "id": 4000087,
+      "title": "Rüzgâr Gibi Geçti",
+      "year": "1939",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/h5nPZruCCL9V5uvBHhKzcfMyT2f.webp?v=1790299071",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/ruzgar-gibi-gecti"
+    },
+    {
+      "id": 4000088,
+      "title": "Bugonia",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wXrQTbF8yDvRs6asPCy2WpQ2rA4.webp?v=1787032979",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/bugonia"
+    },
+    {
+      "id": 4000089,
+      "title": "Şahane Hayat",
+      "year": "1946",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/i5Sh0aNPx1Vxe6yXgwphKipBLrj.webp?v=1790212672",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/sahane-hayat"
+    },
+    {
+      "id": 4000090,
+      "title": "Şeytanın Ağzı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5YCvr05L7DavEUSp527uqwLEaMn.webp?v=1787032457",
+      "score": 6.3,
+      "url": "https://ddizibox.net/film/seytanin-agzi"
+    },
+    {
+      "id": 4000091,
+      "title": "Avengers: Doomsday",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/rjjW3loZDVY4a6uHzUHfoJrawH.webp?v=1787032881",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/avengers-doomsday"
+    },
+    {
+      "id": 4000092,
+      "title": "Michael",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/Awq135QNhuvZ99VyNZgSlnKxFW2.webp?v=1787032546",
+      "score": 8.7,
+      "url": "https://ddizibox.net/film/michael"
+    },
+    {
+      "id": 4000093,
+      "title": "Örümcek Adam",
+      "year": "2002",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5FyIHcUTLFNSk4D5rfsGRTkSwie.webp?v=1787188671",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/orumcek-adam"
+    },
+    {
+      "id": 4000094,
+      "title": "Süper Mario Galaksi Filmi",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/hoA55UeOCYnO2EkX93EFa2e6g1i.webp?v=1787032695",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/super-mario-galaksi-filmi"
+    },
+    {
+      "id": 4000095,
+      "title": "Avatar Aang: Son Havabükücü",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3sgnSfNT27Bx5O5ukr7B26mhEQq.webp?v=1787032428",
+      "score": 9.1,
+      "url": "https://ddizibox.net/film/avatar-aang-son-havabukucu"
+    },
+    {
+      "id": 4000096,
+      "title": "72 Saat",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9Bu1PW2R1XayqRqnl0aDOgMcrdS.webp?v=1787032521",
+      "score": 5.7,
+      "url": "https://ddizibox.net/film/72-saat"
+    },
+    {
+      "id": 4000097,
+      "title": "Avengers: Sonsuzluk Savaşı",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7FQTJyrvhUp9oYDhHgujWRlxUES.webp?v=1787188672",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/avengers-sonsuzluk-savasi"
+    },
+    {
+      "id": 4000098,
+      "title": "Rock Kampı 3",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/rS7byWK9cfPfdLeFNlRIaJxH9mN.webp?v=1787032875",
+      "score": 6.1,
+      "url": "https://ddizibox.net/film/rock-kampi-3"
+    },
+    {
+      "id": 4000099,
+      "title": "Yenilmezler",
+      "year": "2012",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/1sCJVLAqKGgKIZpKGXURjpKBwgu.webp?v=1787188670",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/yenilmezler"
+    },
+    {
+      "id": 4000100,
+      "title": "İnanılmaz Örümcek-Adam",
+      "year": "2012",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/YoNuu4xeGIBTLAPse6RdWgV51t.webp?v=1787188673",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/inanilmaz-orumcek-adam"
+    },
+    {
+      "id": 4000101,
+      "title": "Esaretin Bedeli",
+      "year": "1994",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7T2SDS5efuJiK45oyKoEzf9RKjw.webp?v=1790212666",
+      "score": 8.7,
+      "url": "https://ddizibox.net/film/esaretin-bedeli"
+    },
+    {
+      "id": 4000102,
+      "title": "Yerime Geç",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qOGVmgnIO71nIffkGmGtGmhHLdN.webp?v=1787032853",
+      "score": 8.9,
+      "url": "https://ddizibox.net/film/yerime-gec"
+    },
+    {
+      "id": 4000103,
+      "title": "Örümcek-Adam: Evden Uzakta",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/4tRdNexuqCCVAlHdVyegWdDNZs2.webp?v=1787188671",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/orumcek-adam-evden-uzakta"
+    },
+    {
+      "id": 4000104,
+      "title": "Yıldızlararası",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xbiycuc84TrieEWwkkuH2hoEa9S.webp?v=1790212677",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/yildizlararasi"
+    },
+    {
+      "id": 4000105,
+      "title": "Koralin ve Gizli Dünya",
+      "year": "2009",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/4jeFXQYytChdZYE9JYO7Un87IlW.webp?v=1791767828",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/koralin-ve-gizli-dunya"
+    },
+    {
+      "id": 4000106,
+      "title": "Dünyalar Savaşı",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iFWDt2eS91aK1TLxZT1rEZq3QB3.webp?v=1787032701",
+      "score": 4.1,
+      "url": "https://ddizibox.net/film/dunyalar-savasi"
+    },
+    {
+      "id": 4000107,
+      "title": "Sığınak",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wKCXmkfBuXiO606YXLxU9Qq14RY.webp?v=1787032973",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/siginak"
+    },
+    {
+      "id": 4000108,
+      "title": "Bulvar",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qAYDwaHwjeUiPkYOj73EgrY0lNQ.webp?v=1787032849",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/bulvar"
+    },
+    {
+      "id": 4000109,
+      "title": "Baba",
+      "year": "1972",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vseIVRdN4xasYwStQIi6SI7DcEu.webp?v=1790212676",
+      "score": 8.7,
+      "url": "https://ddizibox.net/film/baba"
+    },
+    {
+      "id": 4000110,
+      "title": "Avengers: Endgame",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zx1uMVXSJrzYCA8KTpmeEBqBx66.webp?v=1787188679",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/avengers-endgame"
+    },
+    {
+      "id": 4000111,
+      "title": "Hoplayanlar",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/eYjLQ3ULyr3nWj218Cu7YYU0Z8x.webp?v=1787032637",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/hoplayanlar"
+    },
+    {
+      "id": 4000112,
+      "title": "Bir Koyun Polisiyesi",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/yqr2EzcCGIkh367I7uD1oO9ePmO.jpg?v=1787033023",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/bir-koyun-polisiyesi"
+    },
+    {
+      "id": 4000113,
+      "title": "Elize: Bir Kadının Gölgeleri",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/hLTKARaZn0fH5zr3j5EkKtJhu1G.webp?v=1787032687",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/elize-bir-kadinin-golgeleri"
+    },
+    {
+      "id": 4000114,
+      "title": "Gölge Avı",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/o25Tk1FYQi2BLk0OEAvx2h69QvB.webp?v=1787032811",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/golge-avi"
+    },
+    {
+      "id": 4000115,
+      "title": "Başlangıç",
+      "year": "2010",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xn0Kcg4e6p0mLxVS3nAWhNmW2Ni.jpg?v=1787033002",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/baslangic"
+    },
+    {
+      "id": 4000116,
+      "title": "Joker: İkili Delilik",
+      "year": "2024",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tXF2p2hthwXDXvCyXcwWuJKgaHD.webp?v=1792113425",
+      "score": 5.4,
+      "url": "https://ddizibox.net/film/joker-ikili-delilik"
+    },
+    {
+      "id": 4000117,
+      "title": "İnanılmaz Örümcek-Adam 2",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/82bZ816lXLqAVPp0wsvE5S2SuGu.webp?v=1787188672",
+      "score": 6.6,
+      "url": "https://ddizibox.net/film/inanilmaz-orumcek-adam-2"
+    },
+    {
+      "id": 4000118,
+      "title": "Jurassic World: Yeniden Doğuş",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/4P5TT9IXEfhBqzcgmDonrvMgbMv.webp?v=1787032437",
+      "score": 6.3,
+      "url": "https://ddizibox.net/film/jurassic-world-yeniden-dogus"
+    },
+    {
+      "id": 4000119,
+      "title": "Mad Max: Fury Road",
+      "year": "2015",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/mnKUoJFdNbQVs4f7nEGW6p7CgsA.jpg?v=1787032786",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/mad-max-fury-road"
+    },
+    {
+      "id": 4000120,
+      "title": "Oppenheimer",
+      "year": "2023",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/mmZi0tyPFfbcCqEsJIPxVldCPOL.webp?v=1790212674",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/oppenheimer"
+    },
+    {
+      "id": 4000121,
+      "title": "Ters Yüz",
+      "year": "2015",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/1EPfG2nVMhF5CDcAK0IeSsnBsVw.webp?v=1790299064",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/ters-yuz"
+    },
+    {
+      "id": 4000122,
+      "title": "Fanstastik Dörtlü: İlk Adımlar",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fWMxLc0OP8JmcDq9DB54nlLgSxi.webp?v=1787032652",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/fanstastik-dortlu-ilk-adimlar"
+    },
+    {
+      "id": 4000123,
+      "title": "Hayvan Yarışı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9WRbHcoakugna5zHNFIaxMFPcm7.webp?v=1787032527",
+      "score": 6.3,
+      "url": "https://ddizibox.net/film/hayvan-yarisi"
+    },
+    {
+      "id": 4000124,
+      "title": "Kara Şövalye",
+      "year": "2008",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7IPCEr7ifdH5CtU97QG7XgAAtOp.webp?v=1789607825",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/kara-sovalye"
+    },
+    {
+      "id": 4000125,
+      "title": "Zootropolis 2",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xdvMX5L7bdonl2geaXL3laTCSr2.webp?v=1787033000",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/zootropolis-2"
+    },
+    {
+      "id": 4000126,
+      "title": "Kaptan Amerika: Kahramanların Savaşı",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/td9wjb1v4sBE0T5UsZx50QnsZ3j.webp?v=1787102559",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/kaptan-amerika-kahramanlarin-savasi"
+    },
+    {
+      "id": 4000127,
+      "title": "Örümcek-Adam: Örümcek-Evrenine Geçiş",
+      "year": "2023",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2k49onFB4SnbMWgczIhf1JWl6Tr.webp?v=1790212663",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/orumcek-adam-orumcek-evrenine-gecis"
+    },
+    {
+      "id": 4000128,
+      "title": "Şüphe Sarmalı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pUvs1iFFMDy3sNp5dNmkRak1oxD.webp?v=1787032837",
+      "score": 5.6,
+      "url": "https://ddizibox.net/film/suphe-sarmali"
+    },
+    {
+      "id": 4000129,
+      "title": "Yüzüklerin Efendisi: Kralın Dönüşü",
+      "year": "2003",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qwigzi0gOcXZRxbm488wT31t2UZ.webp?v=1787188677",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/yuzuklerin-efendisi-kralin-donusu"
+    },
+    {
+      "id": 4000130,
+      "title": "Deadpool ve Wolverine",
+      "year": "2024",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fVr2X3jnoeLuZ2v0L1O8MOdOiSz.webp?v=1787188673",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/deadpool-ve-wolverine"
+    },
+    {
+      "id": 4000131,
+      "title": "Yenilmezler: Ultron Çağı",
+      "year": "2015",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/y3t1t4FlQpDdtpoVsXC6IzeMjUH.webp?v=1787188679",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/yenilmezler-ultron-cagi"
+    },
+    {
+      "id": 4000132,
+      "title": "Terminatör",
+      "year": "1984",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/XgnjObKKM0QNfwDFI421NW65mv.webp?v=1790299068",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/terminator"
+    },
+    {
+      "id": 4000133,
+      "title": "Matrix",
+      "year": "1999",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg?v=1787032619",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/matrix"
+    },
+    {
+      "id": 4000134,
+      "title": "Dövüş Kulübü",
+      "year": "1999",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/yjMuqAyJUoQZGWsZ0vZuYj5inAR.webp?v=1790212677",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/dovus-kulubu"
+    },
+    {
+      "id": 4000135,
+      "title": "Davet",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zs9BCL44LFPaQwWIvsIokP6r3mG.webp?v=1788657428",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/davet"
+    },
+    {
+      "id": 4000136,
+      "title": "Kaptan Amerika: Cesur Yeni Dünya",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pDRk4CHForp28shN9V0DgB0BnW8.webp?v=1787032832",
+      "score": 6.0,
+      "url": "https://ddizibox.net/film/kaptan-amerika-cesur-yeni-dunya"
+    },
+    {
+      "id": 4000137,
+      "title": "Coco",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/f9Ro5x36UTDdHFrhnHeXqlhBVRF.webp?v=1790212670",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/coco"
+    },
+    {
+      "id": 4000138,
+      "title": "Ucuz Roman",
+      "year": "1994",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/AgY33Wtg4737MhYopJSFyKWhKsO.webp?v=1790212667",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/ucuz-roman"
+    },
+    {
+      "id": 4000139,
+      "title": "Bana Şans Dileme",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/nCJ5kLcMx4aEHTGQHnpCXTQ928u.webp?v=1787032794",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/bana-sans-dileme"
+    },
+    {
+      "id": 4000140,
+      "title": "Greenland: Kıyamet",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/AnF3A3TRkFgYyXcC3KO6g6ssfnu.webp?v=1787032544",
+      "score": 6.4,
+      "url": "https://ddizibox.net/film/greenland-kiyamet"
+    },
+    {
+      "id": 4000141,
+      "title": "Heartstopper: Sonsuza Dek",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tmlYZydOz4QW69gbb4wkBVVO6OF.webp?v=1787032922",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/heartstopper-sonsuza-dek"
+    },
+    {
+      "id": 4000142,
+      "title": "Superman",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/mndGq35yDCm8QSuTKRdF2o0KkB7.webp?v=1787032786",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/superman"
+    },
+    {
+      "id": 4000143,
+      "title": "Top Gun: Maverick",
+      "year": "2022",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/n0YuM4f5lvGAP6MAW2kBIzugXnc.webp?v=1790299073",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/top-gun-maverick"
+    },
+    {
+      "id": 4000144,
+      "title": "Kara Şövalye Yükseliyor",
+      "year": "2012",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/jtB2vPm7Drpw0AToSxKIcxjRcgC.webp?v=1790212672",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/kara-sovalye-yukseliyor"
+    },
+    {
+      "id": 4000145,
+      "title": "Hizmetçi",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/50piNowdOEXQbwJyx1d9S5vdohi.webp?v=1787032449",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/hizmetci"
+    },
+    {
+      "id": 4000146,
+      "title": "Thunderbolts*",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/rjubchd3QdoDOZ6zrghHjNB1Rqh.webp?v=1787032881",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/thunderbolts"
+    },
+    {
+      "id": 4000147,
+      "title": "Forrest Gump",
+      "year": "1994",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/Cw4hIUIAmSYfK9QfaUW5igp9La.webp?v=1790212668",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/forrest-gump"
+    },
+    {
+      "id": 4000148,
+      "title": "K-Pop: İblis Avcıları",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zT7Lhw3BhJbMkRqm9Zlx2YGMsY0.webp?v=1787033035",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/k-pop-iblis-avcilari"
+    },
+    {
+      "id": 4000149,
+      "title": "Yüzüklerin Efendisi: Yüzük Kardeşliği",
+      "year": "2001",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/37kdeAEyw8YlVLaAhYazBRAni9S.webp?v=1787188670",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/yuzuklerin-efendisi-yuzuk-kardesligi"
+    },
+    {
+      "id": 4000150,
+      "title": "Örümcek Adam: Örümcek Evreninde",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ii2MsmBmTL5kQuvBRCtKokUAF8v.webp?v=1790212672",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/orumcek-adam-orumcek-evreninde"
+    },
+    {
+      "id": 4000151,
+      "title": "Doctor Strange Çoklu Evren Çılgınlığında",
+      "year": "2022",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3kNtKwps884KDg92N9HapnBi7T8.webp?v=1787188671",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/doctor-strange-coklu-evren-cilginliginda"
+    },
+    {
+      "id": 4000152,
+      "title": "Thor: Ragnarok",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vznEpyt2LNr3P14s7n70sR2iWgA.webp?v=1787188678",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/thor-ragnarok"
+    },
+    {
+      "id": 4000153,
+      "title": "23.000 Hayat",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/eapS3qnjJ9WwZ4nFGZD4DLkXYA2.webp?v=1787032638",
+      "score": 5.3,
+      "url": "https://ddizibox.net/film/23000-hayat"
+    },
+    {
+      "id": 4000154,
+      "title": "Oyuncak Hikayesi",
+      "year": "1995",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/4KAtscEx3Pt9YPpNuK3BO6irQn1.webp?v=1790212664",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/oyuncak-hikayesi"
+    },
+    {
+      "id": 4000155,
+      "title": "Kayıp Balık Nemo",
+      "year": "2003",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vz6BmebarfIsK1ZSzSXonZsuY3c.webp?v=1790299078",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/kayip-balik-nemo"
+    },
+    {
+      "id": 4000156,
+      "title": "Geleceğe Dönüş",
+      "year": "1985",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/s6pfkJuTFZe7BCfJ5vOCECNmQbW.webp?v=1790212675",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/gelecege-donus"
+    },
+    {
+      "id": 4000157,
+      "title": "Aslan Kral",
+      "year": "1994",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fevIusz4PyAwrlU8CmIfATVJf3K.webp?v=1790212671",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/aslan-kral"
+    },
+    {
+      "id": 4000158,
+      "title": "Gladyatör",
+      "year": "2000",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/aDb548BOkFfI4nFm0kx8A3Ezh7H.webp?v=1790212668",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/gladyator"
+    },
+    {
+      "id": 4000159,
+      "title": "Zincirsiz",
+      "year": "2012",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wjN6Cg2Ow7eP1HotskuDyVQQiKb.webp?v=1790212676",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/zincirsiz"
+    },
+    {
+      "id": 4000160,
+      "title": "Olağanüstü Akıllı Yaratıklar",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ArCaeK8Hhk80IXlvHsQwyZlddl9.webp?v=1787032545",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/olaganustu-akilli-yaratiklar"
+    },
+    {
+      "id": 4000161,
+      "title": "Baba II",
+      "year": "1974",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3Yaj5y25485A2YeixwayoP8ywZ0.webp?v=1790212663",
+      "score": 8.6,
+      "url": "https://ddizibox.net/film/baba-ii"
+    },
+    {
+      "id": 4000162,
+      "title": "Ruhların Kaçışı",
+      "year": "2001",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xvOEOMCzfV8qXkd1n1btZ8q4Psd.webp?v=1790212677",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/ruhlarin-kacisi"
+    },
+    {
+      "id": 4000163,
+      "title": "Katil Makine",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tn6zYcdEvfoTJeBP0OeNqu3Sl4J.webp?v=1787032922",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/katil-makine"
+    },
+    {
+      "id": 4000164,
+      "title": "Sevimli Canavarlar",
+      "year": "2001",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/y4YRiGgYxttCVUvs9vhxfGezHx4.webp?v=1790299079",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/sevimli-canavarlar"
+    },
+    {
+      "id": 4000165,
+      "title": "Demir Adam",
+      "year": "2008",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9qjZeIZ52CWgmZuEuVuBPaypChy.webp?v=1787102527",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/demir-adam"
+    },
+    {
+      "id": 4000166,
+      "title": "Venom: Son Dans",
+      "year": "2024",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zXuJod6c9NyPwHJiT3HxsZDquLZ.webp?v=1788916623",
+      "score": 6.7,
+      "url": "https://ddizibox.net/film/venom-son-dans"
+    },
+    {
+      "id": 4000167,
+      "title": "Isabelle'e Sesli Mesaj",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pR0RQIy51Fqjy5zBkBILdyZdUID.webp?v=1787032836",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/isabellee-sesli-mesaj"
+    },
+    {
+      "id": 4000168,
+      "title": "Paw Patrol: Dino Filmi",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/g8Z3LC3EG9pgB1SNfDUEDPfk87o.webp?v=1787032663",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/paw-patrol-dino-filmi"
+    },
+    {
+      "id": 4000169,
+      "title": "Parazit",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/nx7TmJDMkgyBc09DVo5ze52Wt3F.webp?v=1790471831",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/parazit"
+    },
+    {
+      "id": 4000170,
+      "title": "Yedi",
+      "year": "1995",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3qpOnTbxPK2HeHObBHttcvQHLGI.webp?v=1790212664",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/yedi"
+    },
+    {
+      "id": 4000171,
+      "title": "Whiplash",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/q3Ev5vIC3fklycV9kfpVIdbRe14.webp?v=1790212674",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/whiplash"
+    },
+    {
+      "id": 4000172,
+      "title": "Karayip Korsanları: Siyah İnci'nin Laneti",
+      "year": "2003",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/hGIDdwPMM8tusFMiobZiJ942O4c.webp?v=1790299071",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/karayip-korsanlari-siyah-incinin-laneti"
+    },
+    {
+      "id": 4000173,
+      "title": "Hayata Mahkûm",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/agjAERPDtwx5tBWbqGtzVDTLnMr.webp?v=1791076638",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/hayata-mahkum"
+    },
+    {
+      "id": 4000174,
+      "title": "Yüzüklerin Efendisi: İki Kule",
+      "year": "2002",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/AaiH8Yocbg0VMfs0PyXJTJbWrp2.webp?v=1787188673",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/yuzuklerin-efendisi-iki-kule"
+    },
+    {
+      "id": 4000175,
+      "title": "Joker",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/3DeEAwO42j4VmRdI4KSSN1VloM.webp?v=1790212663",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/joker"
+    },
+    {
+      "id": 4000176,
+      "title": "Terminatör 2: Mahşer Günü",
+      "year": "1991",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2e2oJJKdNrxg8k74ty3fB90xLfl.webp?v=1790212662",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/terminator-2-mahser-gunu"
+    },
+    {
+      "id": 4000177,
+      "title": "Yıldız Savaşları: Yeni Umut",
+      "year": "1977",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fT9pEpt2pd0m7ZC0shQo08E77xI.webp?v=1790212670",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/yildiz-savaslari-yeni-umut"
+    },
+    {
+      "id": 4000178,
+      "title": "İnanılmaz Aile",
+      "year": "2004",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/lYO0iRJIqRcqO7lWS5jYDc8mvLo.webp?v=1790299073",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/inanilmaz-aile"
+    },
+    {
+      "id": 4000179,
+      "title": "Oyuncak Hikayesi 3",
+      "year": "2010",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qBNNAO9EVqx1vRdCbBtr5TDonA4.webp?v=1790212674",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/oyuncak-hikayesi-3"
+    },
+    {
+      "id": 4000180,
+      "title": "F1 Filmi",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/m0XqulO3M01pmrhaUoJ8H55Gcg1.webp?v=1787032768",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/f1-filmi"
+    },
+    {
+      "id": 4000181,
+      "title": "Yaratık",
+      "year": "1979",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/dH1emjWR6ZsYsnsetlFU65KaCnb.webp?v=1790212670",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/yaratik"
+    },
+    {
+      "id": 4000182,
+      "title": "Savaş Vadisi",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2Sy0anrKQ13GKgX78EXnGGpYUtz.webp?v=1790299065",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/savas-vadisi"
+    },
+    {
+      "id": 4000183,
+      "title": "Shazam! 6 Güç",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/peYpB3eRyrmVVvBCGOPr5Wdxx03.webp?v=1792199827",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/shazam-6-guc"
+    },
+    {
+      "id": 4000184,
+      "title": "Para Avcısı",
+      "year": "2013",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ywn2c1sSfdNdJB5O9Hoy3ETfTY2.webp?v=1790299079",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/para-avcisi"
+    },
+    {
+      "id": 4000185,
+      "title": "Drama",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pQKNa1hXT6NwkE8lVR8MJmIQi2I.webp?v=1788484623",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/drama"
+    },
+    {
+      "id": 4000186,
+      "title": "28 Yıl Sonra: Kemik Tapınağı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/bNdARJFYbQZ4Md4wr7EEIRr91Nd.webp?v=1787032580",
+      "score": 7.1,
+      "url": "https://ddizibox.net/film/28-yil-sonra-kemik-tapinagi"
+    },
+    {
+      "id": 4000187,
+      "title": "VOL-İ",
+      "year": "2008",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/jzCpGwWHUwby14KPJJWla9ybY81.webp?v=1790212673",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/vol-i"
+    },
+    {
+      "id": 4000188,
+      "title": "Predator: Vahşi Topraklar",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fBmLlHKvDuvO4316qzqaDxEuKsg.webp?v=1787032645",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/predator-vahsi-topraklar"
+    },
+    {
+      "id": 4000189,
+      "title": "Kayıp Kız",
+      "year": "2014",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ukTOTpF1KK2L4qURnFsGtWpjYO.webp?v=1790299077",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/kayip-kiz"
+    },
+    {
+      "id": 4000190,
+      "title": "Enola Holmes 3",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/7kRYHH9H9PjBFwz1FprbHB2AAjI.webp?v=1787032495",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/enola-holmes-3"
+    },
+    {
+      "id": 4000191,
+      "title": "Galaksinin Koruyucuları 3",
+      "year": "2023",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fbK6py6t9ikhWbsz3tIeXgiBCCn.webp?v=1787188674",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/galaksinin-koruyuculari-3"
+    },
+    {
+      "id": 4000192,
+      "title": "Soysuzlar Çetesi",
+      "year": "2009",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/w3M2SpS71EBl3oXmUGHet2rCm71.webp?v=1790212676",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/soysuzlar-cetesi"
+    },
+    {
+      "id": 4000193,
+      "title": "Suç 101",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/d9EoZcvt7hABQUEb4ZzYI3Ao5ge.webp?v=1787032612",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/suc-101"
+    },
+    {
+      "id": 4000194,
+      "title": "X-Men: Apocalypse",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/81YsQLXwnPG1rpjGUJhCl0acXx3.webp?v=1787188672",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/x-men-apocalypse"
+    },
+    {
+      "id": 4000195,
+      "title": "Demir Adam 2",
+      "year": "2010",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/sMh5gOIwiYQic4H66ep88RnHovi.webp?v=1787102556",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/demir-adam-2"
+    },
+    {
+      "id": 4000196,
+      "title": "Sıkıysa Yakala",
+      "year": "2002",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pMuNEWOF5Rio9PA7ZblZMkoaN2W.webp?v=1790299074",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/sikiysa-yakala"
+    },
+    {
+      "id": 4000197,
+      "title": "Zindan Adası",
+      "year": "2010",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/epp8lnSQEWe9cYQACEhBDZTY18L.webp?v=1790299070",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/zindan-adasi"
+    },
+    {
+      "id": 4000198,
+      "title": "Doktor Strange",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/nifqM5VkblSttwwqGXoDXmXwrHA.webp?v=1787188676",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/doktor-strange"
+    },
+    {
+      "id": 4000199,
+      "title": "Yukarı Bak",
+      "year": "2009",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/c9QLSX3qEW8FO7UgT2pyfC1LDzb.webp?v=1790299069",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/yukari-bak"
+    },
+    {
+      "id": 4000200,
+      "title": "Kill Bill: Vol. 1",
+      "year": "2003",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/v7TaX8kXMXs5yFFGR41guUDNcnB.webp?v=1789953426",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/kill-bill-vol-1"
+    },
+    {
+      "id": 4000201,
+      "title": "Kong: Kafatası Adası",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/fnyjn9kGiaxgmHtGvTvXnCMxd6p.webp?v=1791854237",
+      "score": 6.6,
+      "url": "https://ddizibox.net/film/kong-kafatasi-adasi"
+    },
+    {
+      "id": 4000202,
+      "title": "Ölü Ozanlar Derneği",
+      "year": "1989",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/kz3DcDo6SOH1Yf18fQXQOj62lTu.webp?v=1790299072",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/olu-ozanlar-dernegi"
+    },
+    {
+      "id": 4000203,
+      "title": "Raya ve Son Ejderha",
+      "year": "2021",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/k3ISNO0IWe1Hv8l77pojyIGOw95.webp?v=1792372624",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/raya-ve-son-ejderha"
+    },
+    {
+      "id": 4000204,
+      "title": "Black Panther",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/i86opH1OBRjBvNmjbGhHjbJ0ybU.webp?v=1787188674",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/black-panther"
+    },
+    {
+      "id": 4000205,
+      "title": "Thor: Karanlık Dünya",
+      "year": "2013",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wAyzsAo1v94uJ4kDUE8ucOT5FUk.webp?v=1787188678",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/thor-karanlik-dunya"
+    },
+    {
+      "id": 4000206,
+      "title": "Schindler'in Listesi",
+      "year": "1993",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/2mOH8EqumIaepdP94e0cy4Xnyg7.webp?v=1789694235",
+      "score": 8.6,
+      "url": "https://ddizibox.net/film/schindlerin-listesi"
+    },
+    {
+      "id": 4000207,
+      "title": "12 Öfkeli Adam",
+      "year": "1957",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/jA3MHw8Nl4sevDqhgS8ZptwXN8b.webp?v=1789694237",
+      "score": 8.6,
+      "url": "https://ddizibox.net/film/12-ofkeli-adam"
+    },
+    {
+      "id": 4000208,
+      "title": "Batman Başlıyor",
+      "year": "2005",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/f1pQPzFmBXyFaScnrqeSm8lvCH9.webp?v=1790212670",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/batman-basliyor"
+    },
+    {
+      "id": 4000209,
+      "title": "2001: Uzay Yolu Macerası",
+      "year": "1968",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9dQnDc1tPrfLjqlBU4H5ai1ysHa.webp?v=1790212667",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/2001-uzay-yolu-macerasi"
+    },
+    {
+      "id": 4000210,
+      "title": "Köstebek",
+      "year": "2006",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/8dnfEnLpLJh7dRHnkN8AfIo4mpq.webp?v=1790212666",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/kostebek"
+    },
+    {
+      "id": 4000211,
+      "title": "Truman Show",
+      "year": "1998",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vuza0WqY239yBXOadKlGwJsZJFE.webp?v=1790299078",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/truman-show"
+    },
+    {
+      "id": 4000212,
+      "title": "İyi, Kötü ve Çirkin",
+      "year": "1966",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/c7xlVD3VVn5skrhvy03NbNx5FhR.webp?v=1790471830",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/iyi-kotu-ve-cirkin"
+    },
+    {
+      "id": 4000213,
+      "title": "Sıkı Dostlar",
+      "year": "1990",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/oMPDt1rNLYEVRpigNLaiTnibVn8.webp?v=1790212674",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/siki-dostlar"
+    },
+    {
+      "id": 4000214,
+      "title": "Thor",
+      "year": "2011",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/gwxKoaCOEso9Rk2bAxZTZmpup4S.webp?v=1787188674",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/thor"
+    },
+    {
+      "id": 4000215,
+      "title": "Ratatuy",
+      "year": "2007",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/a7hjVvftDqdgqZidGyoDkpXWjtK.webp?v=1790299068",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/ratatuy"
+    },
+    {
+      "id": 4000216,
+      "title": "İntikam",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/ai4LUPnwRYZys2TwVlcgVr2ZhsC.webp?v=1787032568",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/intikam"
+    },
+    {
+      "id": 4000217,
+      "title": "Uçurum",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/dHas0sO6FBQU4n5m2AjB8BE9mmZ.webp?v=1787032614",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/ucurum-2"
+    },
+    {
+      "id": 4000218,
+      "title": "Kaptan Marvel",
+      "year": "2019",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/xJIXTrFHsK6PzlkbqOVMk9JfN7i.webp?v=1787188678",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/kaptan-marvel"
+    },
+    {
+      "id": 4000219,
+      "title": "Yaralı Yüz",
+      "year": "1983",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/9F7xtVA6cKGdjkVu2s33C09oZAP.webp?v=1790299067",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/yarali-yuz"
+    },
+    {
+      "id": 4000220,
+      "title": "Er Ryan'ı Kurtarmak",
+      "year": "1998",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/b9QqS5Hz1CqT16ZxwxJqwzCfIgr.webp?v=1789694236",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/er-ryani-kurtarmak"
+    },
+    {
+      "id": 4000221,
+      "title": "Deadpool",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/99p0n6EhX6PebGIScQ0uRZ8aUv8.webp?v=1787188672",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/deadpool"
+    },
+    {
+      "id": 4000222,
+      "title": "Örümcek Adam 3",
+      "year": "2007",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/dxAWGyDADSazvz9pfPWPjryIVoE.webp?v=1790990226",
+      "score": 6.5,
+      "url": "https://ddizibox.net/film/orumcek-adam-3"
+    },
+    {
+      "id": 4000223,
+      "title": "Kimin Kardeşi?",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pJhTNi5zP6rWpO0cxaZwZySyBsW.webp?v=1787032834",
+      "score": 6.4,
+      "url": "https://ddizibox.net/film/kimin-kardesi"
+    },
+    {
+      "id": 4000224,
+      "title": "Savaş Üstüne Savaş",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tYWXhJ4FwvQMo6hbLQKQXk1gZvq.webp?v=1787032917",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/savas-ustune-savas"
+    },
+    {
+      "id": 4000225,
+      "title": "Bir Minecraft Filmi",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vltxj7fjoSp3z9PAxfzoJ3UjvOR.webp?v=1787032963",
+      "score": 6.3,
+      "url": "https://ddizibox.net/film/bir-minecraft-filmi"
+    },
+    {
+      "id": 4000226,
+      "title": "Cinnet",
+      "year": "1980",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/yA02bdLNrd8Vbots5qiw9zAD2jC.webp?v=1790212677",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/cinnet"
+    },
+    {
+      "id": 4000227,
+      "title": "Mission: Impossible  - Son Hesaplaşma",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/d2HIdVIzuIUgIBxL4N0C9XeNeSX.webp?v=1787032610",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/mission-impossible-son-hesaplasma"
+    },
+    {
+      "id": 4000228,
+      "title": "Bizim Hatamız",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/6kmi6vmp6iOn4KzI7WfnVtAeJhU.webp?v=1787032477",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/bizim-hatamiz"
+    },
+    {
+      "id": 4000229,
+      "title": "Lilo & Stiç",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vELzNe965c2YMhNBOVvftXifLHK.webp?v=1787032953",
+      "score": 7.2,
+      "url": "https://ddizibox.net/film/lilo-stic"
+    },
+    {
+      "id": 4000230,
+      "title": "Babam Evde Kaldı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/bPrcHIQx5GVCJ7OZvri5u00lsuz.webp?v=1787032581",
+      "score": 7.4,
+      "url": "https://ddizibox.net/film/babam-evde-kaldi"
+    },
+    {
+      "id": 4000231,
+      "title": "Yaratığın Dönüşü",
+      "year": "1986",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vhtEL7itK7BErXTWtcKSspUuIdE.webp?v=1790212676",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/yaratigin-donusu"
+    },
+    {
+      "id": 4000232,
+      "title": "Prestij",
+      "year": "2006",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/wiSuje8hdVuwM0pvhtSFirCHmJF.webp?v=1790212676",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/prestij"
+    },
+    {
+      "id": 4000233,
+      "title": "Galaksinin Koruyucuları 2",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/gDQXXrL6aBqIQ38GivPVWgjZXv7.webp?v=1787188674",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/galaksinin-koruyuculari-2"
+    },
+    {
+      "id": 4000234,
+      "title": "Leon: Sevginin Gücü",
+      "year": "1994",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/5wc5a1z0POdwMfDVrjbeTEhfygV.webp?v=1790212665",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/leon-sevginin-gucu"
+    },
+    {
+      "id": 4000235,
+      "title": "Jaws",
+      "year": "1975",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tZB1crCkYi3DI90lwYgZlnmeRw6.webp?v=1790299076",
+      "score": 7.7,
+      "url": "https://ddizibox.net/film/jaws"
+    },
+    {
+      "id": 4000236,
+      "title": "Indiana Jones: Kutsal Hazine Avcıları",
+      "year": "1981",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/o79udSXjgwW1KBZSv9sGYGKf9Aa.webp?v=1790212674",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/indiana-jones-kutsal-hazine-avcilari"
+    },
+    {
+      "id": 4000237,
+      "title": "Dondurmacı",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/eiSbwkwkHO8FIVFQYjCFGwwifPx.webp?v=1787032639",
+      "score": 5.1,
+      "url": "https://ddizibox.net/film/dondurmaci"
+    },
+    {
+      "id": 4000238,
+      "title": "Thor: Aşk ve Gök Gürültüsü",
+      "year": "2022",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/pJrupbmMan1SStJ18IVXiHMactU.webp?v=1787188677",
+      "score": 6.4,
+      "url": "https://ddizibox.net/film/thor-ask-ve-gok-gurultusu"
+    },
+    {
+      "id": 4000239,
+      "title": "Yeşil Rehber",
+      "year": "2018",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/vEzS2VOhdpBIANoEYBHRvcaeBXD.webp?v=1790299077",
+      "score": 8.2,
+      "url": "https://ddizibox.net/film/yesil-rehber"
+    },
+    {
+      "id": 4000240,
+      "title": "Can Dostum",
+      "year": "2011",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/tiyHlhIS4Tm6HK8XdwRZX4cc4tS.webp?v=1790212675",
+      "score": 8.3,
+      "url": "https://ddizibox.net/film/can-dostum-2"
+    },
+    {
+      "id": 4000241,
+      "title": "En Yakın Arkadaşım, Sevgilisi ve Ben",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/52iceDFMHFWGNCiyuIz0twyzMmE.webp?v=1787032449",
+      "score": 4.5,
+      "url": "https://ddizibox.net/film/en-yakin-arkadasim-sevgilisi-ve-ben"
+    },
+    {
+      "id": 4000242,
+      "title": "Altıncı His",
+      "year": "1999",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/bnbKY0F0LgQlsXMKk1v2IqnUbM8.webp?v=1790299069",
+      "score": 8.0,
+      "url": "https://ddizibox.net/film/altinci-his"
+    },
+    {
+      "id": 4000243,
+      "title": "Senin Adın",
+      "year": "2016",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/jkK6XdJqSCm7maDV8xgbE0JVNIP.webp?v=1790212672",
+      "score": 8.5,
+      "url": "https://ddizibox.net/film/senin-adin"
+    },
+    {
+      "id": 4000244,
+      "title": "Demir Adam 3",
+      "year": "2013",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/lJTxwTsWeqxEz1wjOMlAKf13dRD.webp?v=1787102546",
+      "score": 6.9,
+      "url": "https://ddizibox.net/film/demir-adam-3"
+    },
+    {
+      "id": 4000245,
+      "title": "Son Durak: Kan Bağı",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/1ZLfwCHm3AefZmBmQsIm2ElU5LP.webp?v=1787032392",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/son-durak-kan-bagi"
+    },
+    {
+      "id": 4000246,
+      "title": "Dunkirk",
+      "year": "2017",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iwvcIamoONxy9yB2td7yjRcbTQ2.webp?v=1788743823",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/dunkirk"
+    },
+    {
+      "id": 4000247,
+      "title": "Black Panther: Yaşasın Wakanda",
+      "year": "2022",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/jfM2WEiOGc3S6Ay6XdstFMw3y6q.webp?v=1787188675",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/black-panther-yasasin-wakanda"
+    },
+    {
+      "id": 4000248,
+      "title": "Bıçak Sırtı",
+      "year": "1982",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/8VGASxEyFErWwEXDbyEKX9lKntZ.webp?v=1790299066",
+      "score": 7.9,
+      "url": "https://ddizibox.net/film/bicak-sirti"
+    },
+    {
+      "id": 4000249,
+      "title": "Yıkım Ekibi",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/qDg6i7uqiq6K3PNHlVQz0MmZSX.webp?v=1787032849",
+      "score": 7.1,
+      "url": "https://ddizibox.net/film/yikim-ekibi"
+    },
+    {
+      "id": 4000250,
+      "title": "Örümcek Adam 2",
+      "year": "2004",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/up4mcu95N91I7SnylVCIIMTWZYq.webp?v=1787188678",
+      "score": 7.3,
+      "url": "https://ddizibox.net/film/orumcek-adam-2"
+    },
+    {
+      "id": 4000251,
+      "title": "Tutsak",
+      "year": "2013",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/eAFaMmceNmX4OZbmmzWQY4n9yIw.webp?v=1790299069",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/tutsak"
+    },
+    {
+      "id": 4000252,
+      "title": "Zor Ölüm",
+      "year": "1988",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/sORxMyv9odFNY97T9XMsS465293.webp?v=1790299075",
+      "score": 7.8,
+      "url": "https://ddizibox.net/film/zor-olum"
+    },
+    {
+      "id": 4000253,
+      "title": "Fall 2: Ölümcül Tırmanış",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/p73G56bJGPa5y52cyqWscHR6NnN.webp?v=1787032831",
+      "score": 0.0,
+      "url": "https://ddizibox.net/film/fall-2-olumcul-tirmanis"
+    },
+    {
+      "id": 4000254,
+      "title": "Sil Baştan",
+      "year": "2004",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/zZl2T3yj80dwaWBeOWZQoFOJwGe.webp?v=1790212678",
+      "score": 8.1,
+      "url": "https://ddizibox.net/film/sil-bastan"
+    },
+    {
+      "id": 4000255,
+      "title": "Saklambaç 2",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/NsEfSrt8Qj6ASPmU0PcePx2a0x.webp?v=1787032550",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/saklambac-2"
+    },
+    {
+      "id": 4000256,
+      "title": "Crood'lar",
+      "year": "2013",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/f1RQ9YXGQ3QgV7o8mPPTHrmW6ty.webp?v=1789953426",
+      "score": 7.0,
+      "url": "https://ddizibox.net/film/croodlar"
+    },
+    {
+      "id": 4000257,
+      "title": "Frankenstein",
+      "year": "2025",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/g4JtvGlQO7DByTI6frUobqvSL3R.webp?v=1787032662",
+      "score": 7.6,
+      "url": "https://ddizibox.net/film/frankenstein"
+    },
+    {
+      "id": 4000258,
+      "title": "Sadece Bir Gece",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iuXRwdbycftPohmIP9xh6MdTFY8.webp?v=1787032715",
+      "score": 6.8,
+      "url": "https://ddizibox.net/film/sadece-bir-gece"
+    },
+    {
+      "id": 4000259,
+      "title": "Senin Hatan: Londra",
+      "year": "2026",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/iBav680sIufAk0bUN6voI6gLTAg.webp?v=1787032701",
+      "score": 7.5,
+      "url": "https://ddizibox.net/film/senin-hatan-londra"
+    },
+    {
+      "id": 4000260,
+      "title": "Hayat Güzeldir",
+      "year": "1997",
+      "poster": "https://ddizibox.net/storage/tmdb/posters/w342/bPliFlnRsZmH9Mr7F2CDqRsh50H.webp?v=1790212669",
+      "score": 8.4,
+      "url": "https://ddizibox.net/film/hayat-guzeldir"
+    }
+  ],
+  "dedup": "URL veya normalize ad ve uyumlu yıl; farklı dillerdeki adlar kesin eşleştirilmedi",
+  "playback_tested": false
+}

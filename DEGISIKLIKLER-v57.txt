@@ -1,0 +1,25 @@
+ALICOTV v57 — DiziBox film arşivi
+
+Gönderilen 13 HTML dosyasında 312 film kartı ve 312 benzersiz film bağlantısı bulundu.
+Mevcut arşivle bağlantı veya normalize ad ve uyumlu yıl üzerinden eşleşen 51 kayıt tekrar eklenmedi. 261 yeni film Filmler kategorisine eklendi.
+Farklı dildeki adların aynı filmi temsil ettiği durumlar kesin olarak çözümlenmedi. DIZIBOX_IMPORT_v57.json dosyasında eklenen/atlanan kayıtlar ve nedenleri vardır.
+Ad, afiş, yıl ve varsa kart puanı alındı. HTML listelerinde konu özeti olmadığından uydurma özet yazılmadı. Bağlantılar sitenin film sayfasını mevcut web oynatıcıda açar; tüm videoların oynatıldığı doğrulanmadı.
+
+OTOMATİK KAYNAK
+https://ddizibox.net/filmler?sirala=yeni güncelleme kaynaklarına eklendi.
+Arşivi güncelle veya açılıştaki zamanlanmış kontrol, bu listenin ilk sayfasındaki yeni filmleri tarar; tekrarları atlar ve yeni kayıtları bildirir. Güncel ilk sayfa 24 film içerir. Kontroller arasında listeyi aşacak kadar çok içerik eklenirse daha eski yeni eklemeler kaçabilir; bütün siteyi aralıksız tarayan bir servis değildir.
+Bu kaynakta film listesi desteklenir; DiziBox dizi/bölüm listesi bu sürüme dahil değildir. Mevcut diğer site ve YouTube kaynakları korunur.
+Yeni filmler Yeni eklenenler bölümünde görünür. v57 ilk açılışında 261 film eklendi bildirimi bir kez gösterilir.
+Bildirimler uygulama içindedir. Uygulama kapalıyken Android sistem bildirimi gönderilmez.
+
+KURULUM
+ZIP içeriğini aynı GitHub proje klasörüne kopyalayın, Commit/Push yapın.
+Aynı dört imza Secrets değerini kullanın. Aynı anahtarla imzalanmış APK üzerine, uygulamayı kaldırmadan güncelleyin.
+Paket com.cinebox.tv, versionCode 57. Eski içerikler, kayıt kimlikleri, bölüm verileri ve imza iş akışı korunur.
+
+KONTROLLER
+13 HTML dosyasında 312 kart; 261 oluşturulan kaydın ad/yıl/afiş/puan/URL/kategori alanları JVM testlerinde kontrol edildi.
+Katalog yükleme, benzersiz kimlik/URL, kaynak kaydı ve bildirimin bir kez gösterilmesi testleri geçti. Android sınıfları bu testlerde taklit edildi.
+Canlı DiziBox En Yeni sayfası HTTP 200 yanıtıyla ve 24 kartla erişilebilir bulundu; yayınların oynatımı test edilmedi.
+Eski katalog/veri dosyaları karşılaştırıldı ve ZIP bütünlüğü kontrol edildi.
+Android SDK bulunmadığından tam APK derlemesi ve gerçek TV/telefon oynatma testi burada yapılamadı.

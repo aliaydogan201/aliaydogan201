@@ -1,0 +1,26 @@
+ALICOTV v58 — Film izle Hell
+
+https://filmizlehell.net/filmler kaynağının 189 liste sayfası tarandı.
+Tarama sırasında farklı önbellek sürümleriyle karşılaşıldı. İki sınır sayfası tazelenerek kaymalar kontrol edildi; sitedeki son toplamla eşleşen 3767 benzersiz film bağlantısı elde edildi.
+Arşivle bağlantı veya normalize ad ve uyumlu yıl üzerinden eşleşen 434 film tekrar eklenmedi. 3333 yeni film Filmler kategorisine eklendi.
+Ayrıca liste sayfalarındaki kaymalardan/tazelemeden gelen 40 tekrar ayıklandı. Bu sayı arşivde zaten bulunan 434 filmden ayrıdır.
+Farklı dillerdeki adların aynı filmi temsil ettiği durumlar kesin olarak eşleştirilmedi. FILMIZLEHELL_IMPORT_v58.json raporu ekleme sayıları ve atlama nedenlerini içerir.
+Ad, afiş, yıl, puan, tür ve dil etiketi alındı. Konu özeti listelerde bulunmadığı için uydurulmadı. Dil ve puan bilgileri site kartlarındaki bilgilerdir.
+Video dosyaları indirilmedi; kayıtlar filmin site sayfasını mevcut web oynatıcıyla açar. Tek tek oynatma doğrulanmadı.
+
+GÜNCELLEME VE BİLDİRİMLER
+Site Arşivi güncelle kaynaklarına eklendi. Güncelleme sırasında ilk güncel liste sayfası (20 film) kontrol edilir; arşivde bulunmayanlar eklenip uygulama içi bildirim verilir.
+Kontroller arasında 20'den fazla yeni içerik gelirse ilk sayfadan düşenler kaçabilir. İlk aktarımın tamamı 189 sayfadır; sonraki hızlı güncelleme tüm geçmiş sayfaları yeniden taramaz.
+İlk v58 açılışında 3333 yeni film eklendi bildirimi bir kez gösterilir. Son 500 ekleme Yeni eklenenler ekranında; tüm kayıtlar Filmler bölümünde kalır.
+Mevcut diğer site ve YouTube kaynakları korunur. Uygulama kapalıyken Android sistem bildirimi yoktur; açılıştaki kontrol veya Arşivi güncelle kullanılır.
+
+KURULUM
+ZIP içeriğini aynı GitHub proje klasörüne kopyalayın, Commit/Push yapın.
+Aynı dört imza Secrets değerini kullanın. Aynı anahtarla imzalanmış mevcut APK üzerine uygulamayı kaldırmadan güncelleyin.
+Paket com.cinebox.tv, versionCode 58. Önceki içerikler, kayıt kimlikleri, bölüm verileri, geçmiş/takip/yedekleme kodu ve imza iş akışı korunur.
+
+DOĞRULAMA
+189 sayfa + 2 tazeleme sayfası üzerinde kaynak seçicileri, film sayısı, ad/yıl/puan, kategori, benzersiz kimlik/URL, kaynak kaydı ve tek seferlik bildirim kontrolleri yapıldı.
+Yeni katalog ve güncelleme Kotlin kodu Android sınıfları için test taklitleriyle JVM'de derlendi ve kontrol edildi.
+Eski dosyalar karşılaştırıldı ve ZIP bütünlüğü kontrol edildi.
+Android SDK olmadığından tam APK derlemesi ve gerçek TV/telefon oynatma testi burada yapılamadı.
