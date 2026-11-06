@@ -34,7 +34,7 @@ internal class CatalogSearch private constructor(private val entries: List<Pair<
             }
             return CatalogSearch(sorted.map {
                 context.ensureActive()
-                it to it.title.lowercase(TURKISH)
+                it to (it.title + " " + it.provider).lowercase(TURKISH)
             })
         }
     }

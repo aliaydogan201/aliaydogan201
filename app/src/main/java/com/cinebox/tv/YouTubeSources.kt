@@ -14,7 +14,8 @@ internal object YouTubeSources {
         Channel("UC73GUWWHTahOKVo7l9cKHfw", "Nature Empire Türkçe", "Belgesel"),
         Channel("UCR5wZcXtOUka8jTA57flzMg", "netd müzik", "Müzik"),
         Channel("UCVV3OecRPDpx0n-4XO-brnw", "Maç Hikayeleri", "Maç Özeti"),
-        Channel("UCdlEXiVLTEvA280oyMvr8Kw", "Güldür Güldür", "Eğlence")
+        Channel("UCdlEXiVLTEvA280oyMvr8Kw", "Güldür Güldür", "Eğlence"),
+        Channel("UCIJiJvIq2lASL9xxe8MU1jg", "AnimeTarih · Anima History", "Belgesel")
     )
     fun videoId(url: String): String? = Regex("(?:watch\\?v=|youtu\\.be/|shorts/)([A-Za-z0-9_-]{11})").find(url)?.groupValues?.get(1)
     private fun request(url: String) = Jsoup.connect(url).userAgent("Mozilla/5.0")

@@ -32,7 +32,7 @@ internal object ArchiveSync {
     private fun movie(o:JSONObject) = Movie(id=o.getInt("id"),title=o.getString("title"),overview=o.optString("overview"),poster=o.optString("poster"),backdrop="",year=o.optString("year"),score=o.optDouble("score",0.0),genreIds=emptyList(),webUrl=o.getString("url"),provider=o.optString("provider"),category=o.optString("category","Film"))
     fun load(c:Context,base:List<Movie>):List<Movie> {
         val a=read(c,"archive_dynamic.json").optJSONArray("movies")?:JSONArray()
-        return (base+NetdCatalog.load(c)+machHikayeleriCatalog+GuldurCatalog.load(c)+FilmizleHellCatalog.load(c)+SuperFilmCatalog.load(c)+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
+        return (base+NetdCatalog.load(c)+machHikayeleriCatalog+GuldurCatalog.load(c)+FilmizleHellCatalog.load(c)+SuperFilmCatalog.load(c)+AnimeTarihCatalog.load(c)+(0 until a.length()).mapNotNull { try { movie(a.getJSONObject(it)) } catch (_:Exception) { null } }).distinctBy { it.id }
     }
     fun announceBundle(c:Context) {
         val p=prefs(c)
@@ -77,6 +77,15 @@ internal object ArchiveSync {
         p.edit().putBoolean("bundled_60", true).putBoolean("unread", true)
             .putString("recent_added_ids", ids.joinToString(","))
             .putString("notices", "v60: SüperFilmizle kaynağından ${items.size} yeni film eklendi. Filmler bölümünden açabilirsiniz.\n\n" + notices(c).take(12000)).apply()
+    }
+    fun announceAnimeTarih(c: Context) {
+        val p = prefs(c)
+        if (p.getBoolean("bundled_61", false)) return
+        val items = AnimeTarihCatalog.load(c)
+        val ids = (items.map { it.id } + recentIds(c)).distinct().take(500)
+        p.edit().putBoolean("bundled_61", true).putBoolean("unread", true)
+            .putString("recent_added_ids", ids.joinToString(","))
+            .putString("notices", "v61: AnimeTarih (Anima History) kanalından ${items.size} içerik eklendi. Belgesel bölümünden açabilirsiniz.\n\n" + notices(c).take(12000)).apply()
     }
     fun markRead(c:Context) { prefs(c).edit().putBoolean("unread",false).apply() }
     fun recentIds(c:Context):List<Int> = prefs(c).getString("recent_added_ids", "").orEmpty().split(",").mapNotNull { it.toIntOrNull() }

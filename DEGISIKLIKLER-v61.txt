@@ -1,0 +1,43 @@
+ALICOTV v61 — AnimeTarih / Anima History
+
+Kaynak: https://www.youtube.com/@AnimeTarih/videos
+Doğrulanan kanal kimliği: UCIJiJvIq2lASL9xxe8MU1jg
+YouTube'daki güncel kanal adı: Anima History
+
+11 liste sayfasındaki 301 video alındı. Devam listesi son sayfada bitti.
+Aynı video kimliğine sahip mevcut kayıt bulunmadı; 301 yeni içerik eklendi.
+Kategori: Belgesel. Afiş ve YouTube video sayfası adresi eklendi.
+Kanal Shorts ve Canlı sekmesi sunmadığı için bunlardan kayıt eklenmedi.
+Videolar indirilmedi; YouTube bağlantıları mevcut web oynatma akışında açılır.
+Her videonun cihazda oynatılabilirliği doğrulanmadı.
+
+Yeni yüklemeler:
+Kanal mevcut Arşivi güncelle ve uygulama açılışındaki 12 saatlik kontrol kaynaklarına eklendi.
+Yeni videolar Yeni eklenenler listesine ve uygulama içi bildirimlere dahil olur.
+Uygulama kapalıyken çalışan yeni bir zamanlayıcı eklenmedi.
+Mevcut YouTube güncellemesi sekme başına en fazla 10 sayfa tarar ve bilinen videoya ulaştığında durur.
+v61 paket eklemeleri için bir kez gösterilen bildirim vardır.
+
+Arama:
+İçerik adı yanında kaynak/kanal adı da aranır.
+Belgesel kategorisinde AnimeTarih veya Anima History yazarak kanal kayıtları bulunabilir.
+Türkçe alt metin araması, kategori kapsamı, alfabetik sıralama ve sayfalama korunur.
+
+Korunanlar:
+v60 menü kontrastı, v59 arama/odak iyileştirmeleri ve kapanma tanılama;
+mevcut tüm içerikler, sezon/bölümler, favoriler, izleme geçmişi, takipler ve oynatıcılar.
+Paket adı ve imzalama ayarları değişmedi.
+
+Doğrulama:
+Gerçek Kotlin katalog, YouTube ayrıştırıcı ve ArchiveSync kodu JVM'de derlendi.
+Android depolaması için test nesneleri kullanıldı.
+301 kaynak kaydı/başlık/adres, benzersiz ID, Belgesel sınıflaması, kaynak kaydı,
+bir kez gösterilen bildirim ve kanal adı araması kontrolleri geçti.
+Paketin tüm arşivinde 36.567 benzersiz içerik ID'si var (cihazda sonradan eklenenler hariç).
+40.000 kayıtla Türkçe arama/kategori/sıralama regresyon kontrolleri geçti.
+Tam Android APK build ve fiziksel TV testi burada yapılmadı.
+
+Kurulum:
+ZIP içeriğini mevcut GitHub proje klasörüne kopyalayın.
+Aynı workflow ve mevcut imza Secrets bilgileriyle APK oluşturun.
+Uygulamayı kaldırmadan yeni APK'yi üzerine kurun.

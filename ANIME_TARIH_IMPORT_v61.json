@@ -1,0 +1,23 @@
+{
+  "channel_url": "https://www.youtube.com/@AnimeTarih/videos",
+  "channel_id": "UCIJiJvIq2lASL9xxe8MU1jg",
+  "channel_name": "Anima History",
+  "category": "Belgesel",
+  "source_count": 301,
+  "added": 301,
+  "skipped": [],
+  "sections": {
+    "videos": {
+      "present": true,
+      "pages": 11,
+      "rows": 301
+    },
+    "shorts": {
+      "present": false
+    },
+    "streams": {
+      "present": false
+    }
+  },
+  "playback_verified": false
+}

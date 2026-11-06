@@ -189,6 +189,7 @@ class MainActivity : ComponentActivity() {
         ArchiveSync.announceDiziBox(this)
         ArchiveSync.announceFilmizleHell(this)
         ArchiveSync.announceSuperFilm(this)
+        ArchiveSync.announceAnimeTarih(this)
         setContent { App() }
         CrashDiagnostics.showPrevious(this)
     }
@@ -495,7 +496,7 @@ class MainActivity : ComponentActivity() {
                     Spacer(Modifier.height(25.dp))
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         TextField(value = query, onValueChange = { query = it; page = 0 },
-                            label = { Text("İçerik adı ara · $category") }, singleLine = true,
+                            label = { Text("İçerik veya kanal ara · $category") }, singleLine = true,
                             modifier = Modifier.weight(1f))
                         TvAction(onClick = { query = ""; page = 0 }) { Text("Temizle") }
                     }
