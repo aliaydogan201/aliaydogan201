@@ -188,7 +188,9 @@ class MainActivity : ComponentActivity() {
         ArchiveSync.announceGuldur(this)
         ArchiveSync.announceDiziBox(this)
         ArchiveSync.announceFilmizleHell(this)
+        ArchiveSync.announceSuperFilm(this)
         setContent { App() }
+        CrashDiagnostics.showPrevious(this)
     }
 
     @Composable
@@ -211,7 +213,7 @@ class MainActivity : ComponentActivity() {
                     ArchiveSync.refreshEpisodes(this@MainActivity,item)
                 }
                 if(ArchiveSync.notices(this@MainActivity)!=before)showNotices=true
-                liveCatalog=ArchiveSync.load(this@MainActivity,catalogMovies)
+                liveCatalog=withContext(Dispatchers.IO) { ArchiveSync.load(this@MainActivity,catalogMovies) }
                 episodeRevision++
             } catch(e:Exception) { syncMessage="Güncelleme tamamlanamadı; kayıtlı arşiv kullanılabilir." }
             finally { syncing=false }
@@ -236,11 +238,10 @@ class MainActivity : ComponentActivity() {
         val ratings = remember { mutableStateMapOf<Int, Int>().apply {
             prefs.all.forEach { (key, value) -> if (key.startsWith("rating_") && value is Int) key.removePrefix("rating_").toIntOrNull()?.let { put(it, value) } }
         } }
-        val savedMovies = remember { mutableStateMapOf<Int, Movie>().apply { liveCatalog.forEach { put(it.id, it) } } }
+        val savedMovies = remember(liveCatalog) { liveCatalog.associateBy { it.id } }
 
         fun showMovies(list: List<Movie>) {
             movies = list
-            list.forEach { savedMovies[it.id] = it }
             busy = false
             message = if (list.isEmpty()) "Film bulunamadı." else ""
         }
@@ -256,12 +257,16 @@ class MainActivity : ComponentActivity() {
         }
         LaunchedEffect(selected?.id) {
             val genre = selected?.genreIds?.firstOrNull()
-            recommended = liveCatalog.filter { it.id != selected?.id && genre != null && genre in it.genreIds }
+            val selectedId = selected?.id
+            recommended = withContext(Dispatchers.Default) {
+                liveCatalog.filter { it.id != selectedId && genre != null && genre in it.genreIds }
+                    .sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title })
+            }
         }
         BackHandler(enabled = playing != null || selected != null) {
             if (playing != null) playing = null else selected = null
         }
-        MaterialTheme(colorScheme = darkColorScheme(background = bg, surface = panel, primary = accent)) {
+        MaterialTheme(colorScheme = darkColorScheme(background = bg, surface = panel, primary = accent, onPrimary = Color.Black, onSurface = Color.White, onBackground = Color.White)) {
             when {
                 playing != null -> PlayerScreen(playing!!, prefs) { playing = null }
                 tab == "İzlemeye Devam" && selected == null -> {
@@ -440,7 +445,7 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick={selected=null; tab="Yeni eklenenler"; category="Tümü"; query=""; page=0}) { Text("Yeni eklenenler (${recentIds.size})") }
                         TvAction(onClick={showSources=true}) { Text("Güncellenen kaynaklar") }
                     }
-                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.LightGray,fontSize=12.sp)
+                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.White,fontSize=12.sp)
                     recentMovies.take(3).forEach { item ->
                         TvAction(onClick={selected=item}) { Text("Yeni · ${item.title}",maxLines=1) }
                     }
@@ -471,7 +476,7 @@ class MainActivity : ComponentActivity() {
                                         showMovies(liveCatalog.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
                                     }
                                 }
-                            }, colors = ButtonDefaults.buttonColors(containerColor = if (tab == label) accent else panel)) { Text(label) }
+                            }, colors = ButtonDefaults.buttonColors(containerColor = if (tab == label) accent else panel, contentColor = if (tab == label) Color.Black else Color.White)) { Text(label) }
                         }
                     }
                     Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
@@ -483,7 +488,7 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick={selected=null; tab="Yeni eklenenler"; category="Tümü"; query=""; page=0}) { Text("Yeni eklenenler (${recentIds.size})") }
                         TvAction(onClick={showSources=true}) { Text("Güncellenen kaynaklar") }
                     }
-                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.LightGray,fontSize=12.sp)
+                    Text("Uygulama açıldığında 12 saatte bir kontrol edilir. Arşivi güncelle ile hemen kontrol edebilirsiniz.",color=Color.White,fontSize=12.sp)
                     recentMovies.take(3).forEach { item ->
                         TvAction(onClick={selected=item}) { Text("Yeni · ${item.title}",maxLines=1) }
                     }
@@ -505,14 +510,27 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Spacer(Modifier.height(12.dp))
-                    val baseMovies = if (tab == "Yeni eklenenler") recentMovies else if (tab == "Takip Ettiklerim") liveCatalog.filter { it.id in followed } else if (tab == "Favoriler") savedMovies.values.filter { favorites.contains(it.id) } else movies
-                    val shown = remember(baseMovies, category, query) {
-                        val searchText = query.trim().lowercase(java.util.Locale("tr", "TR"))
-                        baseMovies.filter {
-                        (category == "Tümü" || (category == "Filmler" && it.category == "Film") ||
-                         (category == "Diziler" && it.category in listOf("Dizi", "Yerli Diziler")) || it.category == category) &&
-                        it.title.lowercase(java.util.Locale("tr", "TR")).contains(searchText)
-                    }.sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title })
+                    val baseMovies = remember(tab, liveCatalog, recentMovies, movies, followed.toList(), favorites.toList()) {
+                        when (tab) {
+                            "Yeni eklenenler" -> recentMovies
+                            "Takip Ettiklerim" -> liveCatalog.filter { it.id in followed }
+                            "Favoriler" -> liveCatalog.filter { it.id in favorites }
+                            else -> movies
+                        }
+                    }
+                    val searchIndex by produceState<CatalogSearch?>(null, baseMovies) {
+                        value = withContext(Dispatchers.Default) { CatalogSearch.build(baseMovies) }
+                    }
+                    val focusManager = androidx.compose.ui.platform.LocalFocusManager.current
+                    var cardsFocused by remember { mutableStateOf(false) }
+                    val shown by produceState<List<Movie>>(emptyList(), searchIndex, category, query) {
+                        delay(200) // Do not scan the archive for every rapid keystroke.
+                        val result = withContext(Dispatchers.Default) { searchIndex?.find(category, query).orEmpty() }
+                        // Move focus before removing a focused card from the Compose tree.
+                        if (cardsFocused && value != result) {
+                            focusManager.clearFocus(force = true)
+                        }
+                        value = result
                     }
                     val pageSize = 20
                     val pageCount = maxOf(1, (shown.size + pageSize - 1) / pageSize)
@@ -523,12 +541,11 @@ class MainActivity : ComponentActivity() {
                         TvAction(enabled = currentPage + 1 < pageCount, onClick = { page = currentPage + 1 }) { Text("Sonraki ▶") }
                     }
                     Spacer(Modifier.height(12.dp))
-                    key(category, query, tab, currentPage) {
-                        MovieRow(shown.drop(currentPage * pageSize).take(pageSize)) { selected = it }
-                    }
+                    MovieRow(shown.drop(currentPage * pageSize).take(pageSize),
+                        onFocusChanged = { cardsFocused = it }) { selected = it }
                     if (shown.isEmpty()) Text("Bu kategoride aramanızla eşleşen içerik bulunamadı.", color = Color.White)
                     Spacer(Modifier.height(20.dp))
-                    Text("MP4 içerikler ALICOTV Player’da; web içerikleri yayıncının oynatıcısında açılır. İsim araması seçili kategori içinde yapılır.", color = Color.LightGray, fontSize = 11.sp)
+                    Text("MP4 içerikler ALICOTV Player’da; web içerikleri yayıncının oynatıcısında açılır. İsim araması seçili kategori içinde yapılır.", color = Color.White, fontSize = 12.sp)
                 }
             }
         }
@@ -536,9 +553,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MovieRow(movies: List<Movie>, onClick: (Movie) -> Unit) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp), contentPadding = PaddingValues(end = 22.dp)) {
-        items(movies.sortedWith(compareBy(java.text.Collator.getInstance(java.util.Locale("tr", "TR"))) { it.title }), key = { it.id }) { movie ->
+private fun MovieRow(movies: List<Movie>, onFocusChanged: (Boolean) -> Unit = {}, onClick: (Movie) -> Unit) {
+    LazyRow(modifier = Modifier.onFocusChanged { onFocusChanged(it.hasFocus) }, horizontalArrangement = Arrangement.spacedBy(16.dp), contentPadding = PaddingValues(end = 22.dp)) {
+        items(movies, key = { it.id }) { movie ->
             Column(Modifier.width(180.dp)) {
                 var cardFocused by remember { mutableStateOf(false) }
                 Surface(modifier = Modifier.onFocusChanged { cardFocused = it.isFocused }.border(if (cardFocused) 4.dp else 1.dp, if (cardFocused) Color.Yellow else Color.Transparent, RoundedCornerShape(11.dp)), onClick = { onClick(movie) }, shape = RoundedCornerShape(11.dp), color = panel) {

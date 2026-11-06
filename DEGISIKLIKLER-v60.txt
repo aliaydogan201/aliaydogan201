@@ -1,0 +1,40 @@
+ALICOTV v60 — SüperFilmizle ve ana menü yazı kontrastı
+
+İçe aktarılan kapsam: https://superfilmizle.icu/film-izle/
+55 sayfa, 1.305 film kartı, 1.305 benzersiz adres.
+747 kayıt mevcut arşivle URL veya normalize edilmiş başlık/yıl üzerinden eşleşti ve tekrar eklenmedi.
+558 yeni Film kaydı eklendi; afiş, yıl, kaynak puanı ve film sayfası adresi saklandı.
+Sitenin ayrı dizi/anime bölümleri bu film listesi aktarımına dahil değildir.
+Farklı dilde/alternatif adla kayıtlı aynı yapımlar eşleştirmeden kaçabilir.
+Kaynak sayfasında listelenmek, videonun oynatılabildiği anlamına gelmez; oynatma tek tek doğrulanmadı.
+
+Arşiv güncelleme:
+https://superfilmizle.icu/film-izle/?sirala=yeni kaynaklara eklendi.
+Manuel güncellemede ve mevcut 12 saatlik açılış kontrolünde en yeni 24 kart taranır.
+Kontroller arasında 24'ten fazla içerik eklenirse eskiye düşen yeni kayıtlar kaçabilir.
+Arka planda uygulama kapalıyken çalışan bir zamanlayıcı eklenmedi.
+Yeni kayıtlar mevcut Yeni eklenenler/bildirim yapısına dahil olur.
+v60 paketindeki eklemeler için tek seferlik bildirim bulunur; Yeni eklenenler son 500 ID'yi gösterir.
+Tüm arşivin bu paketteki benzersiz toplamı 36.266 içeriktir (cihazda sonradan güncellenenler hariç).
+
+Görünüm:
+Ana menüde seçili olmayan sekmelerin yazıları beyaz, seçili sekmenin yazısı siyah.
+Kumanda odağında sarı zemin/siyah yazı ve beyaz çerçeve korunur.
+Tema onPrimary/onSurface/onBackground renkleri açıkça belirtildi.
+Ana ekrandaki açıklama metinlerinin kontrastı artırıldı.
+
+Korunanlar:
+v59 arama/odak iyileştirmeleri ve kapanma kaydı; mevcut film/dizi/bölüm arşivleri;
+oynatıcılar, favoriler, takip/geçmiş, paket adı ve imzalama workflow'u.
+
+Doğrulama:
+Gerçek Kotlin katalog ve ArchiveSync kaynakları JVM ortamında derlendi.
+Android depolama için test nesneleri, HTML ayrıştırması için gerçek Jsoup kullanıldı.
+55 sayfa/1.305 kart, 558 yeni kaydın isim-yıl-puan-adres eşleşmesi;
+36.266 benzersiz ID, en yeni sayfa, kaynak listesi ve bir kez gösterilen bildirim kontrolleri geçti.
+Mevcut içerik/asset ve oynatıcı dosyaları byte düzeyinde korunma kontrolünden geçti.
+Tam APK build ve fiziksel Android TV testi bu ortamda yapılmadı.
+
+Kurulum:
+ZIP içeriğini GitHub proje klasörüne kopyalayın, aynı workflow ve mevcut Secrets ile APK oluşturun.
+Uygulamayı kaldırmadan APK'yi üzerine kurun; aynı imza anahtarını koruyun.

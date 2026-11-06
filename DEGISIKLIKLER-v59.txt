@@ -1,0 +1,34 @@
+ALICOTV v59 — TV ana menü / arama iyileştirmesi ve kapanma tanılama
+
+Kullanıcı bildirimi: v58 TV'de ana menüde gezinirken ve arama yaparken kapanıyor.
+Cihazın hata kaydı olmadığı için kapanmanın kesin nedeni henüz doğrulanmadı.
+
+Değişiklikler:
+- Türkçe sıralama arşiv seçimi başına bir kez, Dispatchers.Default üzerinde yapılır.
+- Arama başlıkları bir kez küçük harfe çevrilir; her harfte tüm başlıklar yeniden çevrilmez/sıralanmaz.
+- Hızlı yazarken 200 ms beklenir; önceki arama iptal edilir. Büyük listelerde iptal düzenli kontrol edilir.
+- Film/dizi/yerli dizi/kategori filtreleri ve başlığın herhangi bir yerinde arama korunur.
+- Menü seçiminde on binlerce Compose durum haritası yazımı kaldırıldı; değişmeyen katalog indeksi kullanılır.
+- Kart listesini her harfte tamamen yok eden dış key kaldırıldı. Kart ID'leri sabit tutulur.
+- Sonuç değişiminde kaldırılabilecek kartta odak varsa önce temizlenir.
+- Kart satırındaki ikinci sıralama kaldırıldı; öneriler de arka planda alfabetik sıralanır.
+- Güncelleme sonrasındaki katalog okuması IO iş parçacığına taşındı.
+- İşlenmeyen Java/Kotlin hatası uygulama özel alanına kaydedilir. Sonraki açılışta fotoğrafı alınabilecek bir hata ekranı çıkar.
+- Hata kaydı dışarı gönderilmez; arama metni/URL/hata mesajı kaydedilmez, yalnız cihaz/sürüm/hata sınıfı/stack frame bulunur.
+- Android'in uygulamayı bellek nedeniyle doğrudan öldürmesi veya native çökme bu kayıtla her zaman yakalanamaz.
+
+Korunanlar:
+Tüm içerik ve bölüm dosyaları, kaynaklar, arşiv güncellemesi, oynatıcı kodu, paket adı, imzalama ayarları, favoriler ve izleme geçmişi.
+
+Kontroller:
+Kotlin 2.1.20 ile gerçek CatalogSearch kodu derlendi ve çalıştırıldı.
+Türkçe harfler, alt metin araması, kategori kapsamı, alfabetik sıra, tekrar ID, boş arama, 40.000 kayıt ve iptal edilmiş iş kontrolü geçti.
+Yeni uygulama/tanılama sınıfları Android API jar ile ayrıca derlendi.
+Eski kataloglar/asset dosyaları ve workflow byte düzeyinde karşılaştırıldı.
+Tam Android APK build ve fiziksel TV testi bu ortamda yapılmadı.
+
+Kurulum:
+ZIP içeriğini GitHub proje klasörüne kopyalayın ve mevcut workflow ile APK oluşturun.
+Aynı GitHub Secrets/imza anahtarlarını koruyun. Uygulamayı kaldırmadan yeni APK'yi kurun.
+Sorun tekrarlarsa v59'u yeniden açın ve 'ALICOTV kapanma kaydı' ekranının fotoğrafını gönderin.
+Bu sürümde kesin neden doğrulanmadan 'kapanma tamamen giderildi' garantisi verilmez.
