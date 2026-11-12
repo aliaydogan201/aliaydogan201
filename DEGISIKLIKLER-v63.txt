@@ -1,0 +1,13 @@
+ALICOTV v63 — Ortak Canlı TV oynatıcısı
+
+Canlı yayın sayfası bulunan 54 kayıt için detayda yeni Ortak TV oynatıcısı düğmesi.
+Solda kanal araması ve liste; sağda ortak Media3 oynatıcı.
+CH+/CH− ve Önceki/Sonraki ile kanal değişimi. Liste üzerinde gezmek yayını değiştirmez; OK seçer.
+Tam ekran düğmesi liste ve uygulama araçlarını gizler; Geri yeniden açar.
+Turuncu odak ve beyaz çerçeve, yüksek kontrast metin.
+Yayıncı sayfasının herkese açık HTTPS HLS bağlantısı arka planda aranır.
+Bulunan adres kısa süreli bellekte tutulur; eski kanalın işi ve oynatımı geçişte iptal edilir.
+YouTube kendi oynatıcısında kalır. Sadece web sitesi olan kayıtlar ortak oynatıcı listesinde yer almaz.
+54 kayıt, 54 çalışır ortak yayın garantisi değildir. JavaScript, oturum veya özel oynatıcı gerektiren kaynaklar çözülemeyebilir.
+Mevcut katalog, imzalama ve paket kimliği korunmuştur.
+Kotlin sözdizimi kontrolü geçti. Android APK derlemesi ve cihazda yayın testi yapılmadı.

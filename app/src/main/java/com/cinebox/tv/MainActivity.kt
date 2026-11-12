@@ -347,6 +347,9 @@ class MainActivity : ComponentActivity() {
                                     }
                                     if (detail.length()==0) Text("Ek yapım bilgisi kaynak dosyada bulunmuyor.",color=Color.LightGray,fontSize=13.sp)
                                 }
+                                if (tvWebPlayer) TvAction(onClick = {
+                                    startActivity(android.content.Intent(this@MainActivity, LiveTvActivity::class.java).putExtra("movie_id", m.id))
+                                }) { Text("▶ Ortak TV oynatıcısı · Hızlı kanal geçişi") }
                                 if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && offlineEpisodes.isEmpty() && (m.category != "Canlı TV" || tvWebPlayer)) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("movie_id", m.id).putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
