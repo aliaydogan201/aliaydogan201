@@ -1,0 +1,55 @@
+ALICOTV v62 — Canlı TV ve YouTube canlı yayın seçenekleri
+
+KAPSAM
+Önceki araştırmadaki 145 aday + Show TV + beIN SPORTS HABER = 147 kanal kaydı.
+Bu sayı 147 çalışır video yayını anlamına gelmez:
+- 54 kayıt: erişilebilen yayıncı canlı yayın sayfası bulundu.
+- 86 kayıt: yalnızca yayıncı sitesi bağlantısı var; canlı video doğrulanmadı.
+- 7 kayıt: adres bulunamadı; kanal kartında açıkça belirtilir, oynatma düğmesi sunulmaz.
+Sayfa erişimi görüntü/ses testi değildir. Dil ve kesintisiz yayın her kayıt için tek tek doğrulanmadı.
+
+YOUTUBE
+12 mevcut kanal kaydına YouTube seçeneği eklendi; ayrı/tekrarlı kanal sayılmadı.
+24 TV, A Haber, A Spor, Bloomberg HT, CNBC-e, CNN Türk, Diyanet TV,
+Ekotürk, Habertürk TV, NTV, TRT Haber, TVNET.
+Kontrol sırasında YouTube isLiveNow=true ve playability=OK bilgisi görüldü.
+Yayıncı sitelerinin bağlantı verdiği YouTube hesapları kullanıldı.
+Video numarası değişince eskimemesi için doğrulanan kanal kimliğinin /live adresi saklandı.
+Bu adres yayıncının o anda seçtiği canlı yayını açar; bazen ana TV akışı yerine özel program/olay yayını olabilir.
+Uygulama içi web oynatıcı ve YouTube uygulaması/tarayıcı seçenekleri bulunur.
+Kral Pop/PowerTürk için doğrulanmamış üçüncü kişi YouTube yayınları eklenmedi.
+beIN SPORTS HABER'in eski YouTube yayını kontrolde canlı değildi; yalnız resmî web canlı sayfası korundu.
+Ücretli beIN maç kanalları dahil değildir.
+
+ARAYÜZ
+Ana menü ve kategori listesine Canlı TV eklendi.
+Haber, Müzik, Spor, Çocuk, Genel ve Yerel alt filtreleri var.
+İsimle arama, alfabetik sıralama, sayfalama ve favoriler mevcut altyapıyla çalışır.
+Kartlarda canlı yayın sayfası / YouTube seçeneği / yayıncı sitesi / bağlantı bulunamadı ayrımı gösterilir.
+Yayıncı sitesi doğrulanmamış kayıtta 'Şimdi izle' düğmesi yerine tarayıcı bağlantısı sunulur.
+HTTP adresleri sadece dış tarayıcıda açılır; uygulamanın TLS/cleartext ayarları değiştirilmedi.
+A2TV ve Number 1 Aşk/Damar ortak menülerindeki başka kanalın yayın bağlantıları çıkarıldı.
+
+GÜNCELLEME
+147 kanal için tek seferlik uygulama içi ekleme bildirimi ve Yeni eklenenler kayıtları eklendi.
+Canlı TV dizini paketle gelir; Arşivi güncelle yeni TV kanallarını otomatik keşfetmez.
+YouTube /live adresi açılışta yayıncının güncel canlı yayınına yönlendirebilir; her an canlı yayın garantisi değildir.
+Mevcut film/dizi/YouTube arşiv güncellemeleri korunur.
+
+KORUNANLAR
+Mevcut 36.567 içerik ve dosyaları, sezon/bölümler, izleme geçmişi, favoriler,
+v59 kararlılık/tanılama ve v60 kontrast düzeltmeleri, v61 AnimeTarih kayıtları.
+Paket adı, imza anahtarı ayarları ve GitHub workflow değişmedi.
+Toplam paket arşivi: 36.714 benzersiz ID (cihazda sonradan eklenenler hariç).
+
+KONTROLLER
+Gerçek Kotlin katalog/ArchiveSync/arama kodları JVM'de derlenip çalıştırıldı;
+Android dosya/prefs işlemleri test nesneleriyle yürütüldü.
+147 kayıt, ID benzersizliği, durum sayıları, 12 YouTube seçeneği, alt filtreler,
+Türkçe isim araması, tek seferlik bildirim ve mevcut arşivin korunması kontrolleri geçti.
+Kotlin kaynaklarının sözdizimi ayrıca kontrol edildi.
+Tam APK derlemesi, fiziksel Android TV ve video görüntü/ses testi burada yapılmadı.
+
+KURULUM
+ZIP içeriğini mevcut GitHub proje klasörüne kopyalayın.
+Aynı workflow ve Secrets bilgileriyle APK oluşturun; uygulamayı kaldırmadan üzerine kurun.

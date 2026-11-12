@@ -1,0 +1,221 @@
+{
+  "candidates": 145,
+  "extra_channels": [
+    "Show TV",
+    "beIN SPORTS HABER"
+  ],
+  "total_entries": 147,
+  "statuses": {
+    "live_page": 54,
+    "website": 86,
+    "unavailable": 7
+  },
+  "youtube_live_options": 12,
+  "youtube_checks": [
+    {
+      "id": 8000000,
+      "source": "https://www.youtube.com/YirmidortTV",
+      "videoId": "6B-nPOdP720",
+      "channelId": "UCN7VYCsI4Lx1-J4_BtjoWUA",
+      "author": "24 TV",
+      "title": "🔴 24 TV Canlı İzle",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000001,
+      "source": "https://www.youtube.com/channel/UCfqRQZ40fwEdaDWPuR7tvcw",
+      "videoId": null,
+      "channelId": null,
+      "author": null,
+      "title": null,
+      "isLiveNow": false,
+      "playability": null
+    },
+    {
+      "id": 8000003,
+      "source": "https://www.youtube.com/ahaber",
+      "videoId": "qVbpTknrgho",
+      "channelId": "UCKQhfw-lzz0uKnE1fY1PsAA",
+      "author": "A Haber",
+      "title": "COP31 Zirvesi'nde 4. Gün! İklim Diplomasisinin Kalbi Antalya'da Atıyor 🔴 #Canlı Yayın ᴴᴰ",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000005,
+      "source": "https://www.youtube.com/aspor",
+      "videoId": "nol9os2B8zE",
+      "channelId": "UCJElRTCNEmLemgirqvsW63Q",
+      "author": "A Spor",
+      "title": "A Spor Canlı Yayın 🔴",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000015,
+      "source": "https://www.youtube.com/@brtv78",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": 8000016,
+      "source": "https://www.youtube.com/channel/UChNgvcVZ_ggDdZ0zCcuuzFw",
+      "videoId": "PtOlM8ffVPM",
+      "channelId": "UChNgvcVZ_ggDdZ0zCcuuzFw",
+      "author": "Bengü Türk",
+      "title": "BENGÜ TÜRK - Canlı Yayın ᴴᴰ",
+      "isLiveNow": false,
+      "playability": "OK"
+    },
+    {
+      "id": 8000019,
+      "source": "https://www.youtube.com/@bloomberght",
+      "videoId": "j7B_zsL11Pw",
+      "channelId": "UCApLxl6oYQafxvykuoC2uxQ",
+      "author": "BloombergHT",
+      "title": "Bloomberg HT Canlı Yayın",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000022,
+      "source": "https://www.youtube.com/@cnbce",
+      "videoId": "aZ3ycSbSYBA",
+      "channelId": "UCaO-M1dXacMwtyg0Pvovk4w",
+      "author": "CNBC-e",
+      "title": "CNBC-e Canlı Yayını 📺 Canlı Borsa, Ekonomi, Hisse Analizleri, Altın Fiyatları 💵",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000023,
+      "source": "https://www.youtube.com/cnnturk",
+      "videoId": "tE6grnJVZQ8",
+      "channelId": "UCV6zcRug6Hqp1UX_FdyUeBg",
+      "author": "CNN TÜRK",
+      "title": "Beyaz Saray Yakınlarında Silah Sesleri! Onlarca Polis Olay Yerinde, Ölenler Var I CANLI HABER",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000030,
+      "source": "https://www.youtube.com/user/diyanettv",
+      "videoId": "8KOE6__ogN8",
+      "channelId": "UC3d1AdmvAP6Jq16-WpD086g",
+      "author": "DiyanetTV",
+      "title": "#DiyanetTV Canlı Yayın ᴴᴰ",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000032,
+      "source": "https://www.youtube.com/@DostRadyoTV",
+      "videoId": null,
+      "channelId": null,
+      "author": null,
+      "title": null,
+      "isLiveNow": false,
+      "playability": null
+    },
+    {
+      "id": 8000039,
+      "source": "https://www.youtube.com/@EKOTURKTV",
+      "videoId": "rsAtfTBKmIM",
+      "channelId": "UCAGVKxpAKwXMWdmcHbrvcwQ",
+      "author": "EKOTÜRK TV",
+      "title": "EKOTÜRK Canlı Yayın | Canlı Borsa, Hisse Analizleri, Altın, Döviz, Bitcoin",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000052,
+      "source": "https://www.youtube.com/@haberturktv",
+      "videoId": "1RYj8Pvkwng",
+      "channelId": "UCn6dNfiRE_Xunu7iMyvD7AA",
+      "author": "Habertürk TV",
+      "title": "#CANLI - Zülfikar Ali Aydın ile Habertürk Manşet",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000053,
+      "source": "https://www.youtube.com/channel/UCf_ResXZzE-o18zACUEmyvQ",
+      "videoId": null,
+      "channelId": null,
+      "author": null,
+      "title": null,
+      "isLiveNow": false,
+      "playability": null
+    },
+    {
+      "id": 8000074,
+      "source": "https://www.youtube.com/@tvkocaeli",
+      "videoId": null,
+      "channelId": null,
+      "author": null,
+      "title": null,
+      "isLiveNow": false,
+      "playability": null
+    },
+    {
+      "id": 8000088,
+      "source": "https://www.youtube.com/user/ntv",
+      "videoId": "pqq5c6k70kk",
+      "channelId": "UC9TDTjbOjFB9jADmPhSAPsw",
+      "author": "NTV",
+      "title": "NTV Canlı Yayın - Full HD İzle",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000120,
+      "source": "https://www.youtube.com/user/trthaber",
+      "videoId": "SiB4y9mXhHI",
+      "channelId": "UCBgTP2LOFVPmq15W-RH-WXA",
+      "author": "TRT Haber",
+      "title": "TRT Haber Canlı Yayın",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000133,
+      "source": "https://www.youtube.com/tvnet",
+      "videoId": "q7U7ge9x-c8",
+      "channelId": "UC8rh34IlJTN0lDZlTwzWzjg",
+      "author": "TVNET",
+      "title": "#TVNET | Canlı Yayın",
+      "isLiveNow": true,
+      "playability": "OK"
+    },
+    {
+      "id": 8000146,
+      "source": "https://www.youtube.com/live/IJcLe0LRNQ8",
+      "videoId": "IJcLe0LRNQ8",
+      "channelId": "UCPe9vNjHF1kEExT5kHwc7aw",
+      "author": "beIN SPORTS Türkiye",
+      "title": "Şampiyon Mercedes, Verstappen'in Yükselişi, Antonelli Zorlandı, Stratejik Tercihler | Telemetri #23",
+      "isLiveNow": false,
+      "playability": "OK"
+    },
+    {
+      "id": 8000146,
+      "source": "https://www.youtube.com/watch?v=9xVXWLwT0vA",
+      "videoId": "9xVXWLwT0vA",
+      "channelId": "UCPe9vNjHF1kEExT5kHwc7aw",
+      "author": "beIN SPORTS Türkiye",
+      "title": "beIN SPORTS HABER Canlı Yayını | #beINSPORTS",
+      "isLiveNow": false,
+      "playability": "UNPLAYABLE"
+    }
+  ],
+  "playback_on_tv_verified": false,
+  "live_page_means": "publisher live page reachable, not verified video playback",
+  "groups": {
+    "Haber": 23,
+    "Müzik": 10,
+    "Spor": 8,
+    "Çocuk": 9,
+    "Yerel": 51,
+    "Genel": 46
+  }
+}

@@ -17,7 +17,7 @@ internal class CatalogSearch private constructor(private val entries: List<Pair<
                 "Tümü" -> true
                 "Filmler" -> movie.category == "Film"
                 "Diziler" -> movie.category == "Dizi" || movie.category == "Yerli Diziler"
-                else -> movie.category == category
+                else -> if (category.startsWith("TV · ")) movie.category == "Canlı TV" && movie.provider.startsWith("Canlı TV · " + category.removePrefix("TV · ") + " ·") else movie.category == category
             }
             if (matchesCategory && title.contains(needle)) result.add(movie)
         }

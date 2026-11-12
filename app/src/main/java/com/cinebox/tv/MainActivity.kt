@@ -190,6 +190,7 @@ class MainActivity : ComponentActivity() {
         ArchiveSync.announceFilmizleHell(this)
         ArchiveSync.announceSuperFilm(this)
         ArchiveSync.announceAnimeTarih(this)
+        ArchiveSync.announceLiveTv(this)
         setContent { App() }
         CrashDiagnostics.showPrevious(this)
     }
@@ -302,6 +303,8 @@ class MainActivity : ComponentActivity() {
                 }
                 selected != null -> {
                     val m = selected!!
+                    val tvChannel = LiveTvCatalog.entry(m.id)
+                    val tvWebPlayer = tvChannel?.status == "live_page" && m.webUrl.startsWith("https://")
                     val offlineEpisodes = remember(m.id,episodeRevision,historyRevision) { SeriesTracking.episodes(this@MainActivity,m) }
                     val availableSeasons = offlineEpisodes.map { it.season }.distinct().sorted()
                     val continuousEpisodes = m.id in ddiziContinuousIds || (m.webUrl.contains("ddizi.tel") && availableSeasons==listOf(1))
@@ -344,13 +347,23 @@ class MainActivity : ComponentActivity() {
                                     }
                                     if (detail.length()==0) Text("Ek yapım bilgisi kaynak dosyada bulunmuyor.",color=Color.LightGray,fontSize=13.sp)
                                 }
-                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && offlineEpisodes.isEmpty()) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
+                                if (m.webUrl.isNotBlank() && m.id !in 970000..970015 && offlineEpisodes.isEmpty() && (m.category != "Canlı TV" || tvWebPlayer)) TvAction(modifier = Modifier.focusRequester(playFocus), onClick = {
                                     startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
                                         .putExtra("movie_id", m.id).putExtra("series", m.category in listOf("Dizi", "Yerli Diziler")).putExtra("url", m.webUrl).putExtra("title", m.title))
-                                }) { Text(if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else if(m.category in listOf("Dizi","Yerli Diziler")) "▶ Bölümleri aç" else "▶ Şimdi izle") }
-                                if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015) Modifier.focusRequester(playFocus) else Modifier, onClick = {
+                                }) { Text(if (m.category == "Canlı TV") "▶ Canlı yayın sayfasını aç" else if (m.category == "Maç Özeti") "▶ Maç özetini aç" else if (m.id in 960001..960006) "▶ Dizi bölümlerini aç" else if(m.category in listOf("Dizi","Yerli Diziler")) "▶ Bölümleri aç" else "▶ Şimdi izle") }
+                                if (m.webUrl.isNotBlank()) TvAction(modifier = if (m.id in 970000..970015 || (m.category == "Canlı TV" && !tvWebPlayer)) Modifier.focusRequester(playFocus) else Modifier, onClick = {
                                     openPublisherPage(m.webUrl)
-                                }) { Text(if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                }) { Text(if (m.category == "Canlı TV") "Yayıncı sitesini tarayıcıda aç" else if (m.id in 970000..970015) "Resmî program bilgisini aç" else if (m.id == 7501) "Tüm bölümleri tarayıcıda aç" else "Tarayıcıda aç") }
+                                if (!tvChannel?.youtubeUrl.isNullOrBlank()) {
+                                    TvAction(onClick = {
+                                        startActivity(android.content.Intent(this@MainActivity, WebPlayerActivity::class.java)
+                                            .putExtra("movie_id", m.id).putExtra("url", tvChannel!!.youtubeUrl).putExtra("title", m.title + " · YouTube canlı"))
+                                    }) { Text("▶ YouTube yayını · Uygulamada aç") }
+                                    TvAction(onClick = { openPublisherPage(tvChannel!!.youtubeUrl) }) { Text("YouTube uygulaması / tarayıcıda aç") }
+                                }
+                                if (m.category == "Canlı TV" && m.webUrl.isBlank() && tvChannel?.youtubeUrl.isNullOrBlank()) {
+                                    Text("Bu kanalın yayın bağlantısı henüz bulunamadı.", color = accent)
+                                }
                                 if (m.category in listOf("Dizi", "Yerli Diziler")) {
                                     TvAction(onClick = {
                                         val enable = m.id !in followed
@@ -465,13 +478,15 @@ class MainActivity : ComponentActivity() {
                     if (backupMessage.isNotBlank()) Text(backupMessage,color=Color.White)
                     Row(Modifier.horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                         androidx.compose.foundation.Image(painter = androidx.compose.ui.res.painterResource(R.drawable.alico_wordmark), contentDescription = "ALICOTV", modifier = Modifier.width(160.dp).height(52.dp))
-                        listOf("Ana Sayfa", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim", "Yeni eklenenler").forEach { label ->
+                        listOf("Ana Sayfa", "Canlı TV", "Ara", "Favoriler", "Öneriler", "İzlemeye Devam", "Takip Ettiklerim", "Yeni eklenenler").forEach { label ->
                             TvAction(onClick = {
                                 tab = label
                                 if (label in listOf("Takip Ettiklerim", "Yeni eklenenler")) { category = "Tümü"; query = "" }
+                                if (label == "Canlı TV") { category = "Canlı TV"; query = "" }
+                                if (label == "Ana Sayfa") { category = "Tümü"; query = "" }
                                 page = 0
                                 when (label) {
-                                    "Ana Sayfa", "Ara" -> showMovies(liveCatalog)
+                                    "Ana Sayfa", "Ara", "Canlı TV" -> showMovies(liveCatalog)
                                     "Öneriler" -> {
                                         val preferred = savedMovies.values.filter { (ratings[it.id] ?: 0) >= 7 }.flatMap { it.genreIds }.toSet()
                                         showMovies(liveCatalog.filter { preferred.isEmpty() || it.genreIds.any { genre -> genre in preferred } })
@@ -501,12 +516,12 @@ class MainActivity : ComponentActivity() {
                         TvAction(onClick = { query = ""; page = 0 }) { Text("Temizle") }
                     }
                     Spacer(Modifier.height(16.dp))
-                    Text(when (tab) { "Yeni eklenenler" -> "Yeni eklenen içerikler"; "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor, müzik ve eğlence" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                    Text(when (tab) { "Canlı TV" -> "Canlı TV kanalları"; "Yeni eklenenler" -> "Yeni eklenen içerikler"; "Ara" -> "Arama sonuçları"; "Favoriler" -> "Favori filmlerim"; "Öneriler" -> "Sana özel öneriler"; else -> "Film, dizi, belgesel, spor, müzik ve eğlence" }, color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(16.dp))
                     if (busy) CircularProgressIndicator()
                     if (message.isNotBlank()) Text(message, color = Color.LightGray)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        listOf("Tümü", "Filmler", "Diziler", "Yerli Diziler", "Belgesel", "Maç Özeti", "Müzik", "Eğlence").forEach { label ->
+                        (if (tab == "Canlı TV") listOf("Canlı TV", "TV · Haber", "TV · Müzik", "TV · Spor", "TV · Çocuk", "TV · Genel", "TV · Yerel") else listOf("Tümü", "Filmler", "Diziler", "Yerli Diziler", "Belgesel", "Maç Özeti", "Müzik", "Eğlence", "Canlı TV")).forEach { label ->
                             TvAction(onClick = { category = label; page = 0 }) { Text(if (category == label) "✓ $label" else label) }
                         }
                     }
@@ -564,7 +579,7 @@ private fun MovieRow(movies: List<Movie>, onFocusChanged: (Boolean) -> Unit = {}
                         Text(movie.title, color = Color.White, fontSize = 15.sp, minLines = 2, maxLines = 4, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(8.dp))
                         if (movie.poster.isNotEmpty()) AsyncImage(model = movie.poster, contentDescription = movie.title, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(150.dp))
                         else Box(Modifier.fillMaxWidth().height(150.dp), contentAlignment = Alignment.Center) { Text(movie.title, color = Color.LightGray, modifier = Modifier.padding(12.dp)) }
-                        Text(if (movie.id in 970000..970015) "Belgesel · Program bilgisi" else if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
+                        Text(if (movie.category == "Canlı TV") LiveTvCatalog.label(movie.id) else if (movie.id in 970000..970015) "Belgesel · Program bilgisi" else if (movie.webUrl.isNotBlank()) "${movie.category} · Web oynatıcı" else if ((movie.id in 7201..7203 || movie.id in 7301..7302)) "${movie.year} · Türkçe dublaj" else if (movie.provider.isNotEmpty()) "${movie.provider} · ${movie.license}" else "${movie.year}  ★ ${"%.1f".format(movie.score)}", color = Color.LightGray, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(start = 8.dp, bottom = 8.dp))
                     }
                 }
             }

@@ -11,8 +11,8 @@ android {
         applicationId = "com.cinebox.tv"
         minSdk = 23
         targetSdk = 35
-        versionCode = 61
-        versionName = "0.61.0"
+        versionCode = 62
+        versionName = "0.62.0"
     }
     signingConfigs.getByName("debug") {
         storeFile = rootProject.file("signing/alico-update.jks")
